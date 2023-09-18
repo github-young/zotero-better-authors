@@ -1,16 +1,16 @@
 {
-  "name": "zotero-addon-template",
+  "name": "zotero-last-author",
   "version": "1.0.0",
-  "description": "Zotero Addon Template",
+  "description": "Zotero Last Author",
   "config": {
-    "addonName": "Zotero Addon Template",
-    "addonID": "addontemplate@euclpts.com",
-    "addonRef": "addontemplate",
-    "addonInstance": "AddonTemplate",
-    "prefsPrefix": "extensions.zotero.addontemplate",
-    "releasePage": "https://github.com/windingwind/zotero-addon-template/releases",
-    "updateJSON": "https://raw.githubusercontent.com/windingwind/zotero-addon-template/main/update.json",
-    "updateBetaJSON": "https://raw.githubusercontent.com/windingwind/zotero-addon-template/main/update-beta.json"
+    "addonName": "Zotero Last Author",
+    "addonID": "lastauthor@euclpts.com",
+    "addonRef": "lastauthor",
+    "addonInstance": "LastAuthor",
+    "prefsPrefix": "extensions.zotero.lastauthor",
+    "releasePage": "https://github.com/github-young/zotero-last-author/releases",
+    "updateJSON": "https://raw.githubusercontent.com/github-young/zotero-last-author/main/update.json",
+    "updateBetaJSON": "https://raw.githubusercontent.com/github-young/zotero-last-author/main/update-beta.json"
   },
   "main": "src/index.ts",
   "scripts": {
@@ -18,7 +18,7 @@
     "build-prod": "cross-env NODE_ENV=production node scripts/build.mjs",
     "build": "concurrently -c auto npm:build-prod npm:tsc",
     "tsc": "tsc --noEmit",
-    "start": "node scripts/start.mjs",
+    "start": "node scripts/mystart.mjs",
     "start-watch": "npm run build-dev && concurrently -c auto npm:start npm:watch",
     "stop": "node scripts/stop.mjs",
     "restart-dev": "npm run build-dev && npm run stop && npm run start",
@@ -33,14 +33,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/windingwind/zotero-addon-template.git"
+    "url": "git+https://github.com/github-young/zotero-last-author.git"
   },
-  "author": "windingwind",
+  "author": "github-young",
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/windingwind/zotero-addon-template/issues"
+    "url": "https://github.com/github-young/zotero-last-author/issues"
   },
-  "homepage": "https://github.com/windingwind/zotero-addon-template#readme",
+  "homepage": "https://github.com/github-young/zotero-last-author#readme",
   "dependencies": {
     "zotero-plugin-toolkit": "^2.3.6"
   },
