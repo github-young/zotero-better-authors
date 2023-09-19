@@ -1,6 +1,6 @@
 {
   "name": "zotero-last-author",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Zotero Last Author",
   "config": {
     "addonName": "Zotero Last Author",
