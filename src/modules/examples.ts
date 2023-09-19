@@ -34,7 +34,8 @@ export class UIExampleFactory {
       ) => {
         const authors = item.getCreators();
         const lastAuthor = authors[authors.length - 1];
-        const lastAuthorName = lastAuthor.lastName + ", " + lastAuthor.firstName;
+        const lastAuthorName =
+          lastAuthor.lastName + ", " + lastAuthor.firstName;
         return lastAuthorName;
       },
       {}
