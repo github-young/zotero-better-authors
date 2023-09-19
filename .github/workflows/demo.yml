@@ -1,5 +1,5 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: GitHub Actions to release xpi file
 on: 
   push:
     tags:
@@ -9,18 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
@@ -29,10 +19,6 @@ jobs:
       - run: cd ${{ github.workspace }}
       - run: npm install
       - run: npm run build
-      - run: echo "npm done."
-      - run: |
-          cd ${{ github.workspace }}
-          ls build
       
       - name: Release xpi file
         uses: "marvinpinto/action-automatic-releases@latest"
