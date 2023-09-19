@@ -31,7 +31,8 @@ jobs:
       - run: npm run build
       - run: echo "npm done."
       - run: |
-          ls ${{ github.workspace }}
+          cd ${{ github.workspace }}
+          ls build
       
       - name: Release xpi file
         uses: "marvinpinto/action-automatic-releases@latest"
