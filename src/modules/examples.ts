@@ -5,7 +5,7 @@ import { getString } from "../utils/locale";
 function example(
   target: any,
   propertyKey: string | symbol,
-  descriptor: PropertyDescriptor,
+  descriptor: PropertyDescriptor
 ) {
   const original = descriptor.value;
   descriptor.value = function (...args: any) {
@@ -30,14 +30,14 @@ export class UIExampleFactory {
         field: string,
         unformatted: boolean,
         includeBaseMapped: boolean,
-        item: Zotero.Item,
+        item: Zotero.Item
       ) => {
-        var authors = item.getCreators();
-        var lastAuthor = authors[authors.length - 1];
-        var lastAuthorName = lastAuthor.lastName + ", " + lastAuthor.firstName;
+        const authors = item.getCreators();
+        const lastAuthor = authors[authors.length - 1];
+        const lastAuthorName = lastAuthor.lastName + ", " + lastAuthor.firstName;
         return lastAuthorName;
       },
-      {},
+      {}
     );
   }
 }

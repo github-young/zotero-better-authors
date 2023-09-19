@@ -11,7 +11,7 @@ const args = minimist(process.argv.slice(2));
 if (args.help || args.h) {
   console.log("Start Zotero Args:");
   console.log(
-    "--zotero(-z): Zotero exec key in zotero-cmd.json. Default the first one.",
+    "--zotero(-z): Zotero exec key in zotero-cmd.json. Default the first one."
   );
   console.log("--profile(-p): Zotero profile name.");
   exit(0);
