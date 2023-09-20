@@ -3,7 +3,7 @@
     "lastauthor@euclpts.com": {
       "updates": [
         {
-          "version": "1.0.0",
+          "version": "1.1.0",
           "update_link": "https://github.com/github-young/zotero-last-author/releases/latest/download/zotero-last-author.xpi",
           "applications": {
             "zotero": {

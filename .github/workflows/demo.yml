@@ -1,9 +1,9 @@
 name: GitHub Actions Demo
 run-name: GitHub Actions to release xpi file
-on: 
+on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
       - run: cd ${{ github.workspace }}
       - run: npm install
       - run: npm run build
-      
+
       - name: Release xpi file
         uses: "marvinpinto/action-automatic-releases@latest"
         with:

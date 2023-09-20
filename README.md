@@ -10,6 +10,7 @@ This is a simple plugin for [Zotero](https://www.zotero.org/) 7.
 - Display the last author (corresponding author) in a new column as it is usually more important than the first author.
 
 ## Screenshot
+
 ![screenshot](image.png)
 
 ## Disclaimer

@@ -30,21 +30,15 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     })
     .show();
 
-  await Zotero.Promise.delay(1000);
-  popupWin.changeLine({
-    progress: 30,
-    text: `[30%] ${getString("startup-begin")}`,
-  });
-
   await UIExampleFactory.registerExtraColumn();
 
-  await Zotero.Promise.delay(1000);
+  await Zotero.Promise.delay(500);
 
   popupWin.changeLine({
     progress: 100,
-    text: `[100%] ${getString("startup-finish")}`,
+    text: `[100%] ${getString("loaded")}`,
   });
-  popupWin.startCloseTimer(5000);
+  popupWin.startCloseTimer(2000);
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {

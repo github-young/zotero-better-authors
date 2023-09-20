@@ -5,7 +5,7 @@ import { getString } from "../utils/locale";
 function example(
   target: any,
   propertyKey: string | symbol,
-  descriptor: PropertyDescriptor
+  descriptor: PropertyDescriptor,
 ) {
   const original = descriptor.value;
   descriptor.value = function (...args: any) {
@@ -24,21 +24,23 @@ export class UIExampleFactory {
   @example
   static async registerExtraColumn() {
     await ztoolkit.ItemTree.register(
-      "test1",
+      "lastauthor",
       "Last Author",
       (
         field: string,
         unformatted: boolean,
         includeBaseMapped: boolean,
-        item: Zotero.Item
+        item: Zotero.Item,
       ) => {
         const authors = item.getCreators();
-        const lastAuthor = authors[authors.length - 1];
-        const lastAuthorName =
-          lastAuthor.lastName + ", " + lastAuthor.firstName;
+        let lastAuthorName = "";
+        if (authors.length !== 0) {
+          const lastAuthor = authors[authors.length - 1];
+          lastAuthorName = lastAuthor.lastName + ", " + lastAuthor.firstName;
+        }
         return lastAuthorName;
       },
-      {}
+      {},
     );
   }
 }
