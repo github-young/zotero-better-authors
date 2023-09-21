@@ -8,10 +8,17 @@ This is a simple plugin for [Zotero](https://www.zotero.org/) 7.
 ## Features
 
 - Display the last author (corresponding author) in a new column as it is usually more important than the first author.
+- Support changing the display style of the first name: full or initials.
 
 ## Screenshot
 
-![screenshot](image.png)
+The display mode can be switched in the plugin settings.
+
+Full name
+![full name](image_full.png)
+
+Initials
+![initials](image_short.png)
 
 ## Disclaimer
 
