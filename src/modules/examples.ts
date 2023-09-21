@@ -1,6 +1,7 @@
 import { it } from "node:test";
 import { config } from "../../package.json";
 import { getString } from "../utils/locale";
+import { convertToInitials } from "./convertNames";
 
 function example(
   target: any,
@@ -20,6 +21,20 @@ function example(
   return descriptor;
 }
 
+export class BasicExampleFactory {
+  @example
+  static registerPrefs() {
+    const prefOptions = {
+      pluginID: config.addonID,
+      src: rootURI + "chrome/content/preferences.xhtml",
+      label: getString("prefs-title"),
+      image: "",
+      defaultXUL: true,
+    };
+    ztoolkit.PreferencePane.register(prefOptions);
+  }
+}
+
 export class UIExampleFactory {
   @example
   static async registerExtraColumn() {
@@ -33,12 +48,20 @@ export class UIExampleFactory {
         item: Zotero.Item,
       ) => {
         const authors = item.getCreators();
-        let lastAuthorName = "";
+        let lastAuthorDisplayed: string = "";
         if (authors.length !== 0) {
           const lastAuthor = authors[authors.length - 1];
-          lastAuthorName = lastAuthor.lastName + ", " + lastAuthor.firstName;
+          if (Zotero.Prefs.get("lastauthor.initials")) {
+            lastAuthorDisplayed =
+              lastAuthor.lastName +
+              ", " +
+              convertToInitials(lastAuthor.firstName);
+          } else {
+            lastAuthorDisplayed =
+              lastAuthor.lastName + ", " + lastAuthor.firstName;
+          }
         }
-        return lastAuthorName;
+        return lastAuthorDisplayed;
       },
       {},
     );

@@ -24,20 +24,12 @@ export async function registerPrefsScripts(_window: Window) {
           title: "Orange",
           detail: "It's juicy",
         },
-        {
-          title: "Banana",
-          detail: "It's sweet",
-        },
-        {
-          title: "Apple",
-          detail: "I mean the fruit APPLE",
-        },
       ],
     };
   } else {
     addon.data.prefs.window = _window;
   }
-  updatePrefsUI();
+  //   updatePrefsUI();
   bindPrefEvents();
 }
 
@@ -114,18 +106,20 @@ function bindPrefEvents() {
     ?.addEventListener("command", (e) => {
       ztoolkit.log(e);
       addon.data.prefs!.window.alert(
-        `Successfully changed to ${(e.target as XUL.Checkbox).checked}!`,
+        `Enabled? ${(e.target as XUL.Checkbox).checked}!`,
       );
     });
 
   addon.data
     .prefs!.window.document.querySelector(
-      `#zotero-prefpane-${config.addonRef}-input`,
+      `#zotero-prefpane-${config.addonRef}-initials`,
     )
-    ?.addEventListener("change", (e) => {
+    ?.addEventListener("command", (e) => {
       ztoolkit.log(e);
       addon.data.prefs!.window.alert(
-        `Successfully changed to ${(e.target as HTMLInputElement).value}!`,
+        `Display first name as initials? ${
+          (e.target as XUL.Checkbox).checked
+        }!`,
       );
     });
 }

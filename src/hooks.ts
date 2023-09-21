@@ -1,4 +1,4 @@
-import { UIExampleFactory } from "./modules/examples";
+import { BasicExampleFactory, UIExampleFactory } from "./modules/examples";
 import { config } from "../package.json";
 import { getString, initLocale } from "./utils/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
@@ -12,6 +12,8 @@ async function onStartup() {
   ]);
   initLocale();
 
+  BasicExampleFactory.registerPrefs();
+
   await onMainWindowLoad(window);
 }
 
@@ -19,26 +21,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
 
-  const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
-    closeOnClick: true,
-    closeTime: -1,
-  })
-    .createLine({
-      text: getString("startup-begin"),
-      type: "default",
-      progress: 0,
-    })
-    .show();
-
   await UIExampleFactory.registerExtraColumn();
-
-  await Zotero.Promise.delay(500);
-
-  popupWin.changeLine({
-    progress: 100,
-    text: `[100%] ${getString("loaded")}`,
-  });
-  popupWin.startCloseTimer(2000);
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
