@@ -61,7 +61,7 @@ export class UIExampleFactory {
               lastAuthor.lastName + ", " + lastAuthor.firstName;
           }
         }
-        return lastAuthorDisplayed;
+        return lastAuthorDisplayed.replace(/,\s$/, "");
       },
       {},
     );
