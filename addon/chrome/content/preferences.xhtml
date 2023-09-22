@@ -13,6 +13,12 @@
     <checkbox id="zotero-prefpane-__addonRef__-only_lastname" preference="extensions.zotero.__addonRef__.only_lastname"
       data-l10n-id="pref-only-lastname" />
     <hbox align="center">
+      <label data-l10n-id="pref-first-n-name-prev-label" />
+      <html:input class="html-input" type="number" min="1" step="1" size="3"
+        preference="extensions.zotero.__addonRef__.first_n_name" />
+      <label data-l10n-id="pref-first-n-name-next-label" />
+    </hbox>
+    <hbox align="center">
       <label data-l10n-id="pref-name-style" control="zotero-prefpane-__addonRef__-namestyle"></label>
       <menulist id="zotero-prefpane-__addonRef__-namestyle" preference="extensions.zotero.__addonRef__.namestyle"
         native="true">
@@ -22,6 +28,19 @@
           <menuitem data-l10n-id="pref-name-style-lastfirst" value="lastfirst">
           </menuitem>
           <menuitem data-l10n-id="pref-name-style-auto" value="auto">
+          </menuitem>
+        </menupopup>
+      </menulist>
+    </hbox>
+    <hbox align="center">
+      <label data-l10n-id="pref-sep" control="zotero-prefpane-__addonRef__-sep"></label>
+      <menulist id="zotero-prefpane-__addonRef__-sep" preference="extensions.zotero.__addonRef__.sep" native="true">
+        <menupopup>
+          <menuitem data-l10n-id="pref-sep-space" value="space">
+          </menuitem>
+          <menuitem data-l10n-id="pref-sep-comma" value="comma">
+          </menuitem>
+          <menuitem data-l10n-id="pref-sep-none" value="none">
           </menuitem>
         </menupopup>
       </menulist>
