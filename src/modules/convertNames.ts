@@ -20,6 +20,10 @@ function dealWithHyphens(name?: string): string {
 
 function convertToInitials(name?: string): string {
   if (!name) return "";
+  // Deal with parenthesis
+  if (name.includes("(")) {
+    name = name.substring(0, name.indexOf("("));
+  }
   // Deal with CJK characters
   const regex4CJK: RegExp =
     /[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B/g;
@@ -61,6 +65,9 @@ function convertToInitials(name?: string): string {
 //   "测 试",
 //   "测-试",
 //   "测-test-试",
+//   "Daosheng (邓道盛)",
+//   "Jinkee (이진기)",
+//   "Marie-Jean (陶益壮)",
 // ];
 
 // for (const name of names) {
