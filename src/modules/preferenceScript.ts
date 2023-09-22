@@ -117,8 +117,7 @@ function bindPrefEvents() {
     ?.addEventListener("command", (e) => {
       ztoolkit.log(e);
       addon.data.prefs!.window.alert(
-        `Display first name as initials? ${
-          (e.target as XUL.Checkbox).checked
+        `Display first name as initials? ${(e.target as XUL.Checkbox).checked
         }!`,
       );
     });

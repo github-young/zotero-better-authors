@@ -1,4 +1,4 @@
-export { convertToInitials };
+export { convertToInitials, determineCountry };
 
 function dealWithHyphens(name?: string): string {
   if (!name) return "";
@@ -41,6 +41,28 @@ function convertToInitials(name?: string): string {
     .replace(/\s.\s$/, "")
     .trim()
     .replace(/.\s-/, ".-");
+}
+
+function determineCountry(firstName: string, lastName: string): string {
+  // Map of countries and their corresponding last name patterns
+  const countryPatterns: { [country: string]: RegExp } = {
+    "en": /^[A-Za-z]{2,}$/,
+    "zh": /^[\u4e00-\u9fa5]{1,}$/,
+    "ja": /^[A-Za-z\u3040-\u309F\u30A0-\u30FF]{1,}$/,
+    "ko": /^[가-힣]{1,}$/,
+    // Add more countries and their patterns as needed
+  };
+
+  // Iterate over the country patterns and check if any match the last name
+  for (const country in countryPatterns) {
+    const pattern = countryPatterns[country];
+    if (pattern.test(lastName)) {
+      return country;
+    }
+  }
+
+  // If no country pattern matches, return "unknown"
+  return "unknown";
 }
 
 // const names = [

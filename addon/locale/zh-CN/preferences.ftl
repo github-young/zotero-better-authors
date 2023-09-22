@@ -1,6 +1,16 @@
-pref-title = Last Author 设置
+pref-title = 末位作者设置
 pref-enable =
     .label = 开启插件（测试用，点击无用）
 pref-initials =
     .label = 名字显示为首字母（重启插件或Zotero后生效）
+pref-only-lastname = 
+    .label = 仅显示姓氏
 pref-help = { $name } Build { $version } { $time }
+pref-name-style = 
+    .value = 姓名顺序
+pref-name-style-firstlast = 
+    .label = 名&姓
+pref-name-style-lastfirst = 
+    .label = 姓&名
+pref-name-style-auto = 
+    .label = 自动

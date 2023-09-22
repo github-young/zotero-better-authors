@@ -7,5 +7,6 @@ menuitem-filemenulabel = Addon Template: File Menuitem
 prefs-title = Last Author
 prefs-table-title = Title
 prefs-table-detail = Detail
+itemtree-title = Last Author
 tabpanel-lib-tab-label = Lib Tab
 tabpanel-reader-tab-label = Reader Tab
