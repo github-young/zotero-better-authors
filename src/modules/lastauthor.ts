@@ -39,6 +39,8 @@ export class BasicLastAuthorFactory {
   }
 }
 
+type NameOrderType = "firstlast" | "lastfirst";
+
 export class UILastAuthorFactory {
   static getSeparator(): string {
     const sepSetting = Zotero.Prefs.get("lastauthor.sep");
@@ -52,6 +54,29 @@ export class UILastAuthorFactory {
     }
     return sep;
   }
+  static getAuthorNameWithNameOrder(
+    nameorder: NameOrderType,
+    firstName: string,
+    lastName: string,
+    separtor: string
+  ): string {
+    if (nameorder == "firstlast") {
+      if (Zotero.Prefs.get("lastauthor.initials")) {
+        return convertToInitials(firstName) + separtor + lastName;
+      } else {
+        return firstName + separtor + lastName;
+      }
+    } else if (nameorder == "lastfirst") {
+      if (Zotero.Prefs.get("lastauthor.initials")) {
+        return lastName + separtor + convertToInitials(firstName);
+      } else {
+        return lastName + separtor + firstName;
+      }
+    } else {
+      throw new Error(`Invalid author name order: ${nameorder}.`);
+    }
+  }
+
   static displayAuthorName(
     authors: Zotero.Item.Creator[],
     index: number,
@@ -59,19 +84,19 @@ export class UILastAuthorFactory {
   ): string {
     if (authors.length == 0) return "";
     const targetAuthor = authors[index];
+    const firstName = targetAuthor.firstName as string;
+    const lastName = targetAuthor.lastName as string;
     // BasicTool.getZotero().log(targetAuthor.fieldMode)
     if (targetAuthor.fieldMode == 0) {
       // Double fields mode
       if (Zotero.Prefs.get("lastauthor.only_lastname")) {
         return targetAuthor.lastName as string;
       } else {
-        let nameorder = "auto";
+        const nameStyle = Zotero.Prefs.get("lastauthor.namestyle");
+        let nameorder: NameOrderType = "firstlast";
         let separtor = sep;
-        if (Zotero.Prefs.get("lastauthor.namestyle") == "auto") {
-          const nameCountry = determineCountry(
-            targetAuthor.firstName as string,
-            targetAuthor.lastName as string,
-          );
+        if (nameStyle == "auto") {
+          const nameCountry = determineCountry(firstName, lastName);
           // BasicTool.getZotero().log(nameCountry);
           if (["zh", "ja", "ko"].includes(nameCountry)) {
             nameorder = "lastfirst";
@@ -79,36 +104,14 @@ export class UILastAuthorFactory {
           } else {
             nameorder = "firstlast";
           }
-        }
-        if (
-          Zotero.Prefs.get("lastauthor.namestyle") == "firstlast" ||
-          nameorder == "firstlast"
-        ) {
-          if (Zotero.Prefs.get("lastauthor.initials")) {
-            return (
-              convertToInitials(targetAuthor.firstName) +
-              separtor +
-              targetAuthor.lastName
-            );
-          } else {
-            return targetAuthor.firstName + separtor + targetAuthor.lastName;
-          }
-        } else if (
-          Zotero.Prefs.get("lastauthor.namestyle") == "lastfirst" ||
-          nameorder == "lastfirst"
-        ) {
-          if (Zotero.Prefs.get("lastauthor.initials")) {
-            return (
-              targetAuthor.lastName +
-              separtor +
-              convertToInitials(targetAuthor.firstName)
-            );
-          } else {
-            return targetAuthor.lastName + separtor + targetAuthor.firstName;
-          }
+        } else if (nameStyle == "firstlast") {
+          nameorder = "firstlast";
+        } else if (nameStyle == "lastfirst") {
+          nameorder = "lastfirst";
         } else {
-          throw new Error(`Invalid author name order: ${nameorder}.`);
+          throw new Error(`Invalid author name order setting: ${nameStyle}.`);
         }
+        return this.getAuthorNameWithNameOrder(nameorder, firstName, lastName, separtor);
       }
     } else {
       // Single field mode should be used to institutions. Only lastName field has value.
@@ -127,7 +130,9 @@ export class UILastAuthorFactory {
         includeBaseMapped: boolean,
         item: Zotero.Item,
       ) => {
-        const authors = item.getCreators();
+        const creators = item.getCreators();
+        // Only get all authors in the creators
+        const authors = creators.filter(creator => creator.creatorTypeID === 8);
         if (authors.length == 0) return "";
         const sep = this.getSeparator();
         const lastAuthorDisplayed: string = this.displayAuthorName(
@@ -148,7 +153,9 @@ export class UILastAuthorFactory {
         includeBaseMapped: boolean,
         item: Zotero.Item,
       ) => {
-        const authors = item.getCreators();
+        const creators = item.getCreators();
+        // Only get all authors in the creators
+        const authors = creators.filter(creator => creator.creatorTypeID === 8);
         if (authors.length == 0) return "";
         const sep = this.getSeparator();
         const settingFirstN = Zotero.Prefs.get("lastauthor.first_n_name");
