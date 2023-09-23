@@ -15,7 +15,10 @@ function lastAuthorPlugin(
       ztoolkit.log(`Calling last author ${target.name}.${String(propertyKey)}`);
       return original.apply(this, args);
     } catch (e) {
-      ztoolkit.log(`Error in last author ${target.name}.${String(propertyKey)}`, e);
+      ztoolkit.log(
+        `Error in last author ${target.name}.${String(propertyKey)}`,
+        e,
+      );
       throw e;
     }
   };
@@ -49,7 +52,11 @@ export class UILastAuthorFactory {
     }
     return sep;
   }
-  static displayAuthorName(authors: Zotero.Item.Creator[], index: number, sep: string = ", "): string {
+  static displayAuthorName(
+    authors: Zotero.Item.Creator[],
+    index: number,
+    sep: string = ", ",
+  ): string {
     if (authors.length == 0) return "";
     const targetAuthor = authors[index];
     // BasicTool.getZotero().log(targetAuthor.fieldMode)
@@ -61,7 +68,10 @@ export class UILastAuthorFactory {
         let nameorder = "auto";
         let separtor = sep;
         if (Zotero.Prefs.get("lastauthor.namestyle") == "auto") {
-          const nameCountry = determineCountry(targetAuthor.firstName as string, targetAuthor.lastName as string);
+          const nameCountry = determineCountry(
+            targetAuthor.firstName as string,
+            targetAuthor.lastName as string,
+          );
           // BasicTool.getZotero().log(nameCountry);
           if (["zh", "ja", "ko"].includes(nameCountry)) {
             nameorder = "lastfirst";
@@ -70,17 +80,29 @@ export class UILastAuthorFactory {
             nameorder = "firstlast";
           }
         }
-        if (Zotero.Prefs.get("lastauthor.namestyle") == "firstlast" || nameorder == "firstlast") {
+        if (
+          Zotero.Prefs.get("lastauthor.namestyle") == "firstlast" ||
+          nameorder == "firstlast"
+        ) {
           if (Zotero.Prefs.get("lastauthor.initials")) {
-            return convertToInitials(targetAuthor.firstName) + separtor +
-              targetAuthor.lastName;
+            return (
+              convertToInitials(targetAuthor.firstName) +
+              separtor +
+              targetAuthor.lastName
+            );
           } else {
             return targetAuthor.firstName + separtor + targetAuthor.lastName;
           }
-        } else if (Zotero.Prefs.get("lastauthor.namestyle") == "lastfirst" || nameorder == "lastfirst") {
+        } else if (
+          Zotero.Prefs.get("lastauthor.namestyle") == "lastfirst" ||
+          nameorder == "lastfirst"
+        ) {
           if (Zotero.Prefs.get("lastauthor.initials")) {
-            return targetAuthor.lastName + separtor +
-              convertToInitials(targetAuthor.firstName);
+            return (
+              targetAuthor.lastName +
+              separtor +
+              convertToInitials(targetAuthor.firstName)
+            );
           } else {
             return targetAuthor.lastName + separtor + targetAuthor.firstName;
           }
@@ -88,7 +110,6 @@ export class UILastAuthorFactory {
           throw new Error(`Invalid author name order: ${nameorder}.`);
         }
       }
-
     } else {
       // Single field mode should be used to institutions. Only lastName field has value.
       return targetAuthor.lastName as string;
@@ -109,7 +130,11 @@ export class UILastAuthorFactory {
         const authors = item.getCreators();
         if (authors.length == 0) return "";
         const sep = this.getSeparator();
-        const lastAuthorDisplayed: string = this.displayAuthorName(authors, authors.length - 1, sep);
+        const lastAuthorDisplayed: string = this.displayAuthorName(
+          authors,
+          authors.length - 1,
+          sep,
+        );
         return lastAuthorDisplayed;
       },
       {},
@@ -135,11 +160,19 @@ export class UILastAuthorFactory {
         const authorList: string[] = [];
         for (let i = 0; i < authors.length; ++i) {
           if (i >= firstN) break;
-          const authorDisplayed: string = this.displayAuthorName(authors, i, sep);
+          const authorDisplayed: string = this.displayAuthorName(
+            authors,
+            i,
+            sep,
+          );
           authorList.push(authorDisplayed);
         }
 
-        const lastAuthorDisplayed: string = this.displayAuthorName(authors, authors.length - 1, sep);
+        const lastAuthorDisplayed: string = this.displayAuthorName(
+          authors,
+          authors.length - 1,
+          sep,
+        );
         if (firstN < authors.length - 1) {
           return authorList.join(", ") + ", ..., " + lastAuthorDisplayed;
         } else if (firstN == authors.length - 1) {

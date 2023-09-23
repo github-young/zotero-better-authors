@@ -50,10 +50,10 @@ function convertToInitials(name?: string): string {
 function determineCountry(firstName: string, lastName: string): string {
   // Map of countries and their corresponding last name patterns
   const countryPatterns: { [country: string]: RegExp } = {
-    "en": /^[A-Za-z]{2,}$/,
-    "zh": /^[\u4e00-\u9fa5]{1,}$/,
-    "ja": /^[A-Za-z\u3040-\u309F\u30A0-\u30FF]{1,}$/,
-    "ko": /^[가-힣]{1,}$/,
+    en: /^[A-Za-z]{2,}$/,
+    zh: /^[\u4e00-\u9fa5]{1,}$/,
+    ja: /^[A-Za-z\u3040-\u309F\u30A0-\u30FF]{1,}$/,
+    ko: /^[가-힣]{1,}$/,
     // Add more countries and their patterns as needed
   };
 
