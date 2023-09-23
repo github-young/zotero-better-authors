@@ -1,4 +1,4 @@
-import { BasicLastAuthorFactory, UILastAuthorFactory } from "./modules/lastAuthor";
+import { BasicLastAuthorFactory, UILastAuthorFactory } from "./modules/lastauthor";
 import { config } from "../package.json";
 import { getString, initLocale } from "./utils/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
