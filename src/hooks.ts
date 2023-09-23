@@ -1,4 +1,4 @@
-import { BasicExampleFactory, UIExampleFactory } from "./modules/examples";
+import { BasicLastAuthorFactory, UILastAuthorFactory } from "./modules/lastauthor";
 import { config } from "../package.json";
 import { getString, initLocale } from "./utils/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
@@ -12,7 +12,7 @@ async function onStartup() {
   ]);
   initLocale();
 
-  BasicExampleFactory.registerPrefs();
+  BasicLastAuthorFactory.registerPrefs();
 
   await onMainWindowLoad(window);
 }
@@ -21,7 +21,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
 
-  await UIExampleFactory.registerExtraColumn();
+  await UILastAuthorFactory.registerExtraColumn();
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
