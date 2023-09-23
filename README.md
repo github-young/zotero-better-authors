@@ -20,11 +20,11 @@ Here are two examples:
 
 - Full name of the last author:
 
-   ![full name](image_full.png)
+  ![full name](image_full.png)
 
 - Initials of the first 2 authors and the \*last author:
 
-   ![initials](image_short.png)
+  ![initials](image_short.png)
 
 ## Disclaimer
 
