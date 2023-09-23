@@ -1,4 +1,4 @@
-# Zotero Last Author
+# Zotero Better Authors
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
@@ -7,18 +7,22 @@ This is a simple plugin for [Zotero](https://www.zotero.org/) 7. See this [annou
 
 ## Features
 
-- Display the last author (corresponding author) in a new column as it is usually more important than the first author.
+- Display the last author in a new column as it is usually more important than the first author.
 - Support changing the display style of the first name: full or initials.
+- Display the first N authors together with the last author
+- Customize the displayed authors style including: separators and orders.
 
-## Screenshot
+## Usage & Screenshots
 
-The display mode can be switched in the plugin settings.
+The displayed content and style can be customized in the plugin settings.
 
-Full name:
+Here are two examples:
+
+Full name of the last author:
 
 ![full name](image_full.png)
 
-Initials:
+Initials of the first 2 authors and the \*last author:
 
 ![initials](image_short.png)
 

@@ -1,7 +1,7 @@
 import {
-  BasicLastAuthorFactory,
-  UILastAuthorFactory,
-} from "./modules/lastauthor";
+  BasicBetterAuthorsFactory,
+  UIBetterAuthorsFactory,
+} from "./modules/betterAuthors";
 import { config } from "../package.json";
 import { getString, initLocale } from "./utils/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
@@ -15,7 +15,7 @@ async function onStartup() {
   ]);
   initLocale();
 
-  BasicLastAuthorFactory.registerPrefs();
+  BasicBetterAuthorsFactory.registerPrefs();
 
   await onMainWindowLoad(window);
 }
@@ -24,7 +24,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
 
-  await UILastAuthorFactory.registerExtraColumn();
+  await UIBetterAuthorsFactory.registerExtraColumn();
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {

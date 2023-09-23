@@ -5,6 +5,9 @@
   "description": "__description__",
   "homepage_url": "__homepage__",
   "author": "__author__",
+  "icons": {
+    "96": "chrome/content/icons/favicon.png"
+  },
   "applications": {
     "zotero": {
       "id": "__addonID__",

@@ -9,11 +9,9 @@
     <label>
       <html:h2 data-l10n-id="pref-title"></html:h2>
     </label>
-    <checkbox
-      id="zotero-prefpane-__addonRef__-enable"
-      preference="extensions.zotero.__addonRef__.enable"
-      data-l10n-id="pref-enable"
-    />
+    <label>
+      <html:p data-l10n-id="pref-info"></html:p>
+    </label>
     <checkbox
       id="zotero-prefpane-__addonRef__-initials"
       preference="extensions.zotero.__addonRef__.initials"
@@ -29,9 +27,10 @@
       <html:input
         class="html-input"
         type="number"
-        min="1"
+        min="0"
         step="1"
         size="3"
+        value="0"
         preference="extensions.zotero.__addonRef__.first_n_name"
       />
       <label data-l10n-id="pref-first-n-name-next-label" />

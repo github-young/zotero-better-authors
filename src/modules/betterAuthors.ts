@@ -1,10 +1,10 @@
-import { it } from "node:test";
 import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { convertToInitials, determineCountry } from "./convertNames";
-import { BasicTool } from "zotero-plugin-toolkit/dist/basic";
 
-function lastAuthorPlugin(
+const prefsPrefix: string = "betterauthors";
+
+function betterAuthorsPlugin(
   target: any,
   propertyKey: string | symbol,
   descriptor: PropertyDescriptor,
@@ -25,14 +25,14 @@ function lastAuthorPlugin(
   return descriptor;
 }
 
-export class BasicLastAuthorFactory {
-  @lastAuthorPlugin
+export class BasicBetterAuthorsFactory {
+  @betterAuthorsPlugin
   static registerPrefs() {
     const prefOptions = {
       pluginID: config.addonID,
       src: rootURI + "chrome/content/preferences.xhtml",
       label: getString("prefs-title"),
-      image: "",
+      image: `chrome://${config.addonRef}/content/icons/favicon.png`,
       defaultXUL: true,
     };
     ztoolkit.PreferencePane.register(prefOptions);
@@ -41,9 +41,9 @@ export class BasicLastAuthorFactory {
 
 type NameOrderType = "firstlast" | "lastfirst";
 
-export class UILastAuthorFactory {
+export class UIBetterAuthorsFactory {
   static getSeparator(): string {
-    const sepSetting = Zotero.Prefs.get("lastauthor.sep");
+    const sepSetting = Zotero.Prefs.get(`${prefsPrefix}.sep`);
     let sep = " ";
     if (sepSetting == "space") {
       sep = " ";
@@ -58,16 +58,16 @@ export class UILastAuthorFactory {
     nameorder: NameOrderType,
     firstName: string,
     lastName: string,
-    separtor: string
+    separtor: string,
   ): string {
     if (nameorder == "firstlast") {
-      if (Zotero.Prefs.get("lastauthor.initials")) {
+      if (Zotero.Prefs.get(`${prefsPrefix}.initials`)) {
         return convertToInitials(firstName) + separtor + lastName;
       } else {
         return firstName + separtor + lastName;
       }
     } else if (nameorder == "lastfirst") {
-      if (Zotero.Prefs.get("lastauthor.initials")) {
+      if (Zotero.Prefs.get(`${prefsPrefix}.initials`)) {
         return lastName + separtor + convertToInitials(firstName);
       } else {
         return lastName + separtor + firstName;
@@ -89,10 +89,10 @@ export class UILastAuthorFactory {
     // BasicTool.getZotero().log(targetAuthor.fieldMode)
     if (targetAuthor.fieldMode == 0) {
       // Double fields mode
-      if (Zotero.Prefs.get("lastauthor.only_lastname")) {
+      if (Zotero.Prefs.get(`${prefsPrefix}.only_lastname`)) {
         return targetAuthor.lastName as string;
       } else {
-        const nameStyle = Zotero.Prefs.get("lastauthor.namestyle");
+        const nameStyle = Zotero.Prefs.get(`${prefsPrefix}.namestyle`);
         let nameorder: NameOrderType = "firstlast";
         let separtor = sep;
         if (nameStyle == "auto") {
@@ -111,7 +111,12 @@ export class UILastAuthorFactory {
         } else {
           throw new Error(`Invalid author name order setting: ${nameStyle}.`);
         }
-        return this.getAuthorNameWithNameOrder(nameorder, firstName, lastName, separtor);
+        return this.getAuthorNameWithNameOrder(
+          nameorder,
+          firstName,
+          lastName,
+          separtor,
+        );
       }
     } else {
       // Single field mode should be used to institutions. Only lastName field has value.
@@ -119,31 +124,8 @@ export class UILastAuthorFactory {
     }
   }
 
-  @lastAuthorPlugin
+  @betterAuthorsPlugin
   static async registerExtraColumn() {
-    await ztoolkit.ItemTree.register(
-      "lastauthor",
-      getString("itemtree-lastauthor-title"),
-      (
-        field: string,
-        unformatted: boolean,
-        includeBaseMapped: boolean,
-        item: Zotero.Item,
-      ) => {
-        const creators = item.getCreators();
-        // Only get all authors in the creators
-        const authors = creators.filter(creator => creator.creatorTypeID === 8);
-        if (authors.length == 0) return "";
-        const sep = this.getSeparator();
-        const lastAuthorDisplayed: string = this.displayAuthorName(
-          authors,
-          authors.length - 1,
-          sep,
-        );
-        return lastAuthorDisplayed;
-      },
-      {},
-    );
     await ztoolkit.ItemTree.register(
       "authors",
       getString("itemtree-authors-title"),
@@ -155,10 +137,13 @@ export class UILastAuthorFactory {
       ) => {
         const creators = item.getCreators();
         // Only get all authors in the creators
-        const authors = creators.filter(creator => creator.creatorTypeID === 8);
+        const authors = creators.filter(
+          (creator) =>
+            creator.creatorTypeID === Zotero.CreatorTypes.getID("author"),
+        );
         if (authors.length == 0) return "";
         const sep = this.getSeparator();
-        const settingFirstN = Zotero.Prefs.get("lastauthor.first_n_name");
+        const settingFirstN = Zotero.Prefs.get(`${prefsPrefix}.first_n_name`);
         let firstN = 1;
         if (settingFirstN !== undefined) {
           firstN = settingFirstN as number;
@@ -180,12 +165,14 @@ export class UILastAuthorFactory {
           authors.length - 1,
           sep,
         );
-        if (firstN < authors.length - 1) {
-          return authorList.join(", ") + ", ..., " + lastAuthorDisplayed;
+        if (firstN == 0) {
+          return lastAuthorDisplayed;
+        } else if (firstN < authors.length - 1) {
+          return authorList.join("; ") + "; *" + lastAuthorDisplayed;
         } else if (firstN == authors.length - 1) {
-          return authorList.join(", ") + ", " + lastAuthorDisplayed;
+          return authorList.join("; ") + "; *" + lastAuthorDisplayed;
         } else {
-          return authorList.join(", ");
+          return authorList.join("; ");
         }
       },
       {},

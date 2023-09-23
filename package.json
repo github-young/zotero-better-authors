@@ -1,16 +1,16 @@
 {
-  "name": "zotero-last-author",
+  "name": "zotero-better-authors",
   "version": "3.0.0",
-  "description": "Zotero Last Author",
+  "description": "Zotero Better Authors",
   "config": {
-    "addonName": "Zotero Last Author",
-    "addonID": "lastauthor@euclpts.com",
-    "addonRef": "lastauthor",
-    "addonInstance": "LastAuthor",
-    "prefsPrefix": "extensions.zotero.lastauthor",
-    "releasePage": "https://github.com/github-young/zotero-last-author/releases",
-    "updateJSON": "https://raw.githubusercontent.com/github-young/zotero-last-author/main/update.json",
-    "updateBetaJSON": "https://raw.githubusercontent.com/github-young/zotero-last-author/main/update-beta.json"
+    "addonName": "Zotero Better Authors",
+    "addonID": "betterauthors@github.com",
+    "addonRef": "betterauthors",
+    "addonInstance": "betterauthors",
+    "prefsPrefix": "extensions.zotero.betterauthors",
+    "releasePage": "https://github.com/github-young/zotero-better-authors/releases",
+    "updateJSON": "https://raw.githubusercontent.com/github-young/zotero-better-authors/main/update.json",
+    "updateBetaJSON": "https://raw.githubusercontent.com/github-young/zotero-better-authors/main/update-beta.json"
   },
   "main": "src/index.ts",
   "scripts": {
@@ -33,14 +33,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github-young/zotero-last-author.git"
+    "url": "git+https://github.com/github-young/zotero-better-authors.git"
   },
   "author": "github-young",
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/github-young/zotero-last-author/issues"
+    "url": "https://github.com/github-young/zotero-better-authors/issues"
   },
-  "homepage": "https://github.com/github-young/zotero-last-author#readme",
+  "homepage": "https://github.com/github-young/zotero-better-authors#readme",
   "dependencies": {
     "zotero-plugin-toolkit": "^2.3.6"
   },
