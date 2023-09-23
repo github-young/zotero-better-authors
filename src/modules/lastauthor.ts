@@ -15,7 +15,10 @@ function lastAuthorPlugin(
       ztoolkit.log(`Calling last author ${target.name}.${String(propertyKey)}`);
       return original.apply(this, args);
     } catch (e) {
-      ztoolkit.log(`Error in last author ${target.name}.${String(propertyKey)}`, e);
+      ztoolkit.log(
+        `Error in last author ${target.name}.${String(propertyKey)}`,
+        e,
+      );
       throw e;
     }
   };
@@ -51,7 +54,12 @@ export class UILastAuthorFactory {
     }
     return sep;
   }
-  static getAuthorNameWithNameOrder(nameorder: NameOrderType, firstName: string, lastName: string, separtor: string): string {
+  static getAuthorNameWithNameOrder(
+    nameorder: NameOrderType,
+    firstName: string,
+    lastName: string,
+    separtor: string
+  ): string {
     if (nameorder == "firstlast") {
       if (Zotero.Prefs.get("lastauthor.initials")) {
         return convertToInitials(firstName) + separtor + lastName;
@@ -69,7 +77,11 @@ export class UILastAuthorFactory {
     }
   }
 
-  static displayAuthorName(authors: Zotero.Item.Creator[], index: number, sep: string = ", "): string {
+  static displayAuthorName(
+    authors: Zotero.Item.Creator[],
+    index: number,
+    sep: string = ", ",
+  ): string {
     if (authors.length == 0) return "";
     const targetAuthor = authors[index];
     const firstName = targetAuthor.firstName as string;
@@ -101,7 +113,6 @@ export class UILastAuthorFactory {
         }
         return this.getAuthorNameWithNameOrder(nameorder, firstName, lastName, separtor);
       }
-
     } else {
       // Single field mode should be used to institutions. Only lastName field has value.
       return targetAuthor.lastName as string;
@@ -124,7 +135,11 @@ export class UILastAuthorFactory {
         const authors = creators.filter(creator => creator.creatorTypeID === 8);
         if (authors.length == 0) return "";
         const sep = this.getSeparator();
-        const lastAuthorDisplayed: string = this.displayAuthorName(authors, authors.length - 1, sep);
+        const lastAuthorDisplayed: string = this.displayAuthorName(
+          authors,
+          authors.length - 1,
+          sep,
+        );
         return lastAuthorDisplayed;
       },
       {},
@@ -152,11 +167,19 @@ export class UILastAuthorFactory {
         const authorList: string[] = [];
         for (let i = 0; i < authors.length; ++i) {
           if (i >= firstN) break;
-          const authorDisplayed: string = this.displayAuthorName(authors, i, sep);
+          const authorDisplayed: string = this.displayAuthorName(
+            authors,
+            i,
+            sep,
+          );
           authorList.push(authorDisplayed);
         }
 
-        const lastAuthorDisplayed: string = this.displayAuthorName(authors, authors.length - 1, sep);
+        const lastAuthorDisplayed: string = this.displayAuthorName(
+          authors,
+          authors.length - 1,
+          sep,
+        );
         if (firstN < authors.length - 1) {
           return authorList.join(", ") + ", ..., " + lastAuthorDisplayed;
         } else if (firstN == authors.length - 1) {
