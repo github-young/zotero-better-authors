@@ -127,6 +127,31 @@ export class UIBetterAuthorsFactory {
   @betterAuthorsPlugin
   static async registerExtraColumn() {
     await ztoolkit.ItemTree.register(
+      "lastauthor",
+      getString("itemtree-lastauthor-title"),
+      (
+        field: string,
+        unformatted: boolean,
+        includeBaseMapped: boolean,
+        item: Zotero.Item,
+      ) => {
+        const creators = item.getCreators();
+        // Only get all authors in the creators
+        const authors = creators.filter(
+          (creator) => creator.creatorTypeID === 8,
+        );
+        if (authors.length == 0) return "";
+        const sep = this.getSeparator();
+        const lastAuthorDisplayed: string = this.displayAuthorName(
+          authors,
+          authors.length - 1,
+          sep,
+        );
+        return lastAuthorDisplayed;
+      },
+      {},
+    );
+    await ztoolkit.ItemTree.register(
       "authors",
       getString("itemtree-authors-title"),
       (

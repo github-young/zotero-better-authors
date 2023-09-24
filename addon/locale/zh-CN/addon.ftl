@@ -7,6 +7,7 @@ menuitem-filemenulabel = 插件模板: 文件菜单
 prefs-title = 更好作者
 prefs-table-title = 标题
 prefs-table-detail = 详情
+itemtree-lastauthor-title = 末位作者
 itemtree-authors-title = 作者列表
 tabpanel-lib-tab-label = 库标签
 tabpanel-reader-tab-label = 阅读器标签
