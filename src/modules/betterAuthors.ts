@@ -1,6 +1,7 @@
 import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { convertToInitials, determineCountry } from "./convertNames";
+import { getPref, setPref } from "../utils/prefs";
 
 const prefsPrefix: string = "betterauthors";
 
@@ -43,7 +44,7 @@ type NameOrderType = "firstlast" | "lastfirst";
 
 export class UIBetterAuthorsFactory {
   static getSeparator(): string {
-    const sepSetting = Zotero.Prefs.get(`${prefsPrefix}.sep`);
+    const sepSetting = getPref("sep");
     let sep = " ";
     if (sepSetting == "space") {
       sep = " ";
@@ -61,13 +62,13 @@ export class UIBetterAuthorsFactory {
     separtor: string,
   ): string {
     if (nameorder == "firstlast") {
-      if (Zotero.Prefs.get(`${prefsPrefix}.initials`)) {
+      if (getPref("initials")) {
         return convertToInitials(firstName) + separtor + lastName;
       } else {
         return firstName + separtor + lastName;
       }
     } else if (nameorder == "lastfirst") {
-      if (Zotero.Prefs.get(`${prefsPrefix}.initials`)) {
+      if (getPref("initials")) {
         return lastName + separtor + convertToInitials(firstName);
       } else {
         return lastName + separtor + firstName;
@@ -89,10 +90,10 @@ export class UIBetterAuthorsFactory {
     // BasicTool.getZotero().log(targetAuthor.fieldMode)
     if (targetAuthor.fieldMode == 0) {
       // Double fields mode
-      if (Zotero.Prefs.get(`${prefsPrefix}.only_lastname`)) {
+      if (getPref("only_lastname")) {
         return targetAuthor.lastName as string;
       } else {
-        const nameStyle = Zotero.Prefs.get(`${prefsPrefix}.namestyle`);
+        const nameStyle = getPref("namestyle");
         let nameorder: NameOrderType = "firstlast";
         let separtor = sep;
         if (nameStyle == "auto") {
@@ -168,7 +169,7 @@ export class UIBetterAuthorsFactory {
         );
         if (authors.length == 0) return "";
         const sep = this.getSeparator();
-        const settingFirstN = Zotero.Prefs.get(`${prefsPrefix}.first_n_name`);
+        const settingFirstN = getPref("first_n_name");
         let firstN = 1;
         if (settingFirstN !== undefined) {
           firstN = settingFirstN as number;
