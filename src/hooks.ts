@@ -6,6 +6,7 @@ import { config } from "../package.json";
 import { getString, initLocale } from "./utils/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
 import { createZToolkit } from "./utils/ztoolkit";
+import { setDefaultPrefSettings } from "./modules/setDefaultPrefs";
 
 async function onStartup() {
   await Promise.all([
@@ -14,6 +15,8 @@ async function onStartup() {
     Zotero.uiReadyPromise,
   ]);
   initLocale();
+
+  setDefaultPrefSettings();
 
   BasicBetterAuthorsFactory.registerPrefs();
 

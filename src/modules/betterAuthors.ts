@@ -3,8 +3,6 @@ import { getString } from "../utils/locale";
 import { convertToInitials, determineCountry } from "./convertNames";
 import { getPref, setPref } from "../utils/prefs";
 
-const prefsPrefix: string = "betterauthors";
-
 function betterAuthorsPlugin(
   target: any,
   propertyKey: string | symbol,
@@ -43,8 +41,8 @@ export class BasicBetterAuthorsFactory {
 type NameOrderType = "firstlast" | "lastfirst";
 
 export class UIBetterAuthorsFactory {
-  static getSeparator(): string {
-    const sepSetting = getPref("sep");
+  static getSeparator(sepSource: string): string {
+    const sepSetting = getPref(sepSource);
     let sep = " ";
     if (sepSetting == "space") {
       sep = " ";
@@ -55,23 +53,34 @@ export class UIBetterAuthorsFactory {
     }
     return sep;
   }
+  static getSeparatorString(
+    sepSource: string,
+    defaultReturn: string = " ",
+  ): string {
+    const sepInput = getPref(sepSource);
+    if (sepInput) {
+      return sepInput as string;
+    } else {
+      return defaultReturn;
+    }
+  }
   static getAuthorNameWithNameOrder(
     nameorder: NameOrderType,
     firstName: string,
     lastName: string,
-    separtor: string,
+    separator: string,
   ): string {
     if (nameorder == "firstlast") {
       if (getPref("initials")) {
-        return convertToInitials(firstName) + separtor + lastName;
+        return convertToInitials(firstName) + separator + lastName;
       } else {
-        return firstName + separtor + lastName;
+        return firstName + separator + lastName;
       }
     } else if (nameorder == "lastfirst") {
       if (getPref("initials")) {
-        return lastName + separtor + convertToInitials(firstName);
+        return lastName + separator + convertToInitials(firstName);
       } else {
-        return lastName + separtor + firstName;
+        return lastName + separator + firstName;
       }
     } else {
       throw new Error(`Invalid author name order: ${nameorder}.`);
@@ -95,13 +104,13 @@ export class UIBetterAuthorsFactory {
       } else {
         const nameStyle = getPref("namestyle");
         let nameorder: NameOrderType = "firstlast";
-        let separtor = sep;
+        let separator = sep;
         if (nameStyle == "auto") {
           const nameCountry = determineCountry(firstName, lastName);
           // BasicTool.getZotero().log(nameCountry);
           if (["zh", "ja", "ko"].includes(nameCountry)) {
             nameorder = "lastfirst";
-            separtor = "";
+            separator = "";
           } else {
             nameorder = "firstlast";
           }
@@ -116,7 +125,7 @@ export class UIBetterAuthorsFactory {
           nameorder,
           firstName,
           lastName,
-          separtor,
+          separator,
         );
       }
     } else {
@@ -142,7 +151,8 @@ export class UIBetterAuthorsFactory {
           (creator) => creator.creatorTypeID === 8,
         );
         if (authors.length == 0) return "";
-        const sep = this.getSeparator();
+        // const sep = this.getSeparator("sep");
+        const sep = this.getSeparatorString("sep-intra-author");
         const lastAuthorDisplayed: string = this.displayAuthorName(
           authors,
           authors.length - 1,
@@ -168,7 +178,13 @@ export class UIBetterAuthorsFactory {
             creator.creatorTypeID === Zotero.CreatorTypes.getID("author"),
         );
         if (authors.length == 0) return "";
-        const sep = this.getSeparator();
+        // const sep = this.getSeparator("sep");
+        const sepIntra = this.getSeparatorString("sep-intra-author");
+        const sepInter = this.getSeparatorString("sep-inter-author");
+        const indicatorLastAuthor = this.getSeparatorString(
+          "sep-before-lastauthor",
+          "*",
+        );
         const settingFirstN = getPref("first_n_name");
         let firstN = 1;
         if (settingFirstN !== undefined) {
@@ -181,7 +197,7 @@ export class UIBetterAuthorsFactory {
           const authorDisplayed: string = this.displayAuthorName(
             authors,
             i,
-            sep,
+            sepIntra,
           );
           authorList.push(authorDisplayed);
         }
@@ -189,16 +205,26 @@ export class UIBetterAuthorsFactory {
         const lastAuthorDisplayed: string = this.displayAuthorName(
           authors,
           authors.length - 1,
-          sep,
+          sepIntra,
         );
         if (firstN == 0) {
           return lastAuthorDisplayed;
         } else if (firstN < authors.length - 1) {
-          return authorList.join("; ") + "; *" + lastAuthorDisplayed;
+          return (
+            authorList.join(sepInter) +
+            sepInter +
+            indicatorLastAuthor +
+            lastAuthorDisplayed
+          );
         } else if (firstN == authors.length - 1) {
-          return authorList.join("; ") + "; *" + lastAuthorDisplayed;
+          return (
+            authorList.join(sepInter) +
+            sepInter +
+            indicatorLastAuthor +
+            lastAuthorDisplayed
+          );
         } else {
-          return authorList.join("; ");
+          return authorList.join(sepInter);
         }
       },
       {},

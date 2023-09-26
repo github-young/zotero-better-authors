@@ -12,39 +12,42 @@
     <label>
       <html:p data-l10n-id="pref-info"></html:p>
     </label>
+
     <label>
       <html:h3 data-l10n-id="pref-label-content-setting"> </html:h3>
     </label>
     <vbox>
-      <radiogroup
-        id="__addonRef__-include-authors-content"
-        orient="vertical"
-        native="true"
-        preference="__prefsPrefix__.include-authors-content"
-      >
-        <radio data-l10n-id="pref-include-all-in-list" value="all"></radio>
-        <radio
-          data-l10n-id="pref-include-all-but-last-in-list"
-          value="allbutlast"
-        ></radio>
-        <radio
-          data-l10n-id="pref-include-partial-in-list"
-          value="partial"
-        ></radio>
-      </radiogroup>
-      <hbox>
+      <checkbox
+        id="zotero-prefpane-__addonRef__-include-firstauthor-in-list"
+        preference="extensions.zotero.__addonRef__.include-firstauthor-in-list"
+        data-l10n-id="pref-include-firstauthor-in-list"
+      />
+      <hbox align="center">
         <checkbox
-          id="zotero-prefpane-__addonRef__-include-firstauthors-in-list"
-          preference="extensions.zotero.__addonRef__.include-firstauthors-in-list"
-          data-l10n-id="pref-include-firstauthors-in-list"
+          id="zotero-prefpane-__addonRef__-include-middleauthors-in-list"
+          preference="extensions.zotero.__addonRef__.include-middleauthors-in-list"
+          data-l10n-id="pref-include-middleauthors-in-list"
         />
-        <checkbox
-          id="zotero-prefpane-__addonRef__-include-lastauthor-in-list"
-          preference="extensions.zotero.__addonRef__.include-lastauthor-in-list"
-          data-l10n-id="pref-include-lastauthor-in-list"
-        />
+        <hbox align="center" visiable="false">
+          <label data-l10n-id="pref-middle-n-authors-prev"></label>
+          <html:input
+            class="html-input"
+            type="number"
+            min="0"
+            step="1"
+            size="3"
+            preference="extensions.zotero.__addonRef__.middle_n_authors"
+          />
+          <label data-l10n-id="pref-middle-n-authors-next" />
+        </hbox>
       </hbox>
+      <checkbox
+        id="zotero-prefpane-__addonRef__-include-lastauthor-in-list"
+        preference="extensions.zotero.__addonRef__.include-lastauthor-in-list"
+        data-l10n-id="pref-include-lastauthor-in-list"
+      />
     </vbox>
+
     <label>
       <html:h3 data-l10n-id="pref-label-style-setting"></html:h3>
     </label>
@@ -58,18 +61,6 @@
       preference="extensions.zotero.__addonRef__.only_lastname"
       data-l10n-id="pref-only-lastname"
     />
-    <hbox align="center">
-      <label data-l10n-id="pref-first-n-name-prev-label" />
-      <html:input
-        class="html-input"
-        type="number"
-        min="0"
-        step="1"
-        size="3"
-        preference="extensions.zotero.__addonRef__.first_n_name"
-      />
-      <label data-l10n-id="pref-first-n-name-next-label" />
-    </hbox>
     <hbox align="center">
       <label
         data-l10n-id="pref-name-style"
@@ -106,6 +97,45 @@
           <menuitem data-l10n-id="pref-sep-none" value="none"> </menuitem>
         </menupopup>
       </menulist>
+    </hbox>
+    <hbox align="center">
+      <label
+        data-l10n-id="pref-sep-intra-author"
+        control="zotero-prefpane-__addonRef__-sep-intra-author"
+      ></label>
+      <html:input
+        class="html-input"
+        type="text"
+        size="5"
+        maxlength="3"
+        preference="extensions.zotero.__addonRef__.sep-intra-author"
+      />
+    </hbox>
+    <hbox align="center">
+      <label
+        data-l10n-id="pref-sep-inter-author"
+        control="zotero-prefpane-__addonRef__-sep-inter-author"
+      ></label>
+      <html:input
+        class="html-input"
+        type="text"
+        size="5"
+        maxlength="8"
+        preference="extensions.zotero.__addonRef__.sep-inter-author"
+      />
+    </hbox>
+    <hbox align="center">
+      <label
+        data-l10n-id="pref-sep-before-lastauthor"
+        control="zotero-prefpane-__addonRef__-sep-before-lastauthor"
+      ></label>
+      <html:input
+        class="html-input"
+        type="text"
+        size="5"
+        maxlength="12"
+        preference="extensions.zotero.__addonRef__.sep-before-lastauthor"
+      />
     </hbox>
   </groupbox>
 </vbox>
