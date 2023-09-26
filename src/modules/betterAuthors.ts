@@ -196,7 +196,7 @@ export class UIBetterAuthorsFactory {
         } else if (firstN < authors.length - 1) {
           return authorList.join("; ") + "; *" + lastAuthorDisplayed;
         } else if (firstN == authors.length - 1) {
-          return authorList.join("; ") + "; *" + lastAuthorDisplayed;
+          return authorList.join("; ") + "; " + lastAuthorDisplayed;
         } else {
           return authorList.join("; ");
         }
