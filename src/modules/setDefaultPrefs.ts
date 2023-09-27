@@ -10,7 +10,7 @@ export function setDefaultPrefSettings() {
   }
 
   if (typeof getPref("middle_n_authors") === "undefined") {
-    setPref("middle_n_authors", 1);
+    setPref("middle_n_authors", 0);
   }
 
   if (typeof getPref("include-lastauthor-in-list") === "undefined") {

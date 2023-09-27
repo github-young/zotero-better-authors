@@ -1,7 +1,7 @@
 import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { convertToInitials, determineCountry } from "./convertNames";
-import { getPref, setPref } from "../utils/prefs";
+import { getPref } from "../utils/prefs";
 
 function betterAuthorsPlugin(
   target: any,
@@ -55,7 +55,7 @@ export class UIBetterAuthorsFactory {
   }
   static getSeparatorString(
     sepSource: string,
-    defaultReturn: string = " ",
+    defaultReturn: string = "",
   ): string {
     const sepInput = getPref(sepSource);
     if (sepInput) {
@@ -86,7 +86,6 @@ export class UIBetterAuthorsFactory {
       throw new Error(`Invalid author name order: ${nameorder}.`);
     }
   }
-
   static displayAuthorName(
     authors: Zotero.Item.Creator[],
     index: number,
@@ -153,7 +152,6 @@ export class UIBetterAuthorsFactory {
           (creator) => creator.creatorTypeID === 8,
         );
         if (authors.length == 0) return "";
-        // const sep = this.getSeparator("sep");
         const sep = this.getSeparatorString("sep-intra-author");
         const lastAuthorDisplayed: string = this.displayAuthorName(
           authors,
@@ -185,49 +183,73 @@ export class UIBetterAuthorsFactory {
         const sepInter = this.getSeparatorString("sep-inter-author");
         const indicatorLastAuthor = this.getSeparatorString(
           "sep-before-lastauthor",
-          "*",
         );
-        const settingFirstN = getPref("first_n_name");
-        let firstN = 1;
-        if (settingFirstN !== undefined) {
-          firstN = settingFirstN as number;
+        // get first author
+        const includeFirstAuthorFlag = getPref(
+          "include-firstauthor-in-list",
+        ) as boolean;
+        let firstAuthorDisplayed: string = "";
+        if (includeFirstAuthorFlag) {
+          firstAuthorDisplayed = this.displayAuthorName(authors, 0, sepIntra);
         }
-        // get first n authors
-        const authorList: string[] = [];
-        for (let i = 0; i < authors.length; ++i) {
-          if (i >= firstN) break;
-          const authorDisplayed: string = this.displayAuthorName(
+        // get middle n authors
+        // Initialize the middle author list
+        const middleAuthorsList: string[] = [];
+        const includeMiddleAuthorsFlag = getPref(
+          "include-middleauthors-in-list",
+        ) as boolean;
+        if (includeMiddleAuthorsFlag) {
+          const middleAuthorNumber = getPref("middle_n_authors");
+          let middleN = 0;
+          if (middleAuthorNumber !== undefined) {
+            middleN = middleAuthorNumber as number;
+          }
+          for (let i = 1; i < authors.length - 1; i++) {
+            if (i <= middleN || middleN == 0) {
+              const authorDisplayed: string = this.displayAuthorName(
+                authors,
+                i,
+                sepIntra,
+              );
+              middleAuthorsList.push(authorDisplayed);
+            } else {
+              break;
+            }
+          }
+        }
+        // get last author
+        const includeLastAuthorFlag = getPref(
+          "include-lastauthor-in-list",
+        ) as boolean;
+        let lastAuthorDisplayed: string = "";
+        if (includeLastAuthorFlag) {
+          lastAuthorDisplayed = this.displayAuthorName(
             authors,
-            i,
+            authors.length - 1,
             sepIntra,
           );
-          authorList.push(authorDisplayed);
         }
-
-        const lastAuthorDisplayed: string = this.displayAuthorName(
-          authors,
-          authors.length - 1,
-          sepIntra,
-        );
-        if (firstN == 0) {
-          return indicatorLastAuthor + lastAuthorDisplayed;
-        } else if (firstN < authors.length - 1) {
-          return (
-            authorList.join(sepInter) +
-            sepInter +
-            indicatorLastAuthor +
-            lastAuthorDisplayed
-          );
-        } else if (firstN == authors.length - 1) {
-          return (
-            authorList.join(sepInter) +
-            sepInter +
-            indicatorLastAuthor +
-            lastAuthorDisplayed
-          );
+        // Output
+        let displayedString = "";
+        const authorsList: string[] = [];
+        if (includeFirstAuthorFlag) {
+          authorsList.push(firstAuthorDisplayed);
+        }
+        if (includeMiddleAuthorsFlag) {
+          authorsList.push(...middleAuthorsList);
+        }
+        displayedString = authorsList.join(sepInter);
+        if (!displayedString) {
+          // [first] and [middles], if any
+          displayedString += lastAuthorDisplayed;
+        } else if (displayedString == lastAuthorDisplayed) {
+          // in case of only one author
+          displayedString = "1" + indicatorLastAuthor + lastAuthorDisplayed;
         } else {
-          return authorList.join(sepInter);
+          displayedString +=
+            sepInter + indicatorLastAuthor + lastAuthorDisplayed;
         }
+        return displayedString;
       },
       {},
     );
