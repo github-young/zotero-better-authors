@@ -208,7 +208,7 @@ export class UIBetterAuthorsFactory {
           sepIntra,
         );
         if (firstN == 0) {
-          return lastAuthorDisplayed;
+          return indicatorLastAuthor + lastAuthorDisplayed;
         } else if (firstN < authors.length - 1) {
           return (
             authorList.join(sepInter) +

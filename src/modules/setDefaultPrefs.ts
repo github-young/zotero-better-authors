@@ -1,31 +1,31 @@
 import { clearPref, getPref, setPref } from "../utils/prefs";
 
 export function setDefaultPrefSettings() {
-  if (!getPref("middle_n_authors")) {
+  if (typeof getPref("middle_n_authors") === "undefined") {
     setPref("middle_n_authors", 0);
   }
 
-  if (!getPref("include-firstauthor-in-list")) {
+  if (typeof getPref("include-firstauthor-in-list") === "undefined") {
     setPref("include-firstauthor-in-list", true);
   }
 
-  if (!getPref("include-middleauthors-in-list")) {
+  if (typeof getPref("include-middleauthors-in-list") === "undefined") {
     setPref("include-middleauthors-in-list", false);
   }
 
-  if (!getPref("include-lastauthor-in-list")) {
+  if (typeof getPref("include-lastauthor-in-list") === "undefined") {
     setPref("include-lastauthor-in-list", true);
   }
 
-  if (!getPref("sep-intra-author")) {
+  if (typeof getPref("sep-intra-author") === "undefined") {
     setPref("sep-intra-author", " ");
   }
 
-  if (!getPref("sep-inter-author")) {
+  if (typeof getPref("sep-inter-author") === "undefined") {
     setPref("sep-inter-author", ", ");
   }
 
-  if (!getPref("sep-before-lastauthor")) {
+  if (typeof getPref("sep-before-lastauthor") === "undefined") {
     setPref("sep-before-lastauthor", "*");
   }
 }
