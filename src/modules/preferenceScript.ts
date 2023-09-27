@@ -101,25 +101,14 @@ async function updatePrefsUI() {
 function bindPrefEvents() {
   addon.data
     .prefs!.window.document.querySelector(
-      `#zotero-prefpane-${config.addonRef}-enable`,
-    )
-    ?.addEventListener("command", (e) => {
-      ztoolkit.log(e);
-      addon.data.prefs!.window.alert(
-        `Enabled? ${(e.target as XUL.Checkbox).checked}!`,
-      );
-    });
-
-  addon.data
-    .prefs!.window.document.querySelector(
       `#zotero-prefpane-${config.addonRef}-initials`,
     )
     ?.addEventListener("command", (e) => {
       ztoolkit.log(e);
-      addon.data.prefs!.window.alert(
-        `Display first name as initials? ${
-          (e.target as XUL.Checkbox).checked
-        }!`,
-      );
+      //   addon.data.prefs!.window.alert(
+      //     `Display first name as initials? ${
+      //       (e.target as XUL.Checkbox).checked
+      //     }!`,
+      //   );
     });
 }

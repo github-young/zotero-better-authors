@@ -51,16 +51,23 @@
     <label>
       <html:h3 data-l10n-id="pref-label-style-setting"></html:h3>
     </label>
-    <checkbox
-      id="zotero-prefpane-__addonRef__-initials"
-      preference="extensions.zotero.__addonRef__.initials"
-      data-l10n-id="pref-initials"
-    />
-    <checkbox
-      id="zotero-prefpane-__addonRef__-only_lastname"
-      preference="extensions.zotero.__addonRef__.only_lastname"
-      data-l10n-id="pref-only-lastname"
-    />
+
+    <label data-l10n-id="pref-label-names" style="font-weight: bold"></label>
+
+    <hbox align="center">
+      <label data-l10n-id="pref-label-display-firstname-as"></label>
+      <checkbox
+        id="zotero-prefpane-__addonRef__-initials"
+        preference="extensions.zotero.__addonRef__.initials"
+        data-l10n-id="pref-initials"
+      />
+      <checkbox
+        id="zotero-prefpane-__addonRef__-only-lastname"
+        preference="extensions.zotero.__addonRef__.only-lastname"
+        data-l10n-id="pref-only-lastname"
+      />
+    </hbox>
+
     <hbox align="center">
       <label
         data-l10n-id="pref-name-style"
@@ -81,23 +88,11 @@
         </menupopup>
       </menulist>
     </hbox>
-    <hbox align="center">
-      <label
-        data-l10n-id="pref-sep"
-        control="zotero-prefpane-__addonRef__-sep"
-      ></label>
-      <menulist
-        id="zotero-prefpane-__addonRef__-sep"
-        preference="extensions.zotero.__addonRef__.sep"
-        native="true"
-      >
-        <menupopup>
-          <menuitem data-l10n-id="pref-sep-space" value="space"> </menuitem>
-          <menuitem data-l10n-id="pref-sep-comma" value="comma"> </menuitem>
-          <menuitem data-l10n-id="pref-sep-none" value="none"> </menuitem>
-        </menupopup>
-      </menulist>
-    </hbox>
+
+    <label
+      data-l10n-id="pref-label-sep-setting"
+      style="font-weight: bold"
+    ></label>
     <hbox align="center">
       <label
         data-l10n-id="pref-sep-intra-author"
@@ -139,9 +134,13 @@
     </hbox>
   </groupbox>
 </vbox>
+
 <vbox>
-  <html:label
+  <label>
+    <html:h3 data-l10n-id="pref-label-about"></html:h3>
+  </label>
+  <label
     data-l10n-id="pref-help"
     data-l10n-args='{"time": "__buildTime__","name": "__addonName__","version":"__buildVersion__"}'
-  ></html:label>
+  ></label>
 </vbox>

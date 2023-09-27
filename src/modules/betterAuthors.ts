@@ -99,13 +99,13 @@ export class UIBetterAuthorsFactory {
     // BasicTool.getZotero().log(targetAuthor.fieldMode)
     if (targetAuthor.fieldMode == 0) {
       // Double fields mode
-      if (getPref("only_lastname")) {
+      if (getPref("only-lastname")) {
         return targetAuthor.lastName as string;
       } else {
-        const nameStyle = getPref("namestyle");
+        const nameOrderStyle = getPref("namestyle");
         let nameorder: NameOrderType = "firstlast";
         let separator = sep;
-        if (nameStyle == "auto") {
+        if (nameOrderStyle == "auto") {
           const nameCountry = determineCountry(firstName, lastName);
           // BasicTool.getZotero().log(nameCountry);
           if (["zh", "ja", "ko"].includes(nameCountry)) {
@@ -114,12 +114,14 @@ export class UIBetterAuthorsFactory {
           } else {
             nameorder = "firstlast";
           }
-        } else if (nameStyle == "firstlast") {
+        } else if (nameOrderStyle == "firstlast") {
           nameorder = "firstlast";
-        } else if (nameStyle == "lastfirst") {
+        } else if (nameOrderStyle == "lastfirst") {
           nameorder = "lastfirst";
         } else {
-          throw new Error(`Invalid author name order setting: ${nameStyle}.`);
+          throw new Error(
+            `Invalid author name order setting: ${nameOrderStyle}.`,
+          );
         }
         return this.getAuthorNameWithNameOrder(
           nameorder,
