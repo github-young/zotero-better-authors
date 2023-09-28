@@ -239,7 +239,7 @@ export class UIBetterAuthorsFactory {
         if (includeMiddleAuthorsFlag) {
           authorsList.push(...middleAuthorsList);
         }
-        if (middleN < authors.length - 2) {
+        if (middleN !== 0 && middleN < authors.length - 2) {
           const sepOmit = "...";
           displayedString = authorsList.join(sepInter) + sepInter + sepOmit;
         } else {
