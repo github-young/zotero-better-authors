@@ -42,13 +42,13 @@ type NameOrderType = "firstlast" | "lastfirst";
 
 export class UIBetterAuthorsFactory {
   static getSeparator(sepSource: string): string {
-    const sepSetting = getPref(sepSource);
+    const sepSetting = getPref(sepSource) as string;
     let sep = " ";
-    if (sepSetting == "space") {
+    if (sepSetting === "space") {
       sep = " ";
-    } else if (sepSetting == "comma") {
+    } else if (sepSetting === "comma") {
       sep = ", ";
-    } else if (sepSetting == "none") {
+    } else if (sepSetting === "none") {
       sep = "";
     }
     return sep;
@@ -198,9 +198,9 @@ export class UIBetterAuthorsFactory {
         const includeMiddleAuthorsFlag = getPref(
           "include-middleauthors-in-list",
         ) as boolean;
+        let middleN = 0;
         if (includeMiddleAuthorsFlag) {
           const middleAuthorNumber = getPref("middle_n_authors");
-          let middleN = 0;
           if (middleAuthorNumber !== undefined) {
             middleN = middleAuthorNumber as number;
           }
@@ -230,7 +230,7 @@ export class UIBetterAuthorsFactory {
           );
         }
         // Output
-        let displayedString = "";
+        let displayedString: string = "";
         const authorsList: string[] = [];
         // [first] and [middles], if any
         if (includeFirstAuthorFlag) {
@@ -239,16 +239,23 @@ export class UIBetterAuthorsFactory {
         if (includeMiddleAuthorsFlag) {
           authorsList.push(...middleAuthorsList);
         }
-        displayedString = authorsList.join(sepInter);
-        // [last], if any
-        if (!displayedString) {
-          displayedString += lastAuthorDisplayed;
-        } else if (displayedString == lastAuthorDisplayed) {
-          // in case of only one author
-          displayedString = lastAuthorDisplayed;
+        if (middleN < authors.length - 2) {
+          const sepOmit = "...";
+          displayedString = authorsList.join(sepInter) + sepInter + sepOmit;
         } else {
-          displayedString +=
-            sepInter + indicatorLastAuthor + lastAuthorDisplayed;
+          displayedString = authorsList.join(sepInter);
+        }
+        // [last], if any
+        if (includeLastAuthorFlag) {
+          if (!displayedString) {
+            displayedString += lastAuthorDisplayed;
+          } else if (displayedString == lastAuthorDisplayed) {
+            // in case of only one author
+            displayedString = lastAuthorDisplayed;
+          } else {
+            displayedString +=
+              sepInter + indicatorLastAuthor + lastAuthorDisplayed;
+          }
         }
         return displayedString;
       },
