@@ -232,6 +232,7 @@ export class UIBetterAuthorsFactory {
         // Output
         let displayedString = "";
         const authorsList: string[] = [];
+        // [first] and [middles], if any
         if (includeFirstAuthorFlag) {
           authorsList.push(firstAuthorDisplayed);
         }
@@ -239,12 +240,12 @@ export class UIBetterAuthorsFactory {
           authorsList.push(...middleAuthorsList);
         }
         displayedString = authorsList.join(sepInter);
+        // [last], if any
         if (!displayedString) {
-          // [first] and [middles], if any
           displayedString += lastAuthorDisplayed;
         } else if (displayedString == lastAuthorDisplayed) {
           // in case of only one author
-          displayedString = "1" + indicatorLastAuthor + lastAuthorDisplayed;
+          displayedString = lastAuthorDisplayed;
         } else {
           displayedString +=
             sepInter + indicatorLastAuthor + lastAuthorDisplayed;
