@@ -17,12 +17,8 @@ export function setDefaultPrefSettings() {
     setPref("include-lastauthor-in-list", true);
   }
 
-  if (typeof getPref("initials") === "undefined") {
-    setPref("initials", false);
-  }
-
-  if (typeof getPref("only-lastname") === "undefined") {
-    setPref("only-lastname", false);
+  if (typeof getPref("firstnamestyle") === "undefined") {
+    setPref("firstnamestyle", "full");
   }
 
   if (typeof getPref("namestyle") === "undefined") {

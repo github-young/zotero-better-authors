@@ -70,14 +70,19 @@ export class UIBetterAuthorsFactory {
     lastName: string,
     separator: string,
   ): string {
+    const firstnameStyle: string = getPref("firstnamestyle") as string;
+    let firstnameAsInitials: boolean = false;
+    if (firstnameStyle === "initials") {
+      firstnameAsInitials = true;
+    }
     if (nameorder == "firstlast") {
-      if (getPref("initials")) {
+      if (firstnameAsInitials) {
         return convertToInitials(firstName) + separator + lastName;
       } else {
         return firstName + separator + lastName;
       }
     } else if (nameorder == "lastfirst") {
-      if (getPref("initials")) {
+      if (firstnameAsInitials) {
         return lastName + separator + convertToInitials(firstName);
       } else {
         return lastName + separator + firstName;
@@ -98,7 +103,12 @@ export class UIBetterAuthorsFactory {
     // BasicTool.getZotero().log(targetAuthor.fieldMode)
     if (targetAuthor.fieldMode == 0) {
       // Double fields mode
-      if (getPref("only-lastname")) {
+      const firstnameStyle: string = getPref("firstnamestyle") as string;
+      let firstnameAsNone: boolean = false;
+      if (firstnameStyle === "none") {
+        firstnameAsNone = true;
+      }
+      if (firstnameAsNone) {
         return targetAuthor.lastName as string;
       } else {
         const nameOrderStyle = getPref("namestyle");

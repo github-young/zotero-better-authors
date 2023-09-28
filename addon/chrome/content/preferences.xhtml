@@ -56,16 +56,27 @@
 
     <hbox align="center">
       <label data-l10n-id="pref-label-display-firstname-as"></label>
-      <checkbox
-        id="zotero-prefpane-__addonRef__-initials"
-        preference="extensions.zotero.__addonRef__.initials"
-        data-l10n-id="pref-initials"
-      />
-      <checkbox
-        id="zotero-prefpane-__addonRef__-only-lastname"
-        preference="extensions.zotero.__addonRef__.only-lastname"
-        data-l10n-id="pref-only-lastname"
-      />
+      <menulist
+        id="zotero-prefpane-__addonRef__-firstnamestyle"
+        preference="extensions.zotero.__addonRef__.firstnamestyle"
+        native="true"
+      >
+        <menupopup>
+          <menuitem
+            id="zotero-prefpane-__addonRef__-firstname-style-full"
+            data-l10n-id="pref-firstname-style-full"
+            value="full"
+          >
+          </menuitem>
+          <menuitem
+            data-l10n-id="pref-firstname-style-initials"
+            value="initials"
+          >
+          </menuitem>
+          <menuitem data-l10n-id="pref-firstname-style-none" value="none">
+          </menuitem>
+        </menupopup>
+      </menulist>
     </hbox>
 
     <hbox align="center">
