@@ -6,5 +6,8 @@
 // pref("__prefsPrefix__.firstnamestyle", "full");
 // pref("__prefsPrefix__.namestyle", "auto");
 // pref("__prefsPrefix__.sep-intra-author", " ");
+// pref("__prefsPrefix__.sep-intra-author-cjk", "");
 // pref("__prefsPrefix__.sep-inter-author", ", ");
-// pref("__prefsPrefix__.sep-before-lastauthor", "*");
+// pref("__prefsPrefix__.sep-omitted-authors", "...");
+// pref("__prefsPrefix__.indicator-for-lastauthor", "†");
+// pref("__prefsPrefix__.indicator-position", "after");

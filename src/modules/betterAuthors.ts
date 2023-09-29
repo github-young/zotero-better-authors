@@ -75,13 +75,13 @@ export class UIBetterAuthorsFactory {
     if (firstnameStyle === "initials") {
       firstnameAsInitials = true;
     }
-    if (nameorder == "firstlast") {
+    if (nameorder === "firstlast") {
       if (firstnameAsInitials) {
         return convertToInitials(firstName) + separator + lastName;
       } else {
         return firstName + separator + lastName;
       }
-    } else if (nameorder == "lastfirst") {
+    } else if (nameorder === "lastfirst") {
       if (firstnameAsInitials) {
         return lastName + separator + convertToInitials(firstName);
       } else {
@@ -94,7 +94,8 @@ export class UIBetterAuthorsFactory {
   static displayAuthorName(
     authors: Zotero.Item.Creator[],
     index: number,
-    sep: string = ", ",
+    sep: string = " ",
+    sepCJK: string = "",
   ): string {
     if (authors.length == 0) return "";
     const targetAuthor = authors[index];
@@ -111,22 +112,32 @@ export class UIBetterAuthorsFactory {
       if (firstnameAsNone) {
         return targetAuthor.lastName as string;
       } else {
+        const nameCountry = determineCountry(firstName, lastName);
         const nameOrderStyle = getPref("namestyle");
         let nameorder: NameOrderType = "firstlast";
         let separator = sep;
-        if (nameOrderStyle == "auto") {
-          const nameCountry = determineCountry(firstName, lastName);
+        if (nameOrderStyle === "auto") {
           // BasicTool.getZotero().log(nameCountry);
           if (["zh", "ja", "ko"].includes(nameCountry)) {
             nameorder = "lastfirst";
-            separator = "";
           } else {
             nameorder = "firstlast";
           }
+          separator = sepCJK;
         } else if (nameOrderStyle == "firstlast") {
           nameorder = "firstlast";
+          if (["zh", "ja", "ko"].includes(nameCountry)) {
+            separator = sepCJK;
+          } else {
+            separator = sep;
+          }
         } else if (nameOrderStyle == "lastfirst") {
           nameorder = "lastfirst";
+          if (["zh", "ja", "ko"].includes(nameCountry)) {
+            separator = sepCJK;
+          } else {
+            separator = sep;
+          }
         } else {
           throw new Error(
             `Invalid author name order setting: ${nameOrderStyle}.`,
@@ -162,11 +173,13 @@ export class UIBetterAuthorsFactory {
           (creator) => creator.creatorTypeID === 8,
         );
         if (authors.length == 0) return "";
-        const sep = this.getSeparatorString("sep-intra-author");
+        const sepIntra = this.getSeparatorString("sep-intra-author");
+        const sepIntraCJK = this.getSeparatorString("sep-intra-author-cjk");
         const lastAuthorDisplayed: string = this.displayAuthorName(
           authors,
           authors.length - 1,
-          sep,
+          sepIntra,
+          sepIntraCJK,
         );
         return lastAuthorDisplayed;
       },
@@ -189,18 +202,33 @@ export class UIBetterAuthorsFactory {
         );
         if (authors.length == 0) return "";
         // const sep = this.getSeparator("sep");
-        const sepIntra = this.getSeparatorString("sep-intra-author");
-        const sepInter = this.getSeparatorString("sep-inter-author");
-        const indicatorLastAuthor = this.getSeparatorString(
-          "sep-before-lastauthor",
+        const separators: string[] = [];
+        const sepIntra: string = this.getSeparatorString("sep-intra-author");
+        const sepIntraCJK: string = this.getSeparatorString(
+          "sep-intra-author-cjk",
         );
+        const sepInter: string = this.getSeparatorString("sep-inter-author");
+        const sepOmitted: string = this.getSeparatorString(
+          "sep-omitted-authors",
+        );
+        const indicatorLastAuthor: string = this.getSeparatorString(
+          "indicator-for-lastauthor",
+        );
+        const indicatorPosition: string = getPref(
+          "indicator-position",
+        ) as string;
         // get first author
         const includeFirstAuthorFlag = getPref(
           "include-firstauthor-in-list",
         ) as boolean;
         let firstAuthorDisplayed: string = "";
         if (includeFirstAuthorFlag) {
-          firstAuthorDisplayed = this.displayAuthorName(authors, 0, sepIntra);
+          firstAuthorDisplayed = this.displayAuthorName(
+            authors,
+            0,
+            sepIntra,
+            sepIntraCJK,
+          );
         }
         // get middle n authors
         // Initialize the middle author list
@@ -220,6 +248,7 @@ export class UIBetterAuthorsFactory {
                 authors,
                 i,
                 sepIntra,
+                sepIntraCJK,
               );
               middleAuthorsList.push(authorDisplayed);
             } else {
@@ -237,6 +266,7 @@ export class UIBetterAuthorsFactory {
             authors,
             authors.length - 1,
             sepIntra,
+            sepIntraCJK,
           );
         }
         // Output
@@ -250,8 +280,7 @@ export class UIBetterAuthorsFactory {
           authorsList.push(...middleAuthorsList);
         }
         if (middleN !== 0 && middleN < authors.length - 2) {
-          const sepOmit = "...";
-          displayedString = authorsList.join(sepInter) + sepInter + sepOmit;
+          displayedString = authorsList.join(sepInter) + sepInter + sepOmitted;
         } else {
           displayedString = authorsList.join(sepInter);
         }
@@ -263,8 +292,13 @@ export class UIBetterAuthorsFactory {
             // in case of only one author
             displayedString = lastAuthorDisplayed;
           } else {
-            displayedString +=
-              sepInter + indicatorLastAuthor + lastAuthorDisplayed;
+            if (indicatorPosition === "before") {
+              displayedString +=
+                sepInter + indicatorLastAuthor + lastAuthorDisplayed;
+            } else {
+              displayedString +=
+                sepInter + lastAuthorDisplayed + indicatorLastAuthor;
+            }
           }
         }
         return displayedString;

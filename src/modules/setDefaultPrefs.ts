@@ -29,11 +29,23 @@ export function setDefaultPrefSettings() {
     setPref("sep-intra-author", " ");
   }
 
+  if (typeof getPref("sep-intra-author-cjk") === "undefined") {
+    setPref("sep-intra-author-cjk", "");
+  }
+
   if (typeof getPref("sep-inter-author") === "undefined") {
     setPref("sep-inter-author", ", ");
   }
 
-  if (typeof getPref("sep-before-lastauthor") === "undefined") {
-    setPref("sep-before-lastauthor", "*");
+  if (typeof getPref("sep-omitted-authors") === "undefined") {
+    setPref("sep-omitted-authors", "...");
+  }
+
+  if (typeof getPref("indicator-for-lastauthor") === "undefined") {
+    setPref("indicator-for-lastauthor", "†");
+  }
+
+  if (typeof getPref("indicator-position") === "undefined") {
+    setPref("indicator-position", "after");
   }
 }
