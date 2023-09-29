@@ -26,9 +26,21 @@ This is a simple plugin for [Zotero](https://www.zotero.org/) 7. See this [annou
 
 This plugin comes with a self-explanatory settings panel in Zotero 7 settings. An example of the displayed authors and corresponding settings (with English and Chinese support) is given in the screenshot.
 
-此插件带有一个简单明了的设置页面。下面的截图给出了一个显示效果和对应设置（有中英文支持）的例子。
+此插件带有一个简单明了的设置页面。下面的截图给出了一个显示效果和对应设置的例子。
 
-![image](image_settings.png)
+Displayed authors
+
+显示效果
+
+![image](image_display.png)
+
+Settings
+
+![image_settings](image_settings_en.png)
+
+设置选项
+
+![image_settings](image_settings_cn.png)
 
 ## Disclaimer
 
