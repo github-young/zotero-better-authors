@@ -73,9 +73,10 @@
 
     <label data-l10n-id="pref-label-sep-setting" style="font-weight: bold"></label>
     <hbox align="center">
-      <label data-l10n-id="pref-sep-intra-author" control="zotero-prefpane-__addonRef__-sep-intra-author"></label>
-      <html:input class="html-input" type="text" size="5" maxlength="3"
-        preference="extensions.zotero.__addonRef__.sep-intra-author" />
+      <<<<<<< HEAD <label data-l10n-id="pref-sep-intra-author" control="zotero-prefpane-__addonRef__-sep-intra-author">
+        </label>
+        <html:input class="html-input" type="text" size="5" maxlength="3"
+          preference="extensions.zotero.__addonRef__.sep-intra-author" />
     </hbox>
     <hbox align="center">
       <label data-l10n-id="pref-sep-inter-author" control="zotero-prefpane-__addonRef__-sep-inter-author"></label>
@@ -87,6 +88,44 @@
         control="zotero-prefpane-__addonRef__-sep-before-lastauthor"></label>
       <html:input class="html-input" type="text" size="5" maxlength="12"
         preference="extensions.zotero.__addonRef__.sep-before-lastauthor" />
+      =======
+      <label data-l10n-id="pref-sep-intra-author"></label>
+      <html:input class="html-input" type="text" size="5" maxlength="3"
+        preference="extensions.zotero.__addonRef__.sep-intra-author" />
+      <label data-l10n-id="pref-sep-intra-author-cjk"></label>
+      <html:input class="html-input" type="text" size="5" maxlength="3"
+        preference="extensions.zotero.__addonRef__.sep-intra-author-cjk" />
+      <label data-l10n-id="pref-label-sep-setting-next"></label>
+    </hbox>
+    <hbox align="center">
+      <label data-l10n-id="pref-sep-inter-author" control="zotero-prefpane-__addonRef__-sep-inter-author"></label>
+      <html:input class="html-input" type="text" size="3" maxlength="8"
+        preference="extensions.zotero.__addonRef__.sep-inter-author" />
+    </hbox>
+    <hbox align="center">
+      <label data-l10n-id="pref-sep-omitted-authors"
+        control="zotero-prefpane-__addonRef__-pref-sep-omitted-authors"></label>
+      <html:input class="html-input" type="text" size="3" maxlength="8"
+        preference="extensions.zotero.__addonRef__.sep-omitted-authors" />
+      >>>>>>> 176878a8cc50a96d9860eba8a43fff8aadb4d9a8
+    </hbox>
+    <hbox align="center">
+      <label data-l10n-id="pref-indicator-for-lastauthor"
+        control="zotero-prefpane-__addonRef__-indicator-for-lastauthor"></label>
+      <html:input class="html-input" type="text" size="3" maxlength="12"
+        preference="extensions.zotero.__addonRef__.indicator-for-lastauthor" />
+      <label data-l10n-id="pref-label-indicator-pos-prev"></label>
+      <menulist id="zotero-prefpane-__addonRef__-indicator-position"
+        preference="extensions.zotero.__addonRef__.indicator-position" native="true">
+        <menupopup>
+          <menuitem id="zotero-prefpane-__addonRef__-pref-indicator-pos-before" data-l10n-id="pref-indicator-pos-before"
+            value="before">
+          </menuitem>
+          <menuitem data-l10n-id="pref-indicator-pos-after" value="after">
+          </menuitem>
+        </menupopup>
+      </menulist>
+      <label data-l10n-id="pref-label-indicator-pos-next"></label>
     </hbox>
   </groupbox>
 </vbox>
