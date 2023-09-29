@@ -5,7 +5,7 @@
 
 这是 Zotero 7 的一个简单插件。有关 Zotero 7 Beta 信息，请参考[这个声明](https://forums.zotero.org/discussion/105094/announcing-the-zotero-7-beta)。
 
-## （功能）
+## 功能
 
 - **末位作者** 单独一列显示末尾作者，因为通常末位作者是通讯作者或PI
 - **作者列表** 单独一列显示作者列表，可以定制显示内容与风格
