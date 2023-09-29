@@ -30,7 +30,7 @@ export class BasicBetterAuthorsFactory {
     const prefOptions = {
       pluginID: config.addonID,
       src: rootURI + "chrome/content/preferences.xhtml",
-      scripts: [rootURI + 'chrome/content/preferences.js'],
+      scripts: [rootURI + "chrome/content/preferences.js"],
       label: getString("prefs-title"),
       image: `chrome://${config.addonRef}/content/icons/favicon.png`,
       defaultXUL: true,
