@@ -1,10 +1,7 @@
 <linkset>
   <html:link rel="localization" href="__addonRef__-preferences.ftl" />
 </linkset>
-<vbox
-  id="zotero-prefpane-__addonRef__"
-  onload="Zotero.__addonInstance__.hooks.onPrefsEvent('load', {window})"
->
+<vbox id="zotero-prefpane-__addonRef__" onload="Zotero.__addonInstance__.hooks.onPrefsEvent('load', {window})">
   <groupbox>
     <label>
       <html:h2 data-l10n-id="pref-title"> </html:h2>
@@ -18,29 +15,20 @@
     </label>
     <vbox>
       <hbox align="center">
-        <checkbox
-          id="zotero-prefpane-__addonRef__-include-firstauthors-in-list"
+        <checkbox id="zotero-prefpane-__addonRef__-include-firstauthors-in-list"
           preference="extensions.zotero.__addonRef__.include-firstauthors-in-list"
           data-l10n-id="pref-include-firstauthors-in-list"
-        />
+          oncommand="Betterauthors.Preferences.updateFirstAuthorsSettingsUI()" />
         <hbox align="center">
           <label data-l10n-id="pref-first-n-authors-prev"></label>
-          <html:input
-            class="html-input"
-            type="number"
-            min="0"
-            step="1"
-            size="3"
-            preference="extensions.zotero.__addonRef__.first_n_authors"
-          />
+          <html:input id="first_n_authors" class="html-input" type="number" min="0" step="1" size="3"
+            preference="extensions.zotero.__addonRef__.first_n_authors" />
           <label data-l10n-id="pref-first-n-authors-next" />
         </hbox>
       </hbox>
-      <checkbox
-        id="zotero-prefpane-__addonRef__-include-lastauthor-in-list"
+      <checkbox id="zotero-prefpane-__addonRef__-include-lastauthor-in-list"
         preference="extensions.zotero.__addonRef__.include-lastauthor-in-list"
-        data-l10n-id="pref-include-lastauthor-in-list"
-      />
+        data-l10n-id="pref-include-lastauthor-in-list" />
     </vbox>
 
     <label>
@@ -51,22 +39,13 @@
 
     <hbox align="center">
       <label data-l10n-id="pref-label-display-firstname-as"></label>
-      <menulist
-        id="zotero-prefpane-__addonRef__-firstnamestyle"
-        preference="extensions.zotero.__addonRef__.firstnamestyle"
-        native="true"
-      >
+      <menulist id="zotero-prefpane-__addonRef__-firstnamestyle"
+        preference="extensions.zotero.__addonRef__.firstnamestyle" native="true">
         <menupopup>
-          <menuitem
-            id="zotero-prefpane-__addonRef__-firstname-style-full"
-            data-l10n-id="pref-firstname-style-full"
-            value="full"
-          >
+          <menuitem id="zotero-prefpane-__addonRef__-firstname-style-full" data-l10n-id="pref-firstname-style-full"
+            value="full">
           </menuitem>
-          <menuitem
-            data-l10n-id="pref-firstname-style-initials"
-            value="initials"
-          >
+          <menuitem data-l10n-id="pref-firstname-style-initials" value="initials">
           </menuitem>
           <menuitem data-l10n-id="pref-firstname-style-none" value="none">
           </menuitem>
@@ -75,15 +54,9 @@
     </hbox>
 
     <hbox align="center">
-      <label
-        data-l10n-id="pref-name-style"
-        control="zotero-prefpane-__addonRef__-namestyle"
-      ></label>
-      <menulist
-        id="zotero-prefpane-__addonRef__-namestyle"
-        preference="extensions.zotero.__addonRef__.namestyle"
-        native="true"
-      >
+      <label data-l10n-id="pref-name-style" control="zotero-prefpane-__addonRef__-namestyle"></label>
+      <menulist id="zotero-prefpane-__addonRef__-namestyle" preference="extensions.zotero.__addonRef__.namestyle"
+        native="true">
         <menupopup>
           <menuitem data-l10n-id="pref-name-style-firstlast" value="firstlast">
           </menuitem>
@@ -95,79 +68,38 @@
       </menulist>
     </hbox>
 
-    <label
-      data-l10n-id="pref-label-sep-setting"
-      style="font-weight: bold"
-    ></label>
+    <label data-l10n-id="pref-label-sep-setting" style="font-weight: bold"></label>
     <hbox align="center">
       <label data-l10n-id="pref-sep-intra-author"></label>
-      <html:input
-        class="html-input"
-        type="text"
-        size="5"
-        maxlength="3"
-        preference="extensions.zotero.__addonRef__.sep-intra-author"
-      />
+      <html:input class="html-input" type="text" size="5" maxlength="3"
+        preference="extensions.zotero.__addonRef__.sep-intra-author" />
       <label data-l10n-id="pref-sep-intra-author-cjk"></label>
-      <html:input
-        class="html-input"
-        type="text"
-        size="5"
-        maxlength="3"
-        preference="extensions.zotero.__addonRef__.sep-intra-author-cjk"
-      />
+      <html:input class="html-input" type="text" size="5" maxlength="3"
+        preference="extensions.zotero.__addonRef__.sep-intra-author-cjk" />
       <label data-l10n-id="pref-label-sep-setting-next"></label>
     </hbox>
     <hbox align="center">
-      <label
-        data-l10n-id="pref-sep-inter-author"
-        control="zotero-prefpane-__addonRef__-sep-inter-author"
-      ></label>
-      <html:input
-        class="html-input"
-        type="text"
-        size="3"
-        maxlength="8"
-        preference="extensions.zotero.__addonRef__.sep-inter-author"
-      />
+      <label data-l10n-id="pref-sep-inter-author" control="zotero-prefpane-__addonRef__-sep-inter-author"></label>
+      <html:input class="html-input" type="text" size="3" maxlength="8"
+        preference="extensions.zotero.__addonRef__.sep-inter-author" />
     </hbox>
     <hbox align="center">
-      <label
-        data-l10n-id="pref-sep-omitted-authors"
-        control="zotero-prefpane-__addonRef__-pref-sep-omitted-authors"
-      ></label>
-      <html:input
-        class="html-input"
-        type="text"
-        size="3"
-        maxlength="8"
-        preference="extensions.zotero.__addonRef__.sep-omitted-authors"
-      />
+      <label data-l10n-id="pref-sep-omitted-authors"
+        control="zotero-prefpane-__addonRef__-pref-sep-omitted-authors"></label>
+      <html:input class="html-input" type="text" size="3" maxlength="8"
+        preference="extensions.zotero.__addonRef__.sep-omitted-authors" />
     </hbox>
     <hbox align="center">
-      <label
-        data-l10n-id="pref-indicator-for-lastauthor"
-        control="zotero-prefpane-__addonRef__-indicator-for-lastauthor"
-      ></label>
-      <html:input
-        class="html-input"
-        type="text"
-        size="3"
-        maxlength="12"
-        preference="extensions.zotero.__addonRef__.indicator-for-lastauthor"
-      />
+      <label data-l10n-id="pref-indicator-for-lastauthor"
+        control="zotero-prefpane-__addonRef__-indicator-for-lastauthor"></label>
+      <html:input class="html-input" type="text" size="3" maxlength="12"
+        preference="extensions.zotero.__addonRef__.indicator-for-lastauthor" />
       <label data-l10n-id="pref-label-indicator-pos-prev"></label>
-      <menulist
-        id="zotero-prefpane-__addonRef__-indicator-position"
-        preference="extensions.zotero.__addonRef__.indicator-position"
-        native="true"
-      >
+      <menulist id="zotero-prefpane-__addonRef__-indicator-position"
+        preference="extensions.zotero.__addonRef__.indicator-position" native="true">
         <menupopup>
-          <menuitem
-            id="zotero-prefpane-__addonRef__-pref-indicator-pos-before"
-            data-l10n-id="pref-indicator-pos-before"
-            value="before"
-          >
+          <menuitem id="zotero-prefpane-__addonRef__-pref-indicator-pos-before" data-l10n-id="pref-indicator-pos-before"
+            value="before">
           </menuitem>
           <menuitem data-l10n-id="pref-indicator-pos-after" value="after">
           </menuitem>
@@ -178,12 +110,10 @@
   </groupbox>
 </vbox>
 
-<vbox>
+<vbox onload="Betterauthors.Preferences.init()">
   <label>
     <html:h3 data-l10n-id="pref-label-about"></html:h3>
   </label>
-  <label
-    data-l10n-id="pref-help"
-    data-l10n-args='{"time": "__buildTime__","name": "__addonName__","version":"__buildVersion__"}'
-  ></label>
+  <label data-l10n-id="pref-help"
+    data-l10n-args='{"time": "__buildTime__","name": "__addonName__","version":"__buildVersion__"}'></label>
 </vbox>
