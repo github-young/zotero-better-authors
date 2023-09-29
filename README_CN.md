@@ -15,7 +15,7 @@
 
 ## 用法与截图
 
-This plugin comes with a self-explanatory settings panel in Zotero 7 settings. An example of the displayed authors and corresponding settings (with English and Chinese support) is given in the screenshot.
+此插件带有一个简单明了的设置页面。下面的截图给出了一个显示效果和对应设置的例子。
 
 显示效果
 
