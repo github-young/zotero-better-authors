@@ -17,28 +17,23 @@
       <html:h3 data-l10n-id="pref-label-content-setting"> </html:h3>
     </label>
     <vbox>
-      <checkbox
-        id="zotero-prefpane-__addonRef__-include-firstauthor-in-list"
-        preference="extensions.zotero.__addonRef__.include-firstauthor-in-list"
-        data-l10n-id="pref-include-firstauthor-in-list"
-      />
       <hbox align="center">
         <checkbox
-          id="zotero-prefpane-__addonRef__-include-middleauthors-in-list"
-          preference="extensions.zotero.__addonRef__.include-middleauthors-in-list"
-          data-l10n-id="pref-include-middleauthors-in-list"
+          id="zotero-prefpane-__addonRef__-include-firstauthors-in-list"
+          preference="extensions.zotero.__addonRef__.include-firstauthors-in-list"
+          data-l10n-id="pref-include-firstauthors-in-list"
         />
         <hbox align="center">
-          <label data-l10n-id="pref-middle-n-authors-prev"></label>
+          <label data-l10n-id="pref-first-n-authors-prev"></label>
           <html:input
             class="html-input"
             type="number"
             min="0"
             step="1"
             size="3"
-            preference="extensions.zotero.__addonRef__.middle_n_authors"
+            preference="extensions.zotero.__addonRef__.first_n_authors"
           />
-          <label data-l10n-id="pref-middle-n-authors-next" />
+          <label data-l10n-id="pref-first-n-authors-next" />
         </hbox>
       </hbox>
       <checkbox

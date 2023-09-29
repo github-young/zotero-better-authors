@@ -217,40 +217,27 @@ export class UIBetterAuthorsFactory {
         const indicatorPosition: string = getPref(
           "indicator-position",
         ) as string;
-        // get first author
-        const includeFirstAuthorFlag = getPref(
-          "include-firstauthor-in-list",
+        // get first n authors
+        // Initialize the first author list
+        const firstAuthorsList: string[] = [];
+        const includeFirstAuthorsFlag = getPref(
+          "include-firstauthors-in-list",
         ) as boolean;
-        let firstAuthorDisplayed: string = "";
-        if (includeFirstAuthorFlag) {
-          firstAuthorDisplayed = this.displayAuthorName(
-            authors,
-            0,
-            sepIntra,
-            sepIntraCJK,
-          );
-        }
-        // get middle n authors
-        // Initialize the middle author list
-        const middleAuthorsList: string[] = [];
-        const includeMiddleAuthorsFlag = getPref(
-          "include-middleauthors-in-list",
-        ) as boolean;
-        let middleN = 0;
-        if (includeMiddleAuthorsFlag) {
-          const middleAuthorNumber = getPref("middle_n_authors");
-          if (middleAuthorNumber !== undefined) {
-            middleN = middleAuthorNumber as number;
+        let firstN = 0;
+        if (includeFirstAuthorsFlag) {
+          const firstAuthorNumber = getPref("first_n_authors");
+          if (firstAuthorNumber !== undefined) {
+            firstN = firstAuthorNumber as number;
           }
-          for (let i = 1; i < authors.length - 1; i++) {
-            if (i <= middleN || middleN == 0) {
+          for (let i = 0; i < authors.length; i++) {
+            if (i < firstN || firstN == 0) {
               const authorDisplayed: string = this.displayAuthorName(
                 authors,
                 i,
                 sepIntra,
                 sepIntraCJK,
               );
-              middleAuthorsList.push(authorDisplayed);
+              firstAuthorsList.push(authorDisplayed);
             } else {
               break;
             }
@@ -272,14 +259,11 @@ export class UIBetterAuthorsFactory {
         // Output
         let displayedString: string = "";
         const authorsList: string[] = [];
-        // [first] and [middles], if any
-        if (includeFirstAuthorFlag) {
-          authorsList.push(firstAuthorDisplayed);
+        // [firsts], if any
+        if (includeFirstAuthorsFlag) {
+          authorsList.push(...firstAuthorsList);
         }
-        if (includeMiddleAuthorsFlag) {
-          authorsList.push(...middleAuthorsList);
-        }
-        if (middleN !== 0 && middleN < authors.length - 2) {
+        if (firstN !== 0 && firstN < authors.length - 1) {
           displayedString = authorsList.join(sepInter) + sepInter + sepOmitted;
         } else {
           displayedString = authorsList.join(sepInter);

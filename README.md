@@ -12,7 +12,7 @@ This is a simple plugin for [Zotero](https://www.zotero.org/) 7. See this [annou
 - **Last Author** Display the last author in a new column as it is usually more important than the first author.
 - **Authors List** Display the authors in a new column with customizable displayed contents and styles
 
-  - Choose whether to display: first author, middle authors (all or partial), and last author
+  - Choose whether to display: first N authors (all or partial), and the last author
   - Customize the symbol(s) to separate authors (either in one author or between authors, _e. g._ `,` `;` ` `), and to indicate the last author (_e. g._ `*` `†` `‡` `⸸`)
   - Choose the name orders for displaying authors: `Firstname Lastname`, `Lastname Firstname`, or `auto (according to the language of the authors names)`
 
