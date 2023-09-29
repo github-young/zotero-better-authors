@@ -3,12 +3,12 @@ const Betterauthors = {};
 
 Betterauthors.Preferences = {
     init: async function () {
-        this.updateMiddleAuthorsSettingsUI();
+        this.updateFirstAuthorsSettingsUI();
     },
-    updateMiddleAuthorsSettingsUI: Zotero.Promise.coroutine(function* () {
+    updateFirstAuthorsSettingsUI: Zotero.Promise.coroutine(function* () {
         setTimeout(() => {
-            const enabled = Zotero.Prefs.get(`${prefsPrefix}.include-middleauthors-in-list`, true);
-            document.getElementById('middle_n_authors').disabled = !enabled;
+            const enabled = Zotero.Prefs.get(`${prefsPrefix}.include-firstauthors-in-list`, true);
+            document.getElementById('first_n_authors').disabled = !enabled;
         });
     }),
 }
