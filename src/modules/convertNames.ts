@@ -97,3 +97,10 @@ function determineCountry(firstName: string, lastName: string): string {
 // }
 
 // console.log(names[0] + " => " + convertToInitials(names[0]));
+
+// console.log(determineCountry("名字", "姓"));
+// console.log(determineCountry("小五郎", "毛利"));
+// console.log(determineCountry("こごろ", "もり"));
+// console.log(determineCountry("日本漢字", "タバコ"));
+// console.log(determineCountry("タバコ", "日本漢字"));
+// console.log(determineCountry("진기", "이"));

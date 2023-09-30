@@ -2,6 +2,7 @@ import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { convertToInitials, determineCountry } from "./convertNames";
 import { getPref } from "../utils/prefs";
+import { BasicTool } from "zotero-plugin-toolkit/dist/basic";
 
 function betterAuthorsPlugin(
   target: any,
@@ -121,10 +122,11 @@ export class UIBetterAuthorsFactory {
           // BasicTool.getZotero().log(nameCountry);
           if (["zh", "ja", "ko"].includes(nameCountry)) {
             nameorder = "lastfirst";
+            separator = sepCJK;
           } else {
             nameorder = "firstlast";
+            separator = sep;
           }
-          separator = sepCJK;
         } else if (nameOrderStyle == "firstlast") {
           nameorder = "firstlast";
           if (["zh", "ja", "ko"].includes(nameCountry)) {
@@ -230,17 +232,30 @@ export class UIBetterAuthorsFactory {
           if (firstAuthorNumber !== undefined) {
             firstN = firstAuthorNumber as number;
           }
-          for (let i = 0; i < authors.length; i++) {
-            if (i < firstN || firstN == 0) {
-              const authorDisplayed: string = this.displayAuthorName(
-                authors,
-                i,
-                sepIntra,
-                sepIntraCJK,
-              );
-              firstAuthorsList.push(authorDisplayed);
-            } else {
-              break;
+          // deal with only one author
+          if (authors.length === 1) {
+            const authorDisplayed: string = this.displayAuthorName(
+              authors,
+              0,
+              sepIntra,
+              sepIntraCJK,
+            );
+            firstAuthorsList.push(authorDisplayed);
+          } else {
+            // here: length -1 means excluding the last author
+            for (let i = 0; i <= authors.length - 2; i++) {
+              // firstN === 0 is for all first authors
+              if (i < firstN || firstN === 0) {
+                const authorDisplayed: string = this.displayAuthorName(
+                  authors,
+                  i,
+                  sepIntra,
+                  sepIntraCJK,
+                );
+                firstAuthorsList.push(authorDisplayed);
+              } else {
+                break;
+              }
             }
           }
         }
@@ -263,11 +278,7 @@ export class UIBetterAuthorsFactory {
         // [firsts], if any
         if (includeFirstAuthorsFlag) {
           authorsList.push(...firstAuthorsList);
-        }
-        if (firstN !== 0 && firstN < authors.length - 1) {
-          displayedString = authorsList.join(sepInter) + sepInter + sepOmitted;
-        } else {
-          displayedString = authorsList.join(sepInter);
+          displayedString += authorsList.join(sepInter);
         }
         // [last], if any
         if (includeLastAuthorFlag) {
@@ -277,13 +288,25 @@ export class UIBetterAuthorsFactory {
             // in case of only one author
             displayedString = lastAuthorDisplayed;
           } else {
-            if (indicatorPosition === "before") {
-              displayedString +=
-                sepInter + indicatorLastAuthor + lastAuthorDisplayed;
+            if (firstN > 0 && firstN <= authors.length - 2) {
+              displayedString += sepInter + sepOmitted + sepInter;
             } else {
-              displayedString +=
-                sepInter + lastAuthorDisplayed + indicatorLastAuthor;
+              displayedString += sepInter;
             }
+            if (indicatorPosition === "before") {
+              displayedString += indicatorLastAuthor + lastAuthorDisplayed;
+            } else {
+              displayedString += lastAuthorDisplayed + indicatorLastAuthor;
+            }
+          }
+        } else {
+          if (authors.length >= 2) {
+            let sepEtAl: string = "et al.";
+            //   BasicTool.getZotero().log(Zotero.locale);
+            if (Zotero.locale === "zh-CN") {
+              sepEtAl = "等";
+            }
+            displayedString += sepInter + sepEtAl;
           }
         }
         return displayedString;
