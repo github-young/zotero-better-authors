@@ -281,23 +281,25 @@ export class UIBetterAuthorsFactory {
           displayedString += authorsList.join(sepInter);
         }
         // [last], if any
+        let lastAuthorWithIndicator: string = "";
+        if (indicatorPosition === "before") {
+          lastAuthorWithIndicator = indicatorLastAuthor + lastAuthorDisplayed;
+        } else {
+          lastAuthorWithIndicator = lastAuthorDisplayed + indicatorLastAuthor;
+        }
         if (includeLastAuthorFlag) {
           if (!displayedString) {
-            displayedString += lastAuthorDisplayed;
+            displayedString += lastAuthorWithIndicator;
           } else if (displayedString == lastAuthorDisplayed) {
             // in case of only one author
-            displayedString = lastAuthorDisplayed;
+            displayedString = lastAuthorWithIndicator;
           } else {
             if (firstN > 0 && firstN <= authors.length - 2) {
               displayedString += sepInter + sepOmitted + sepInter;
             } else {
               displayedString += sepInter;
             }
-            if (indicatorPosition === "before") {
-              displayedString += indicatorLastAuthor + lastAuthorDisplayed;
-            } else {
-              displayedString += lastAuthorDisplayed + indicatorLastAuthor;
-            }
+            displayedString += lastAuthorWithIndicator;
           }
         } else {
           if (authors.length >= 2) {
