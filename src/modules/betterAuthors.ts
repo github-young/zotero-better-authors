@@ -152,7 +152,10 @@ export class UIBetterAuthorsFactory {
     }
   }
 
-  static displayCreators(creators: Zotero.Item.Creator[], filterType: string = "author") {
+  static displayCreators(
+    creators: Zotero.Item.Creator[],
+    filterType: string = "author",
+  ) {
     // Only get all authors in the creators
     const authors = creators.filter(
       (creator) =>
@@ -162,19 +165,13 @@ export class UIBetterAuthorsFactory {
     // const sep = this.getSeparator("sep");
     const separators: string[] = [];
     const sepIntra: string = this.getSeparatorString("sep-intra-author");
-    const sepIntraCJK: string = this.getSeparatorString(
-      "sep-intra-author-cjk",
-    );
+    const sepIntraCJK: string = this.getSeparatorString("sep-intra-author-cjk");
     const sepInter: string = this.getSeparatorString("sep-inter-author");
-    const sepOmitted: string = this.getSeparatorString(
-      "sep-omitted-authors",
-    );
+    const sepOmitted: string = this.getSeparatorString("sep-omitted-authors");
     const indicatorLastAuthor: string = this.getSeparatorString(
       "indicator-for-lastauthor",
     );
-    const indicatorPosition: string = getPref(
-      "indicator-position",
-    ) as string;
+    const indicatorPosition: string = getPref("indicator-position") as string;
     // get first n authors
     // Initialize the first author list
     const firstAuthorsList: string[] = [];
