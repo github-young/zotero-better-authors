@@ -55,5 +55,6 @@ pref-sep-comma =
     .label = Comma
 pref-sep-none = 
     .label = None
+pref-preview-authors = Preview
 pref-label-about = About
 pref-help = { $name } Build { $version } { $time }

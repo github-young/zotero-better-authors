@@ -118,29 +118,22 @@ export class UIBetterAuthorsFactory {
         const nameOrderStyle = getPref("namestyle");
         let nameorder: NameOrderType = "firstlast";
         let separator = sep;
+        if (["zh", "ja", "ko"].includes(nameCountry)) {
+          separator = sepCJK;
+        } else {
+          separator = sep;
+        }
         if (nameOrderStyle === "auto") {
           // BasicTool.getZotero().log(nameCountry);
           if (["zh", "ja", "ko"].includes(nameCountry)) {
             nameorder = "lastfirst";
-            separator = sepCJK;
           } else {
             nameorder = "firstlast";
-            separator = sep;
           }
-        } else if (nameOrderStyle == "firstlast") {
+        } else if (nameOrderStyle === "firstlast") {
           nameorder = "firstlast";
-          if (["zh", "ja", "ko"].includes(nameCountry)) {
-            separator = sepCJK;
-          } else {
-            separator = sep;
-          }
-        } else if (nameOrderStyle == "lastfirst") {
+        } else if (nameOrderStyle === "lastfirst") {
           nameorder = "lastfirst";
-          if (["zh", "ja", "ko"].includes(nameCountry)) {
-            separator = sepCJK;
-          } else {
-            separator = sep;
-          }
         } else {
           throw new Error(
             `Invalid author name order setting: ${nameOrderStyle}.`,
@@ -157,6 +150,123 @@ export class UIBetterAuthorsFactory {
       // Single field mode should be used to institutions. Only lastName field has value.
       return targetAuthor.lastName as string;
     }
+  }
+
+  static displayCreators(creators: Zotero.Item.Creator[], filterType: string = "author") {
+    // Only get all authors in the creators
+    const authors = creators.filter(
+      (creator) =>
+        creator.creatorTypeID === Zotero.CreatorTypes.getID(filterType),
+    );
+    if (authors.length == 0) return "";
+    // const sep = this.getSeparator("sep");
+    const separators: string[] = [];
+    const sepIntra: string = this.getSeparatorString("sep-intra-author");
+    const sepIntraCJK: string = this.getSeparatorString(
+      "sep-intra-author-cjk",
+    );
+    const sepInter: string = this.getSeparatorString("sep-inter-author");
+    const sepOmitted: string = this.getSeparatorString(
+      "sep-omitted-authors",
+    );
+    const indicatorLastAuthor: string = this.getSeparatorString(
+      "indicator-for-lastauthor",
+    );
+    const indicatorPosition: string = getPref(
+      "indicator-position",
+    ) as string;
+    // get first n authors
+    // Initialize the first author list
+    const firstAuthorsList: string[] = [];
+    const includeFirstAuthorsFlag = getPref(
+      "include-firstauthors-in-list",
+    ) as boolean;
+    let firstN = 0;
+    if (includeFirstAuthorsFlag) {
+      const firstAuthorNumber = getPref("first_n_authors");
+      if (firstAuthorNumber !== undefined) {
+        firstN = firstAuthorNumber as number;
+      }
+      // deal with only one author
+      if (authors.length === 1) {
+        const authorDisplayed: string = this.displayAuthorName(
+          authors,
+          0,
+          sepIntra,
+          sepIntraCJK,
+        );
+        firstAuthorsList.push(authorDisplayed);
+      } else {
+        // here: length -1 means excluding the last author
+        for (let i = 0; i <= authors.length - 2; i++) {
+          // firstN === 0 is for all first authors
+          if (i < firstN || firstN === 0) {
+            const authorDisplayed: string = this.displayAuthorName(
+              authors,
+              i,
+              sepIntra,
+              sepIntraCJK,
+            );
+            firstAuthorsList.push(authorDisplayed);
+          } else {
+            break;
+          }
+        }
+      }
+    }
+    // get last author
+    const includeLastAuthorFlag = getPref(
+      "include-lastauthor-in-list",
+    ) as boolean;
+    let lastAuthorDisplayed: string = "";
+    if (includeLastAuthorFlag) {
+      lastAuthorDisplayed = this.displayAuthorName(
+        authors,
+        authors.length - 1,
+        sepIntra,
+        sepIntraCJK,
+      );
+    }
+    // Output
+    let displayedString: string = "";
+    const authorsList: string[] = [];
+    // [firsts], if any
+    if (includeFirstAuthorsFlag) {
+      authorsList.push(...firstAuthorsList);
+      displayedString += authorsList.join(sepInter);
+    }
+    // [last], if any
+    let lastAuthorWithIndicator: string = "";
+    if (indicatorPosition === "before") {
+      lastAuthorWithIndicator = indicatorLastAuthor + lastAuthorDisplayed;
+    } else {
+      lastAuthorWithIndicator = lastAuthorDisplayed + indicatorLastAuthor;
+    }
+    if (includeLastAuthorFlag) {
+      if (!displayedString) {
+        displayedString += lastAuthorWithIndicator;
+      } else if (displayedString == lastAuthorDisplayed) {
+        // in case of only one author
+        displayedString = lastAuthorWithIndicator;
+      } else {
+        if (firstN > 0 && firstN <= authors.length - 2) {
+          displayedString += sepInter + sepOmitted + sepInter;
+        } else {
+          displayedString += sepInter;
+        }
+        displayedString += lastAuthorWithIndicator;
+      }
+    } else {
+      if (authors.length >= 2) {
+        let sepEtAl: string = "et al.";
+        //   BasicTool.getZotero().log(Zotero.locale);
+        if (Zotero.locale === "zh-CN") {
+          sepEtAl = "等";
+        }
+        displayedString += sepInter + sepEtAl;
+      }
+    }
+    return displayedString;
   }
 
   @betterAuthorsPlugin
@@ -198,120 +308,7 @@ export class UIBetterAuthorsFactory {
         item: Zotero.Item,
       ) => {
         const creators = item.getCreators();
-        // Only get all authors in the creators
-        const authors = creators.filter(
-          (creator) =>
-            creator.creatorTypeID === Zotero.CreatorTypes.getID("author"),
-        );
-        if (authors.length == 0) return "";
-        // const sep = this.getSeparator("sep");
-        const separators: string[] = [];
-        const sepIntra: string = this.getSeparatorString("sep-intra-author");
-        const sepIntraCJK: string = this.getSeparatorString(
-          "sep-intra-author-cjk",
-        );
-        const sepInter: string = this.getSeparatorString("sep-inter-author");
-        const sepOmitted: string = this.getSeparatorString(
-          "sep-omitted-authors",
-        );
-        const indicatorLastAuthor: string = this.getSeparatorString(
-          "indicator-for-lastauthor",
-        );
-        const indicatorPosition: string = getPref(
-          "indicator-position",
-        ) as string;
-        // get first n authors
-        // Initialize the first author list
-        const firstAuthorsList: string[] = [];
-        const includeFirstAuthorsFlag = getPref(
-          "include-firstauthors-in-list",
-        ) as boolean;
-        let firstN = 0;
-        if (includeFirstAuthorsFlag) {
-          const firstAuthorNumber = getPref("first_n_authors");
-          if (firstAuthorNumber !== undefined) {
-            firstN = firstAuthorNumber as number;
-          }
-          // deal with only one author
-          if (authors.length === 1) {
-            const authorDisplayed: string = this.displayAuthorName(
-              authors,
-              0,
-              sepIntra,
-              sepIntraCJK,
-            );
-            firstAuthorsList.push(authorDisplayed);
-          } else {
-            // here: length -1 means excluding the last author
-            for (let i = 0; i <= authors.length - 2; i++) {
-              // firstN === 0 is for all first authors
-              if (i < firstN || firstN === 0) {
-                const authorDisplayed: string = this.displayAuthorName(
-                  authors,
-                  i,
-                  sepIntra,
-                  sepIntraCJK,
-                );
-                firstAuthorsList.push(authorDisplayed);
-              } else {
-                break;
-              }
-            }
-          }
-        }
-        // get last author
-        const includeLastAuthorFlag = getPref(
-          "include-lastauthor-in-list",
-        ) as boolean;
-        let lastAuthorDisplayed: string = "";
-        if (includeLastAuthorFlag) {
-          lastAuthorDisplayed = this.displayAuthorName(
-            authors,
-            authors.length - 1,
-            sepIntra,
-            sepIntraCJK,
-          );
-        }
-        // Output
-        let displayedString: string = "";
-        const authorsList: string[] = [];
-        // [firsts], if any
-        if (includeFirstAuthorsFlag) {
-          authorsList.push(...firstAuthorsList);
-          displayedString += authorsList.join(sepInter);
-        }
-        // [last], if any
-        let lastAuthorWithIndicator: string = "";
-        if (indicatorPosition === "before") {
-          lastAuthorWithIndicator = indicatorLastAuthor + lastAuthorDisplayed;
-        } else {
-          lastAuthorWithIndicator = lastAuthorDisplayed + indicatorLastAuthor;
-        }
-        if (includeLastAuthorFlag) {
-          if (!displayedString) {
-            displayedString += lastAuthorWithIndicator;
-          } else if (displayedString == lastAuthorDisplayed) {
-            // in case of only one author
-            displayedString = lastAuthorWithIndicator;
-          } else {
-            if (firstN > 0 && firstN <= authors.length - 2) {
-              displayedString += sepInter + sepOmitted + sepInter;
-            } else {
-              displayedString += sepInter;
-            }
-            displayedString += lastAuthorWithIndicator;
-          }
-        } else {
-          if (authors.length >= 2) {
-            let sepEtAl: string = "et al.";
-            //   BasicTool.getZotero().log(Zotero.locale);
-            if (Zotero.locale === "zh-CN") {
-              sepEtAl = "等";
-            }
-            displayedString += sepInter + sepEtAl;
-          }
-        }
-        return displayedString;
+        return this.displayCreators(creators);
       },
       {},
     );

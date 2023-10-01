@@ -55,5 +55,6 @@ pref-sep-comma =
     .label = 逗号
 pref-sep-none = 
     .label = 无
+pref-preview-authors = 预览
 pref-label-about = 关于
 pref-help = { $name } Build { $version } { $time }
