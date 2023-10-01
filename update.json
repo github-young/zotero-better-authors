@@ -3,7 +3,7 @@
     "betterauthors@github.com": {
       "updates": [
         {
-          "version": "3.6.2",
+          "version": "4.0.0",
           "update_link": "https://github.com/github-young/zotero-better-authors/releases/latest/download/zotero-better-authors.xpi",
           "applications": {
             "zotero": {
