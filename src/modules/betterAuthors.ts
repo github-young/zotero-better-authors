@@ -260,7 +260,9 @@ export class UIBetterAuthorsFactory {
         if (Zotero.locale === "zh-CN") {
           sepEtAl = "等";
         }
-        displayedString += sepInter + sepEtAl;
+        if (includeFirstAuthorsFlag) {
+          displayedString += sepInter + sepEtAl;
+        }
       }
     }
     return displayedString;
