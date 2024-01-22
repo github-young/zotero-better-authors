@@ -42,4 +42,3 @@ jobs:
           prerelease: true
           files: |
             build/*.xpi
-            package-lock.json
