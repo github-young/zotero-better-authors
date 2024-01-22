@@ -12,10 +12,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Use Node.js 18.x
+      - name: Use Node.js 21.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 21.x
       - run: cd ${{ github.workspace }}
       - run: npm install
       - run: npm run build
