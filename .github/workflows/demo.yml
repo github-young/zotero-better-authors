@@ -26,7 +26,6 @@ jobs:
         id: getversion
         run: |
           plugin_version=$(node -p "require('${{ github.workspace }}/package.json').version">&1)
-          echo "version=$plugin_version"
           echo "version=$plugin_version" >> $GITHUB_OUTPUT
 
       - name: Build zotero plugin
@@ -34,12 +33,13 @@ jobs:
           cd ${{ github.workspace }}
           npm install
           npm run build
+          echo $(node -p "require('${{ github.workspace }}/package-lock.json')"
 
       - name: Release xpi file
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: v${{ steps.getversion.outputs.version }}.${{ steps.buildnumber.outputs.build_number }}
+          automatic_release_tag: v${{ steps.getversion.outputs.version }}-build${{ steps.buildnumber.outputs.build_number }}
           prerelease: true
           files: |
             build/*.xpi
