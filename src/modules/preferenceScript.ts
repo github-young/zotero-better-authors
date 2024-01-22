@@ -104,7 +104,7 @@ function bindPrefEvents() {
     addon.data.prefs!.window.document.querySelectorAll(
       `#zotero-prefpane-${config.addonRef} checkbox,input,menulist`,
     );
-  const exampleAuthorList: Zotero.Item.Creator[] = [
+  const exampleAuthorList: any = [
     {
       creatorTypeID: 8,
       fieldMode: 0,
