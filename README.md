@@ -10,6 +10,7 @@ This is a simple plugin for [Zotero](https://www.zotero.org/) 7. See this [annou
 ## Features
 
 - **Last Author** Display the last author in a new column as it is usually more important than the first author.
+- **First Author** Display the first author in a new column as mentioned in #41.
 - **Authors List** Display the authors in a new column with customizable displayed contents and styles
 
   - Choose whether to display: first N authors (all or partial), and the last author
