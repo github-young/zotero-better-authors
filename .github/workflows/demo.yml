@@ -18,7 +18,7 @@ jobs:
         id: getversion
         run: |
           ls -la ${{ github.workspace }}
-          plugin_version = node -p "require('${{ github.workspace }}/package.json').version"
+          set plugin_version = node -p "require('${{ github.workspace }}/package.json').version"
           echo "version=$plugin_version" >> $GITHUB_OUTPUT
 
       - name: Check out repository code
