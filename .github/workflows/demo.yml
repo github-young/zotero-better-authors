@@ -17,7 +17,9 @@ jobs:
       - name: Read VERSION file
         id: getversion
         run: |
-          echo "version=$(node -p "require('${{ github.workspace }}/package.json').version")" >> $GITHUB_OUTPUT
+          ls -la ${{ github.workspace }}
+          plugin_version = node -p "require('${{ github.workspace }}/package.json').version"
+          echo "version=$plugin_version" >> $GITHUB_OUTPUT
 
       - name: Check out repository code
         uses: actions/checkout@v4
