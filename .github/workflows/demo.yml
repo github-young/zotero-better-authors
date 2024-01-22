@@ -29,10 +29,11 @@ jobs:
           set plugin_version = node -p "require('${{ github.workspace }}/package.json').version"
           echo "version=$plugin_version" >> $GITHUB_OUTPUT
 
-      - run: |
-        cd ${{ github.workspace }}
-        npm install
-        npm run build
+      - name: Build zotero plugin
+        run: |
+          cd ${{ github.workspace }}
+          npm install
+          npm run build
 
       - name: Release xpi file
         uses: "marvinpinto/action-automatic-releases@latest"
