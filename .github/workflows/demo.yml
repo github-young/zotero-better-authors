@@ -8,6 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.1
+      
       - name: Generate build number
         id: buildnumber
         uses: onyxmueller/build-tag-number@v1
@@ -21,16 +29,10 @@ jobs:
           set plugin_version = node -p "require('${{ github.workspace }}/package.json').version"
           echo "version=$plugin_version" >> $GITHUB_OUTPUT
 
-      - name: Check out repository code
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.12.1
-      - run: cd ${{ github.workspace }}
-      - run: npm install
-      - run: npm run build
+      - run: |
+        cd ${{ github.workspace }}
+        npm install
+        npm run build
 
       - name: Release xpi file
         uses: "marvinpinto/action-automatic-releases@latest"
