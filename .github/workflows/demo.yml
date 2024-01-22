@@ -17,7 +17,7 @@ jobs:
       - name: Read VERSION file
         id: getversion
         run: |
-          echo "::set-output name=version::$(node -p "require('./package.json').version")"
+          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -25,7 +25,7 @@ jobs:
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 18.12.1
       - run: cd ${{ github.workspace }}
       - run: npm install
       - run: npm run build
