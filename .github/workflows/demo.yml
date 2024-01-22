@@ -2,8 +2,7 @@ name: GitHub Actions Demo
 run-name: GitHub Actions to release xpi file
 on:
   push:
-    tags:
-      - "v*"
+    branches: [ "dev" ]
 
 jobs:
   build:
