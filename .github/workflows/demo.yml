@@ -33,7 +33,7 @@ jobs:
           cd ${{ github.workspace }}
           npm install
           npm run build
-          echo $(node -p "require('${{ github.workspace }}/package-lock.json')"
+          echo $(node -p "require('${{ github.workspace }}/package-lock.json')")
 
       - name: Release xpi file
         uses: "marvinpinto/action-automatic-releases@latest"
