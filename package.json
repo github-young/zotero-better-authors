@@ -52,13 +52,13 @@
     "compressing": "^1.10.0",
     "concurrently": "^8.2.1",
     "cross-env": "^7.0.3",
-    "esbuild": "^0.19.2",
+    "esbuild": "0.19.2",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "prettier": "^3.0.3",
     "release-it": "^16.1.5",
     "replace-in-file": "^7.0.1",
-    "typescript": "^5.2.2",
+    "typescript": "5.2.2",
     "zotero-types": "^1.2.3"
   }
 }
