@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.12.1
-      
+
       - name: Generate build number
         id: buildnumber
         uses: onyxmueller/build-tag-number@v1
@@ -41,3 +41,5 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: v${{ steps.getversion.outputs.version }}
           prerelease: true
+          files: |
+            build/*.xpi
