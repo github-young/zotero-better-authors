@@ -104,32 +104,28 @@ function bindPrefEvents() {
     addon.data.prefs!.window.document.querySelectorAll(
       `#zotero-prefpane-${config.addonRef} checkbox,input,menulist`,
     );
-  const exampleAuthorList: any = [
-    {
-      creatorTypeID: 8,
-      fieldMode: 0,
-      firstName: "Alice",
-      lastName: "Adams",
-    },
-    {
-      creatorTypeID: 8,
-      fieldMode: 0,
-      firstName: "Bob",
-      lastName: "Brown",
-    },
-    {
-      creatorTypeID: 8,
-      fieldMode: 0,
-      firstName: "三",
-      lastName: "张",
-    },
-    {
-      creatorTypeID: 8,
-      fieldMode: 0,
-      firstName: "四",
-      lastName: "李",
-    },
-  ];
+  const exampleAuthorList: Zotero.Item.Creator[] = [{
+    creatorTypeID: 8,
+    fieldMode: 0,
+    firstName: "Alice",
+    lastName: "Adams",
+  }, {
+    creatorTypeID: 8,
+    fieldMode: 0,
+    firstName: "Bob",
+    lastName: "Brown",
+  }, {
+    creatorTypeID: 8,
+    fieldMode: 0,
+    firstName: "三",
+    lastName: "张",
+  }, {
+    creatorTypeID: 8,
+    fieldMode: 0,
+    firstName: "四",
+    lastName: "李",
+  },
+  ]
   for (const element of settingsElementsList) {
     element?.addEventListener("command", (e) => {
       const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
