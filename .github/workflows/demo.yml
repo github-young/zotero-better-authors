@@ -17,18 +17,6 @@ jobs:
         with:
           node-version: 18.12.1
 
-      - name: Generate build number
-        id: buildnumber
-        uses: onyxmueller/build-tag-number@v1
-        with:
-          token: ${{secrets.github_token}}
-
-      - name: Read VERSION file
-        id: getversion
-        run: |
-          plugin_version=$(node -p "require('${{ github.workspace }}/package.json').version">&1)
-          echo "version=$plugin_version" >> $GITHUB_OUTPUT
-
       - name: Build zotero plugin
         run: |
           cd ${{ github.workspace }}
@@ -39,7 +27,6 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: v${{ steps.getversion.outputs.version }}
           prerelease: true
           files: |
             build/*.xpi
