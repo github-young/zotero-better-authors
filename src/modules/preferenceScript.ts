@@ -100,9 +100,10 @@ async function updatePrefsUI() {
 }
 
 function bindPrefEvents() {
-  const settingsElementsList = addon.data.prefs!.window.document.querySelectorAll(
-    `#zotero-prefpane-${config.addonRef} checkbox,input,menulist`,
-  )
+  const settingsElementsList =
+    addon.data.prefs!.window.document.querySelectorAll(
+      `#zotero-prefpane-${config.addonRef} checkbox,input,menulist`,
+    );
   const exampleAuthorList: Zotero.Item.Creator[] = [{
     creatorTypeID: 8,
     fieldMode: 0,
@@ -127,16 +128,26 @@ function bindPrefEvents() {
   ]
   for (const element of settingsElementsList) {
     element?.addEventListener("command", (e) => {
-      const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList)
-      addon.data.prefs!.window.document.getElementById(`zotero-prefpane-${config.addonRef}-authors-format-preview`)!.innerText = example;
+      const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
+      addon.data.prefs!.window.document.getElementById(
+        `zotero-prefpane-${config.addonRef}-authors-format-preview`,
+      )!.innerText = example;
     });
     element?.addEventListener("change", (e) => {
-      const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList)
-      addon.data.prefs!.window.document.getElementById(`zotero-prefpane-${config.addonRef}-authors-format-preview`)!.innerText = example;
+      const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
+      addon.data.prefs!.window.document.getElementById(
+        `zotero-prefpane-${config.addonRef}-authors-format-preview`,
+      )!.innerText = example;
     });
   }
-  addon.data.prefs!.window.document.querySelector(`#zotero-prefpane-${config.addonRef}-authors-format-preview`)?.addEventListener("click", (e) => {
-    const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList)
-    addon.data.prefs!.window.document.getElementById(`zotero-prefpane-${config.addonRef}-authors-format-preview`)!.innerText = example;
-  });
+  addon.data
+    .prefs!.window.document.querySelector(
+      `#zotero-prefpane-${config.addonRef}-authors-format-preview`,
+    )
+    ?.addEventListener("click", (e) => {
+      const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
+      addon.data.prefs!.window.document.getElementById(
+        `zotero-prefpane-${config.addonRef}-authors-format-preview`,
+      )!.innerText = example;
+    });
 }

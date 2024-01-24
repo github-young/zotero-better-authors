@@ -152,7 +152,10 @@ export class UIBetterAuthorsFactory {
     }
   }
 
-  static displayCreators(creators: Zotero.Item.Creator[], filterType: string = "author") {
+  static displayCreators(
+    creators: Zotero.Item.Creator[],
+    filterType: string = "author",
+  ) {
     // Only get all authors in the creators
     const authors = creators.filter(
       (creator) =>
@@ -162,19 +165,13 @@ export class UIBetterAuthorsFactory {
     // const sep = this.getSeparator("sep");
     const separators: string[] = [];
     const sepIntra: string = this.getSeparatorString("sep-intra-author");
-    const sepIntraCJK: string = this.getSeparatorString(
-      "sep-intra-author-cjk",
-    );
+    const sepIntraCJK: string = this.getSeparatorString("sep-intra-author-cjk");
     const sepInter: string = this.getSeparatorString("sep-inter-author");
-    const sepOmitted: string = this.getSeparatorString(
-      "sep-omitted-authors",
-    );
+    const sepOmitted: string = this.getSeparatorString("sep-omitted-authors");
     const indicatorLastAuthor: string = this.getSeparatorString(
       "indicator-for-lastauthor",
     );
-    const indicatorPosition: string = getPref(
-      "indicator-position",
-    ) as string;
+    const indicatorPosition: string = getPref("indicator-position") as string;
     // get first n authors
     // Initialize the first author list
     const firstAuthorsList: string[] = [];
@@ -263,7 +260,9 @@ export class UIBetterAuthorsFactory {
         if (Zotero.locale === "zh-CN") {
           sepEtAl = "等";
         }
-        displayedString += sepInter + sepEtAl;
+        if (includeFirstAuthorsFlag) {
+          displayedString += sepInter + sepEtAl;
+        }
       }
     }
     return displayedString;
@@ -271,6 +270,33 @@ export class UIBetterAuthorsFactory {
 
   @betterAuthorsPlugin
   static async registerExtraColumn() {
+    await ztoolkit.ItemTree.register(
+      "firstauthor",
+      getString("itemtree-firstauthor-title"),
+      (
+        field: string,
+        unformatted: boolean,
+        includeBaseMapped: boolean,
+        item: Zotero.Item,
+      ) => {
+        const creators = item.getCreators();
+        // Only get all authors in the creators
+        const authors = creators.filter(
+          (creator) => creator.creatorTypeID === 8,
+        );
+        if (authors.length == 0) return "";
+        const sepIntra = this.getSeparatorString("sep-intra-author");
+        const sepIntraCJK = this.getSeparatorString("sep-intra-author-cjk");
+        const firstAuthorDisplayed: string = this.displayAuthorName(
+          authors,
+          0,
+          sepIntra,
+          sepIntraCJK,
+        );
+        return firstAuthorDisplayed;
+      },
+      {},
+    );
     await ztoolkit.ItemTree.register(
       "lastauthor",
       getString("itemtree-lastauthor-title"),

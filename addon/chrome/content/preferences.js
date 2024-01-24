@@ -17,7 +17,9 @@ Betterauthors.Preferences = {
     });
   }),
   updateAuthorsPreview: function () {
-    const previewElement = document.getElementById(`zotero-prefpane-${addonRef}-authors-format-preview`);
+    const previewElement = document.getElementById(
+      `zotero-prefpane-${addonRef}-authors-format-preview`,
+    );
     previewElement.click();
-  }
+  },
 };

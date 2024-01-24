@@ -1,5 +1,5 @@
 name: GitHub Actions Demo
-run-name: GitHub Actions to release xpi file
+run-name: GitHub Actions to release
 on:
   push:
     tags:
@@ -35,11 +35,9 @@ jobs:
           npm install
           npm run build
 
-      - name: Release xpi file
+      - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: v${{ steps.getversion.outputs.version }}
           prerelease: true
-          files: |
-            build/*.xpi
