@@ -1,7 +1,6 @@
 name: Build on push
 run-name: GitHub Actions to build
-on:
-  push
+on: push
 
 jobs:
   build:

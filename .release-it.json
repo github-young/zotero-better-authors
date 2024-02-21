@@ -10,8 +10,8 @@
     "assets": ["build/*.xpi"]
   },
   "hooks": {
-    "before:init": "npm run lint",
-    "after:bump": "npm run build",
+    "before:init": "pnpm lint",
+    "after:bump": "pnpm build",
     "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
   }
 }
