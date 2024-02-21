@@ -3,6 +3,7 @@ run-name: GitHub Actions to build
 on:
   push
 
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
