@@ -3,8 +3,8 @@
     "betterauthors@github.com": {
       "updates": [
         {
-          "version": "4.1.2-1",
-          "update_link": "https://github.com/github-young/zotero-better-authors/releases/download/v4.1.2-1/zotero-better-authors.xpi",
+          "version": "4.1.2-2",
+          "update_link": "https://github.com/github-young/zotero-better-authors/releases/download/v4.1.2-2/zotero-better-authors.xpi",
           "applications": {
             "zotero": {
               "strict_min_version": "6.999"
