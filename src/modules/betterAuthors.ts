@@ -311,7 +311,7 @@ export class UIBetterAuthorsFactory {
           sepIntraCJK,
         );
         return lastAuthorDisplayed;
-      }
+      },
     });
     await Zotero.ItemTreeManager.registerColumns({
       dataKey: "authors",
@@ -320,7 +320,7 @@ export class UIBetterAuthorsFactory {
       dataProvider: (item: Zotero.Item, dataKey: string): string => {
         const creators = item.getCreators();
         return this.displayCreators(creators);
-      }
+      },
     });
   }
 }
