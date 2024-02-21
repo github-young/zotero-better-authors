@@ -2,7 +2,6 @@ import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { convertToInitials, determineCountry } from "./convertNames";
 import { getPref } from "../utils/prefs";
-import { BasicTool } from "zotero-plugin-toolkit/dist/basic";
 
 function betterAuthorsPlugin(
   target: any,
