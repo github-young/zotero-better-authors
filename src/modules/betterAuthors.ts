@@ -269,15 +269,11 @@ export class UIBetterAuthorsFactory {
 
   @betterAuthorsPlugin
   static async registerExtraColumn() {
-    await ztoolkit.ItemTree.register(
-      "firstauthor",
-      getString("itemtree-firstauthor-title"),
-      (
-        field: string,
-        unformatted: boolean,
-        includeBaseMapped: boolean,
-        item: Zotero.Item,
-      ) => {
+    await Zotero.ItemTreeManager.registerColumns({
+      dataKey: "firstauthor",
+      label: getString("itemtree-firstauthor-title"),
+      pluginID: config.addonID,
+      dataProvider: (item: Zotero.Item, dataKey: string): string => {
         const creators = item.getCreators();
         // Only get all authors in the creators
         const authors = creators.filter(
@@ -294,17 +290,12 @@ export class UIBetterAuthorsFactory {
         );
         return firstAuthorDisplayed;
       },
-      {},
-    );
-    await ztoolkit.ItemTree.register(
-      "lastauthor",
-      getString("itemtree-lastauthor-title"),
-      (
-        field: string,
-        unformatted: boolean,
-        includeBaseMapped: boolean,
-        item: Zotero.Item,
-      ) => {
+    });
+    await Zotero.ItemTreeManager.registerColumns({
+      dataKey: "lastauthor",
+      label: getString("itemtree-lastauthor-title"),
+      pluginID: config.addonID,
+      dataProvider: (item: Zotero.Item, dataKey: string): string => {
         const creators = item.getCreators();
         // Only get all authors in the creators
         const authors = creators.filter(
@@ -320,22 +311,16 @@ export class UIBetterAuthorsFactory {
           sepIntraCJK,
         );
         return lastAuthorDisplayed;
-      },
-      {},
-    );
-    await ztoolkit.ItemTree.register(
-      "authors",
-      getString("itemtree-authors-title"),
-      (
-        field: string,
-        unformatted: boolean,
-        includeBaseMapped: boolean,
-        item: Zotero.Item,
-      ) => {
+      }
+    });
+    await Zotero.ItemTreeManager.registerColumns({
+      dataKey: "authors",
+      label: getString("itemtree-authors-title"),
+      pluginID: config.addonID,
+      dataProvider: (item: Zotero.Item, dataKey: string): string => {
         const creators = item.getCreators();
         return this.displayCreators(creators);
-      },
-      {},
-    );
+      }
+    });
   }
 }
