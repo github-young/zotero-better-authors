@@ -35,7 +35,7 @@ export class BasicBetterAuthorsFactory {
       image: `chrome://${config.addonRef}/content/icons/favicon.png`,
       defaultXUL: true,
     };
-    ztoolkit.PreferencePane.register(prefOptions);
+    Zotero.PreferencePanes.register(prefOptions);
   }
 }
 
