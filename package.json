@@ -59,6 +59,6 @@
     "release-it": "17.1.1",
     "replace-in-file": "^7.0.1",
     "typescript": "^5.2.2",
-    "zotero-types": "^1.2.3"
+    "zotero-types": "^2.0.0"
   }
 }
