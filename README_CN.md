@@ -5,6 +5,13 @@
 
 这是 Zotero 7 的一个简单插件。有关 Zotero 7 Beta 信息，请参考[这个声明](https://forums.zotero.org/discussion/105094/announcing-the-zotero-7-beta)。
 
+## 安装
+
+
+- 前往[最新的release页面](https://github.com/github-young/zotero-better-authors/releases/latest).
+- 下载 `zotero-better-authors.xpi`，右键选择 `另存为文件`.
+- 将 `xpi` 文件拖放进 Zotero 的插件管理器，或者在插件管理器内点击 "从文件安装" 选取 `xpi` 文件.
+
 ## 功能
 
 - **末位作者** 单独一列显示末位作者，因为通常末位作者是通讯作者或PI
