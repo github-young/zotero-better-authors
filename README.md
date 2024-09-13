@@ -7,6 +7,12 @@
 
 This is a simple plugin for [Zotero](https://www.zotero.org/) 7. See this [announcement](https://forums.zotero.org/discussion/105094/announcing-the-zotero-7-beta) for Zotero 7 Beta.
 
+## Installation
+
+- Go to the [latest release](https://github.com/github-young/zotero-better-authors/releases/latest).
+- Download the file `zotero-better-authors.xpi` by saving it as a file.
+- Drag the `xpi` file into Zotero's plugin manager or use "install via file" and select the `xpi` file.
+
 ## Features
 
 - **Last Author** Display the last author in a new column as it is usually more important than the first author.
