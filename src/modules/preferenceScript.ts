@@ -135,13 +135,13 @@ function bindPrefEvents() {
       const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
       addon.data.prefs!.window.document.getElementById(
         `zotero-prefpane-${config.addonRef}-authors-format-preview`,
-      )!.innerText = example;
+      )!.innerHTML = example;
     });
     element?.addEventListener("change", (e) => {
       const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
       addon.data.prefs!.window.document.getElementById(
         `zotero-prefpane-${config.addonRef}-authors-format-preview`,
-      )!.innerText = example;
+      )!.innerHTML = example;
     });
   }
   addon.data
@@ -152,6 +152,6 @@ function bindPrefEvents() {
       const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
       addon.data.prefs!.window.document.getElementById(
         `zotero-prefpane-${config.addonRef}-authors-format-preview`,
-      )!.innerText = example;
+      )!.innerHTML = example;
     });
 }

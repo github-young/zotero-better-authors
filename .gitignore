@@ -1,6 +1,7 @@
-**/build
+build
+logs
 node_modules
-package-lock.json
 pnpm-lock.yaml
-zotero-cmd.json
-mystart.mjs
+yarn.lock
+.DS_Store
+.env
