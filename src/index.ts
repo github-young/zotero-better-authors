@@ -17,7 +17,7 @@ if (!basicTool.getGlobal("Zotero")[config.addonInstance]) {
   });
   Zotero[config.addonInstance] = addon;
   // Trigger addon hook for initialization
-  addon.hooks.onStartup();
+  // addon.hooks.onStartup();
 }
 
 function defineGlobal(name: Parameters<BasicTool["getGlobal"]>[0]): void;

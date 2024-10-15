@@ -292,6 +292,16 @@ export class UIBetterAuthorsFactory {
         );
         return firstAuthorDisplayed;
       },
+      renderCell(index: number, data: string, column) {
+        const span = Zotero.getMainWindow().document.createElementNS(
+          "http://www.w3.org/1999/xhtml",
+          "span",
+        );
+        span.className = `cell ${column.className}`;
+        // span.style.background = "#0dd068";
+        span.innerText = data;
+        return span;
+      },
     });
     await Zotero.ItemTreeManager.registerColumns({
       dataKey: "lastauthor",
@@ -316,6 +326,16 @@ export class UIBetterAuthorsFactory {
         );
         return lastAuthorDisplayed;
       },
+      renderCell(index: number, data: string, column) {
+        const span = Zotero.getMainWindow().document.createElementNS(
+          "http://www.w3.org/1999/xhtml",
+          "span",
+        );
+        span.className = `cell ${column.className}`;
+        // span.style.background = "#0dd068";
+        span.innerText = data;
+        return span;
+      },
     });
     await Zotero.ItemTreeManager.registerColumns({
       dataKey: "authors",
@@ -326,6 +346,16 @@ export class UIBetterAuthorsFactory {
           return ""
         const creators = item.getCreators();
         return this.displayCreators(creators);
+      },
+      renderCell(index: number, data: string, column) {
+        const span = Zotero.getMainWindow().document.createElementNS(
+          "http://www.w3.org/1999/xhtml",
+          "span",
+        );
+        span.className = `cell ${column.className}`;
+        // span.style.background = "#0dd068";
+        span.innerText = data;
+        return span;
       },
     });
   }

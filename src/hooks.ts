@@ -19,16 +19,20 @@ async function onStartup() {
 
   setDefaultPrefSettings();
 
+  // Register prefs
   BasicBetterAuthorsFactory.registerPrefs();
 
-  await onMainWindowLoad(window);
+  // Register extra column for item tree
+  await UIBetterAuthorsFactory.registerExtraColumn();
+
+  await Promise.all(
+    Zotero.getMainWindows().map((win) => onMainWindowLoad(win)),
+  );
 }
 
 async function onMainWindowLoad(win: Window): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
-
-  await UIBetterAuthorsFactory.registerExtraColumn();
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {

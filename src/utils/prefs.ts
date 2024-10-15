@@ -27,3 +27,32 @@ export function setPref(key: string, value: string | number | boolean) {
 export function clearPref(key: string) {
   return Zotero.Prefs.clear(`${config.prefsPrefix}.${key}`, true);
 }
+
+/**
+ * Register preference observer.
+ * Wrapper of `Zotero.Prefs.registerObserver`.
+ * @param key
+ * @param callback
+ * @param global
+ * @returns symbol
+ */
+export function registerPrefObserver(
+  key: string,
+  callback: (event: any) => void,
+  global?: boolean
+): symbol {
+  return Zotero.Prefs.registerObserver(
+    `${config.prefsPrefix}.${key}`,
+    callback,
+    global
+  );
+}
+
+/**
+ * Unregister preference observer.
+ * Wrapper of `Zotero.Prefs.unregisterObserver`.
+ * @param symbol
+ */
+export function unregisterPrefObserver(symbol: symbol) {
+  return Zotero.Prefs.unregisterObserver(symbol);
+}
