@@ -5,7 +5,7 @@
         {
           "version": "4.2.1",
           "update_link": "https://github.com/github-young/zotero-better-authors/releases/download/v4.2.1/zotero-better-authors.xpi",
-          "update_hash": "sha512:cee0efec3b85882469b32283d74c8f4431cfca26cead1b523c2ee31b847477dcc1d9a0fa7fcf43e97152b67911d038213748e1b6c61d7cd83aad38206173a24c",
+          "update_hash": "sha512:e9e52d990d949d07f9dba921d37849c0f408dacbe87d12f215a541a3fd84f2deeacbd3b80fd98b5c224a141d7189b3c7cc0bb59c29273fcb1dfa15ecbdb311dc",
           "applications": {
             "zotero": {
               "strict_min_version": "6.999"
