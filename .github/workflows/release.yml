@@ -1,32 +1,47 @@
-name: Release on tags
-run-name: GitHub Actions to release with pnpm
+name: Release
+
 on:
   push:
     tags:
-      - "v*"
+      - v**
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GitHub_TOKEN }}
     steps:
-      - name: Check out repository code
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Use pnpm
-        uses: pnpm/action-setup@v3
         with:
-          version: 8
+          fetch-depth: 0
 
-      - name: Build zotero plugin
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: npm install -f
+
+      - name: Build
         run: |
-          cd ${{ github.workspace }}
-          pnpm install
-          pnpm run build
+          npm run build
 
-      - name: Release
-        uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Release to GitHub
+        run: |
+          npm run release
+          sleep 1s
+
+      - name: Notify release
+        uses: apexskier/github-release-commenter@v1
+        continue-on-error: true
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true
-          files: |
-            build/*.xpi
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          comment-template: |
+            :rocket: _This ticket has been resolved in {release_tag}. See {release_link} for release notes._
