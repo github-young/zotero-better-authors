@@ -39,12 +39,12 @@ export function clearPref(key: string) {
 export function registerPrefObserver(
   key: string,
   callback: (event: any) => void,
-  global?: boolean
+  global?: boolean,
 ): symbol {
   return Zotero.Prefs.registerObserver(
     `${config.prefsPrefix}.${key}`,
     callback,
-    global
+    global,
   );
 }
 

@@ -273,9 +273,11 @@ export class UIBetterAuthorsFactory {
       dataKey: "firstauthor",
       label: getString("itemtree-firstauthor-title"),
       pluginID: config.addonID,
-      dataProvider: (item: Zotero.Item | Zotero.Collection, dataKey: string): string => {
-        if (!(item instanceof Zotero.Item))
-          return ""
+      dataProvider: (
+        item: Zotero.Item | Zotero.Collection,
+        dataKey: string,
+      ): string => {
+        if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
         // Only get all authors in the creators
         const authors = creators.filter(
@@ -307,9 +309,11 @@ export class UIBetterAuthorsFactory {
       dataKey: "lastauthor",
       label: getString("itemtree-lastauthor-title"),
       pluginID: config.addonID,
-      dataProvider: (item: Zotero.Item | Zotero.Collection, dataKey: string): string => {
-        if (!(item instanceof Zotero.Item))
-          return ""
+      dataProvider: (
+        item: Zotero.Item | Zotero.Collection,
+        dataKey: string,
+      ): string => {
+        if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
         // Only get all authors in the creators
         const authors = creators.filter(
@@ -341,9 +345,11 @@ export class UIBetterAuthorsFactory {
       dataKey: "authors",
       label: getString("itemtree-authors-title"),
       pluginID: config.addonID,
-      dataProvider: (item: Zotero.Item | Zotero.Collection, dataKey: string): string => {
-        if (!(item instanceof Zotero.Item))
-          return ""
+      dataProvider: (
+        item: Zotero.Item | Zotero.Collection,
+        dataKey: string,
+      ): string => {
+        if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
         return this.displayCreators(creators);
       },

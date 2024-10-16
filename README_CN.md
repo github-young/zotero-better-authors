@@ -7,7 +7,6 @@
 
 ## 安装
 
-
 - 前往[最新的release页面](https://github.com/github-young/zotero-better-authors/releases/latest).
 - 下载 `zotero-better-authors.xpi`，右键选择 `另存为文件`.
 - 将 `xpi` 文件拖放进 Zotero 的插件管理器，或者在插件管理器内点击 "从文件安装" 选取 `xpi` 文件.
