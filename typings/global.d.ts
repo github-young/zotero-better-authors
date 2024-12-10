@@ -2,7 +2,7 @@ declare const _globalThis: {
   [key: string]: any;
   Zotero: _ZoteroTypes.Zotero;
   ZoteroPane: _ZoteroTypes.ZoteroPane;
-  Zotero_Tabs: typeof Zotero_Tabs;
+  Zotero_Tabs: _ZoteroTypes.Zotero_Tabs;
   window: Window;
   document: Document;
   ztoolkit: ZToolkit;
