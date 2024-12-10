@@ -315,19 +315,41 @@ export class UIBetterAuthorsFactory {
       ): string => {
         if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
-        // Only get all authors in the creators
-        const authors = creators.filter(
-          (creator) => creator.creatorTypeID === 8,
-        );
-        if (authors.length == 0) return "";
-        const sepIntra = this.getSeparatorString("sep-intra-author");
-        const sepIntraCJK = this.getSeparatorString("sep-intra-author-cjk");
-        const lastAuthorDisplayed: string = this.displayAuthorName(
-          authors,
-          authors.length - 1,
-          sepIntra,
-          sepIntraCJK,
-        );
+        const itemType = item.itemType;
+        let lastAuthorDisplayed: string = "";
+
+        if (itemType === "thesis") {
+          // Get the first contributor for thesis
+          const contributors = creators.filter(
+            (creator) => creator.creatorTypeID !== 8,
+          );
+          if (contributors.length > 0) {
+            const sepIntra = this.getSeparatorString("sep-intra-author");
+            const sepIntraCJK = this.getSeparatorString("sep-intra-author-cjk");
+            lastAuthorDisplayed = this.displayAuthorName(
+              contributors,
+              0,
+              sepIntra,
+              sepIntraCJK,
+            );
+          }
+        } else {
+          // Only get all authors in the creators
+          const authors = creators.filter(
+            (creator) => creator.creatorTypeID === 8,
+          );
+          if (authors.length > 0) {
+            const sepIntra = this.getSeparatorString("sep-intra-author");
+            const sepIntraCJK = this.getSeparatorString("sep-intra-author-cjk");
+            lastAuthorDisplayed = this.displayAuthorName(
+              authors,
+              authors.length - 1,
+              sepIntra,
+              sepIntraCJK,
+            );
+          }
+        }
+
         return lastAuthorDisplayed;
       },
       renderCell(index: number, data: string, column) {
