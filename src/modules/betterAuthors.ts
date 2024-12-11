@@ -273,6 +273,7 @@ export class UIBetterAuthorsFactory {
       dataKey: "firstauthor",
       label: getString("itemtree-firstauthor-title"),
       pluginID: config.addonID,
+      flex:0.8,
       dataProvider: (
         item: Zotero.Item | Zotero.Collection,
         dataKey: string,
@@ -309,6 +310,7 @@ export class UIBetterAuthorsFactory {
       dataKey: "lastauthor",
       label: getString("itemtree-lastauthor-title"),
       pluginID: config.addonID,
+      flex:0.8,
       dataProvider: (
         item: Zotero.Item | Zotero.Collection,
         dataKey: string,
@@ -367,6 +369,7 @@ export class UIBetterAuthorsFactory {
       dataKey: "authors",
       label: getString("itemtree-authors-title"),
       pluginID: config.addonID,
+      flex:0.8,
       dataProvider: (
         item: Zotero.Item | Zotero.Collection,
         dataKey: string,
