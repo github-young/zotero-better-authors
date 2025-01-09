@@ -93,7 +93,7 @@ export class UIBetterAuthorsFactory {
     }
   }
   static displayAuthorName(
-    authors: Zotero.Item.Creator[],
+    authors: _ZoteroTypes.Item.Creator[],
     index: number,
     sep: string = " ",
     sepCJK: string = "",
@@ -152,7 +152,7 @@ export class UIBetterAuthorsFactory {
   }
 
   static displayCreators(
-    creators: Zotero.Item.Creator[],
+    creators: _ZoteroTypes.Item.Creator[],
     filterType: string = "author",
   ) {
     // Only get all authors in the creators
