@@ -35,6 +35,29 @@ Settings
 
 ![image_settings](./docs/image_settings_en.png)
 
+## Contributing
+
+```bash
+# clone code
+git clone https://github.com/github-young/zotero-better-authors.git
+cd zotero-better-authors
+
+# install deps
+corepack enable
+pnpm i
+
+# config env
+cp .env.example .env
+vi .env
+
+# development
+pnpm start
+pnpm build
+
+# code format and lint
+pnpm build
+```
+
 ## Disclaimer
 
 Use this code under AGPL. No warranties are provided. Keep the laws of your locality in mind!

@@ -2,6 +2,7 @@
   "name": "zotero-better-authors",
   "version": "4.3.4",
   "description": "Zotero Better Authors",
+  "packageManager": "pnpm@10.4.1",
   "config": {
     "addonName": "Zotero Better Authors",
     "addonID": "betterauthors@github.com",
@@ -25,20 +26,20 @@
     "lint": "prettier --write . && eslint . --fix",
     "release": "zotero-plugin release",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "update-deps": "npm update --save"
+    "update-deps": "pnpm up"
   },
   "dependencies": {
-    "zotero-plugin-toolkit": "^4.1.1"
+    "zotero-plugin-toolkit": "^4.1.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.18.0",
-    "@types/node": "^22.10.5",
-    "eslint": "^9.18.0",
-    "prettier": "^3.4.2",
+    "@eslint/js": "^9.21.0",
+    "@types/node": "^22.13.5",
+    "eslint": "^9.21.0",
+    "prettier": "^3.5.2",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.19.1",
-    "zotero-plugin-scaffold": "^0.1.7",
-    "zotero-types": "^3.1.4"
+    "typescript-eslint": "^8.25.0",
+    "zotero-plugin-scaffold": "^0.2.8",
+    "zotero-types": "^3.1.7"
   },
   "prettier": {
     "printWidth": 80,
