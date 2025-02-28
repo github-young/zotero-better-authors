@@ -43,6 +43,7 @@ type NameOrderType = "firstlast" | "lastfirst";
 
 export class UIBetterAuthorsFactory {
   static getSeparator(sepSource: string): string {
+    // @ts-expect-error will fix in future commit
     const sepSetting = getPref(sepSource) as string;
     let sep = " ";
     if (sepSetting === "space") {
@@ -58,6 +59,7 @@ export class UIBetterAuthorsFactory {
     sepSource: string,
     defaultReturn: string = "",
   ): string {
+    // @ts-expect-error will fix in future commit
     const sepInput = getPref(sepSource);
     if (sepInput) {
       return sepInput as string;

@@ -20,7 +20,7 @@
       <hbox align="center">
         <checkbox
           id="zotero-prefpane-__addonRef__-include-firstauthors-in-list"
-          preference="extensions.zotero.__addonRef__.include-firstauthors-in-list"
+          preference="include-firstauthors-in-list"
           data-l10n-id="pref-include-firstauthors-in-list"
           oncommand="Betterauthors.Preferences.updateFirstAuthorsSettingsUI()"
         />
@@ -33,14 +33,14 @@
             min="0"
             step="1"
             size="3"
-            preference="extensions.zotero.__addonRef__.first_n_authors"
+            preference="first_n_authors"
           />
           <label data-l10n-id="pref-first-n-authors-next" />
         </hbox>
       </hbox>
       <checkbox
         id="zotero-prefpane-__addonRef__-include-lastauthor-in-list"
-        preference="extensions.zotero.__addonRef__.include-lastauthor-in-list"
+        preference="include-lastauthor-in-list"
         data-l10n-id="pref-include-lastauthor-in-list"
       />
     </vbox>
@@ -55,7 +55,7 @@
       <label data-l10n-id="pref-label-display-firstname-as"></label>
       <menulist
         id="zotero-prefpane-__addonRef__-firstnamestyle"
-        preference="extensions.zotero.__addonRef__.firstnamestyle"
+        preference="firstnamestyle"
         native="true"
       >
         <menupopup>
@@ -83,7 +83,7 @@
       ></label>
       <menulist
         id="zotero-prefpane-__addonRef__-namestyle"
-        preference="extensions.zotero.__addonRef__.namestyle"
+        preference="namestyle"
         native="true"
       >
         <menupopup>
@@ -108,7 +108,7 @@
         type="text"
         size="5"
         maxlength="3"
-        preference="extensions.zotero.__addonRef__.sep-intra-author"
+        preference="sep-intra-author"
       />
       <label data-l10n-id="pref-sep-intra-author-cjk"></label>
       <html:input
@@ -116,7 +116,7 @@
         type="text"
         size="5"
         maxlength="3"
-        preference="extensions.zotero.__addonRef__.sep-intra-author-cjk"
+        preference="sep-intra-author-cjk"
       />
       <label data-l10n-id="pref-label-sep-setting-next"></label>
     </hbox>
@@ -130,7 +130,7 @@
         type="text"
         size="3"
         maxlength="8"
-        preference="extensions.zotero.__addonRef__.sep-inter-author"
+        preference="sep-inter-author"
       />
     </hbox>
     <hbox align="center">
@@ -143,7 +143,7 @@
         type="text"
         size="3"
         maxlength="8"
-        preference="extensions.zotero.__addonRef__.sep-omitted-authors"
+        preference="sep-omitted-authors"
       />
     </hbox>
     <hbox align="center">
@@ -156,12 +156,12 @@
         type="text"
         size="3"
         maxlength="12"
-        preference="extensions.zotero.__addonRef__.indicator-for-lastauthor"
+        preference="indicator-for-lastauthor"
       />
       <label data-l10n-id="pref-label-indicator-pos-prev"></label>
       <menulist
         id="zotero-prefpane-__addonRef__-indicator-position"
-        preference="extensions.zotero.__addonRef__.indicator-position"
+        preference="indicator-position"
         native="true"
       >
         <menupopup>

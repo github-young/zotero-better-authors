@@ -3,7 +3,6 @@ import pkg from "./package.json";
 
 export default defineConfig({
   source: ["src", "addon"],
-  dist: "build",
   name: pkg.config.addonName,
   id: pkg.config.addonID,
   namespace: pkg.config.addonRef,

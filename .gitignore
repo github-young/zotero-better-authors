@@ -6,3 +6,4 @@ pcakge-lock.json
 yarn.lock
 .DS_Store
 .env
+.scaffold
