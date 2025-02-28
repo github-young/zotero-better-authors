@@ -2,6 +2,7 @@
   "name": "zotero-better-authors",
   "version": "4.3.4",
   "description": "Zotero Better Authors",
+  "type": "module",
   "packageManager": "pnpm@10.4.1",
   "config": {
     "addonName": "Zotero Better Authors",
