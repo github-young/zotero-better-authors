@@ -1,9 +1,9 @@
-# Zotero Better Authors （Zotero更好作者）
+# Zotero Better Authors （Zotero 更好作者）
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
-[中文说明](README_CN.md)
+[中文说明](./docs/README_CN.md)
 
 This is a simple plugin for [Zotero](https://www.zotero.org/) 7. See this [announcement](https://forums.zotero.org/discussion/105094/announcing-the-zotero-7-beta) for Zotero 7 Beta.
 
@@ -29,11 +29,34 @@ This plugin comes with a self-explanatory settings panel in Zotero 7 settings. A
 
 Displayed authors
 
-![image](image_display.png)
+![image](./docs/image_display.png)
 
 Settings
 
-![image_settings](image_settings_en.png)
+![image_settings](./docs/image_settings_en.png)
+
+## Contributing
+
+```bash
+# clone code
+git clone https://github.com/github-young/zotero-better-authors.git
+cd zotero-better-authors
+
+# install deps
+corepack enable
+pnpm i
+
+# config env
+cp .env.example .env
+vi .env
+
+# development
+pnpm start
+pnpm build
+
+# code format and lint
+pnpm build
+```
 
 ## Disclaimer
 

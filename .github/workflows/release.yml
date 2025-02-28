@@ -21,21 +21,20 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install deps
-        run: npm install -f
-
-      - name: Build
-        run: |
-          npm run build
+        run: pnpm install
 
       - name: Release to GitHub
         run: |
-          npm run release
+          pnpm release
           sleep 1s
 
       - name: Notify release

@@ -1,11 +1,11 @@
-import { ColumnOptions } from "zotero-plugin-toolkit/dist/helpers/virtualizedTable";
-import { DialogHelper } from "zotero-plugin-toolkit/dist/helpers/dialog";
 import hooks from "./hooks";
+import { config } from "../package.json";
 import { createZToolkit } from "./utils/ztoolkit";
 
 class Addon {
   public data: {
     alive: boolean;
+    config: typeof config;
     // Env type, see build.js
     env: "development" | "production";
     ztoolkit: ZToolkit;
@@ -14,10 +14,7 @@ class Addon {
     };
     prefs?: {
       window: Window;
-      columns: Array<ColumnOptions>;
-      rows: Array<{ [dataKey: string]: string }>;
     };
-    dialog?: DialogHelper;
   };
   // Lifecycle hooks
   public hooks: typeof hooks;
@@ -27,6 +24,7 @@ class Addon {
   constructor() {
     this.data = {
       alive: true,
+      config,
       env: __env__,
       ztoolkit: createZToolkit(),
     };

@@ -2,11 +2,9 @@ import {
   BasicBetterAuthorsFactory,
   UIBetterAuthorsFactory,
 } from "./modules/betterAuthors";
-import { config } from "../package.json";
-import { getString, initLocale } from "./utils/locale";
+import { initLocale } from "./utils/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
 import { createZToolkit } from "./utils/ztoolkit";
-import { setDefaultPrefSettings } from "./modules/setDefaultPrefs";
 
 async function onStartup() {
   await Promise.all([
@@ -16,8 +14,6 @@ async function onStartup() {
   ]);
 
   initLocale();
-
-  setDefaultPrefSettings();
 
   // Register prefs
   BasicBetterAuthorsFactory.registerPrefs();
@@ -37,12 +33,10 @@ async function onMainWindowLoad(win: Window): Promise<void> {
 
 async function onMainWindowUnload(win: Window): Promise<void> {
   ztoolkit.unregisterAll();
-  addon.data.dialog?.window?.close();
 }
 
 function onShutdown(): void {
   ztoolkit.unregisterAll();
-  addon.data.dialog?.window?.close();
   // Remove addon object
   addon.data.alive = false;
   // @ts-ignore - Plugin instance is not typed
