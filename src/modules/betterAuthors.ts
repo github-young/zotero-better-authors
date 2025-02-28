@@ -42,38 +42,13 @@ export class BasicBetterAuthorsFactory {
 type NameOrderType = "firstlast" | "lastfirst";
 
 export class UIBetterAuthorsFactory {
-  static getSeparator(sepSource: string): string {
-    // @ts-expect-error will fix in future commit
-    const sepSetting = getPref(sepSource) as string;
-    let sep = " ";
-    if (sepSetting === "space") {
-      sep = " ";
-    } else if (sepSetting === "comma") {
-      sep = ", ";
-    } else if (sepSetting === "none") {
-      sep = "";
-    }
-    return sep;
-  }
-  static getSeparatorString(
-    sepSource: string,
-    defaultReturn: string = "",
-  ): string {
-    // @ts-expect-error will fix in future commit
-    const sepInput = getPref(sepSource);
-    if (sepInput) {
-      return sepInput as string;
-    } else {
-      return defaultReturn;
-    }
-  }
   static getAuthorNameWithNameOrder(
     nameorder: NameOrderType,
     firstName: string,
     lastName: string,
     separator: string,
   ): string {
-    const firstnameStyle: string = getPref("firstnamestyle") as string;
+    const firstnameStyle: string = getPref("firstnamestyle");
     let firstnameAsInitials: boolean = false;
     if (firstnameStyle === "initials") {
       firstnameAsInitials = true;
@@ -102,18 +77,18 @@ export class UIBetterAuthorsFactory {
   ): string {
     if (authors.length == 0) return "";
     const targetAuthor = authors[index];
-    const firstName = targetAuthor.firstName as string;
-    const lastName = targetAuthor.lastName as string;
+    const firstName = targetAuthor.firstName;
+    const lastName = targetAuthor.lastName;
     // BasicTool.getZotero().log(targetAuthor.fieldMode)
     if (targetAuthor.fieldMode == 0) {
       // Double fields mode
-      const firstnameStyle: string = getPref("firstnamestyle") as string;
+      const firstnameStyle: string = getPref("firstnamestyle");
       let firstnameAsNone: boolean = false;
       if (firstnameStyle === "none") {
         firstnameAsNone = true;
       }
       if (firstnameAsNone) {
-        return targetAuthor.lastName as string;
+        return targetAuthor.lastName;
       } else {
         const nameCountry = determineCountry(firstName, lastName);
         const nameOrderStyle = getPref("namestyle");
@@ -149,7 +124,7 @@ export class UIBetterAuthorsFactory {
       }
     } else {
       // Single field mode should be used to institutions. Only lastName field has value.
-      return targetAuthor.lastName as string;
+      return targetAuthor.lastName;
     }
   }
 
@@ -165,20 +140,16 @@ export class UIBetterAuthorsFactory {
     if (authors.length == 0) return "";
     // const sep = this.getSeparator("sep");
     const separators: string[] = [];
-    const sepIntra: string = this.getSeparatorString("sep-intra-author");
-    const sepIntraCJK: string = this.getSeparatorString("sep-intra-author-cjk");
-    const sepInter: string = this.getSeparatorString("sep-inter-author");
-    const sepOmitted: string = this.getSeparatorString("sep-omitted-authors");
-    const indicatorLastAuthor: string = this.getSeparatorString(
-      "indicator-for-lastauthor",
-    );
-    const indicatorPosition: string = getPref("indicator-position") as string;
+    const sepIntra: string = getPref("sep-intra-author");
+    const sepIntraCJK: string = getPref("sep-intra-author-cjk");
+    const sepInter: string = getPref("sep-inter-author");
+    const sepOmitted: string = getPref("sep-omitted-authors");
+    const indicatorLastAuthor: string = getPref("indicator-for-lastauthor");
+    const indicatorPosition: string = getPref("indicator-position");
     // get first n authors
     // Initialize the first author list
     const firstAuthorsList: string[] = [];
-    const includeFirstAuthorsFlag = getPref(
-      "include-firstauthors-in-list",
-    ) as boolean;
+    const includeFirstAuthorsFlag = getPref("include-firstauthors-in-list");
     let firstN = 0;
     if (includeFirstAuthorsFlag) {
       const firstAuthorNumber = getPref("first_n_authors");
@@ -213,9 +184,7 @@ export class UIBetterAuthorsFactory {
       }
     }
     // get last author
-    const includeLastAuthorFlag = getPref(
-      "include-lastauthor-in-list",
-    ) as boolean;
+    const includeLastAuthorFlag = getPref("include-lastauthor-in-list");
     let lastAuthorDisplayed: string = "";
     if (includeLastAuthorFlag) {
       lastAuthorDisplayed = this.displayAuthorName(
@@ -287,8 +256,8 @@ export class UIBetterAuthorsFactory {
           (creator) => creator.creatorTypeID === 8,
         );
         if (authors.length == 0) return "";
-        const sepIntra = this.getSeparatorString("sep-intra-author");
-        const sepIntraCJK = this.getSeparatorString("sep-intra-author-cjk");
+        const sepIntra = getPref("sep-intra-author");
+        const sepIntraCJK = getPref("sep-intra-author-cjk");
         const firstAuthorDisplayed: string = this.displayAuthorName(
           authors,
           0,
@@ -328,8 +297,8 @@ export class UIBetterAuthorsFactory {
             (creator) => creator.creatorTypeID !== 8,
           );
           if (contributors.length > 0) {
-            const sepIntra = this.getSeparatorString("sep-intra-author");
-            const sepIntraCJK = this.getSeparatorString("sep-intra-author-cjk");
+            const sepIntra = getPref("sep-intra-author");
+            const sepIntraCJK = getPref("sep-intra-author-cjk");
             lastAuthorDisplayed = this.displayAuthorName(
               contributors,
               0,
@@ -343,8 +312,8 @@ export class UIBetterAuthorsFactory {
             (creator) => creator.creatorTypeID === 8,
           );
           if (authors.length > 0) {
-            const sepIntra = this.getSeparatorString("sep-intra-author");
-            const sepIntraCJK = this.getSeparatorString("sep-intra-author-cjk");
+            const sepIntra = getPref("sep-intra-author");
+            const sepIntraCJK = getPref("sep-intra-author-cjk");
             lastAuthorDisplayed = this.displayAuthorName(
               authors,
               authors.length - 1,
