@@ -3,6 +3,7 @@ import pkg from "./package.json";
 
 export default defineConfig({
   source: ["src", "addon"],
+  dist: ".scaffold/build",
   name: pkg.config.addonName,
   id: pkg.config.addonID,
   namespace: pkg.config.addonRef,
@@ -30,7 +31,7 @@ export default defineConfig({
         },
         bundle: true,
         target: "firefox115",
-        outfile: `build/addon/chrome/content/scripts/${pkg.config.addonRef}.js`,
+        outfile: `.scaffold/build/addon/content/scripts/${pkg.config.addonRef}.js`,
       },
     ],
   },
