@@ -29,11 +29,11 @@ This plugin comes with a self-explanatory settings panel in Zotero 7 settings. A
 
 Displayed authors
 
-![image](image_display.png)
+![image](./docs/image_display.png)
 
 Settings
 
-![image_settings](image_settings_en.png)
+![image_settings](./docs/image_settings_en.png)
 
 ## Disclaimer
 

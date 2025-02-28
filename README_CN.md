@@ -26,11 +26,11 @@
 
 显示效果
 
-![image](image_display.png)
+![image](./docs/image_display.png)
 
 设置选项
 
-![image_settings](image_settings_cn.png)
+![image_settings](./docs/image_settings_cn.png)
 
 ## Disclaimer
 
