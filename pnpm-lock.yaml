@@ -13,8 +13,8 @@ importers:
         version: 4.1.2(zotero-types@3.1.9(@types/bluebird@3.5.42)(@types/react@19.0.10)(epubjs@0.3.93)(pdfjs-dist@4.10.38))
     devDependencies:
       '@types/node':
-        specifier: ^22.14.0
-        version: 22.14.0
+        specifier: ^22.14.1
+        version: 22.14.1
       '@zotero-plugin/eslint-config':
         specifier: ^0.4.2
         version: 0.4.2(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.3)
@@ -531,8 +531,8 @@ packages:
     resolution: {integrity: sha512-tJxahnjm9dEI1X+hQSC5f2BSd/coZaqbIl1m3TCl0q9SVuC52XcXfV0XmoCU1+PmjyucuVITwoTnN8OlTbEXXA==}
     deprecated: This is a stub types definition for localforage (https://github.com/localForage/localForage). localforage provides its own type definitions, so you don't need @types/localforage installed!
 
-  '@types/node@22.14.0':
-    resolution: {integrity: sha512-Kmpl+z84ILoG+3T/zQFyAJsU6EPTmOCj8/2+83fSN6djd6I4o7uOuGIH6vq3PrjY5BGitSbFuMN18j3iknubbA==}
+  '@types/node@22.14.1':
+    resolution: {integrity: sha512-u0HuPQwe/dHrItgHHpmw3N2fYCR6x4ivMNbPHRkBVP4CvN+kiRrKHWk3i8tXiO/joPwXLMYvF9TTF0eqgHIuOw==}
 
   '@types/react@19.0.10':
     resolution: {integrity: sha512-JuRQ9KXLEjaUNjTWpzuR231Z2WpIwczOkBEIvbHNCzQefFIT0L8IqE6NV6ULLyC1SI/i234JnDoMkfg+RjQj2g==}
@@ -1710,7 +1710,7 @@ snapshots:
     dependencies:
       localforage: 1.10.0
 
-  '@types/node@22.14.0':
+  '@types/node@22.14.1':
     dependencies:
       undici-types: 6.21.0
 
