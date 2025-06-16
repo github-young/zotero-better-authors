@@ -13,8 +13,8 @@ importers:
         version: 4.1.2(zotero-types@3.1.9(@types/bluebird@3.5.42)(@types/react@19.0.10)(epubjs@0.3.93)(pdfjs-dist@4.10.38))
     devDependencies:
       '@types/node':
-        specifier: ^22.15.3
-        version: 22.15.3
+        specifier: ^24.0.3
+        version: 24.0.3
       '@zotero-plugin/eslint-config':
         specifier: ^0.6.0
         version: 0.6.0(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3)
@@ -261,68 +261,68 @@ packages:
     resolution: {integrity: sha512-k/1pb70eD638anoi0e8wUGAlbMJXyvdV4p62Ko+EZ7eBe1xMx8Uhak1R5DgfoofsK5IBBnRwsYGTaLZl+6/+RQ==}
     engines: {node: '>=18'}
 
-  '@napi-rs/canvas-android-arm64@0.1.70':
-    resolution: {integrity: sha512-I/YOuQ0wbkVYxVaYtCgN42WKTYxNqFA0gTcTrHIGG1jfpDSyZWII/uHcjOo4nzd19io6Y4+/BqP8E5hJgf9OmQ==}
+  '@napi-rs/canvas-android-arm64@0.1.71':
+    resolution: {integrity: sha512-cxi3VCotIOS9kNFQI7dcysbVJi106pxryVY1Hi85pX+ZeqahRyeqc/NsLaZ998Ae99+F3HI5X/39G1Y/Byrf0A==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [android]
 
-  '@napi-rs/canvas-darwin-arm64@0.1.70':
-    resolution: {integrity: sha512-4pPGyXetHIHkw2TOJHujt3mkCP8LdDu8+CT15ld9Id39c752RcI0amDHSuMLMQfAjvusA9B5kKxazwjMGjEJpQ==}
+  '@napi-rs/canvas-darwin-arm64@0.1.71':
+    resolution: {integrity: sha512-7Y4D/6vIuMLYsVNtRM/w2j0+fB1GyqeOxc7I0BTx8eLP1S6BZE2Rj6zJfdG+zmLEOW0IlHa+VQq1q2MUAjW84w==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@napi-rs/canvas-darwin-x64@0.1.70':
-    resolution: {integrity: sha512-+2N6Os9LbkmDMHL+raknrUcLQhsXzc5CSXRbXws9C3pv/mjHRVszQ9dhFUUe9FjfPhCJznO6USVdwOtu7pOrzQ==}
+  '@napi-rs/canvas-darwin-x64@0.1.71':
+    resolution: {integrity: sha512-Z0IUqxclrYdfVt/SK9nKCzUHTOXKTWiygtO71YCzs0OtxKdNI7GJRJdYG48wXZEDQ/pqTF4F7Ifgtidfc2tYpg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@napi-rs/canvas-linux-arm-gnueabihf@0.1.70':
-    resolution: {integrity: sha512-QjscX9OaKq/990sVhSMj581xuqLgiaPVMjjYvWaCmAJRkNQ004QfoSMEm3FoTqM4DRoquP8jvuEXScVJsc1rqQ==}
+  '@napi-rs/canvas-linux-arm-gnueabihf@0.1.71':
+    resolution: {integrity: sha512-KlpqqCASak5ruY+UIolJgmhMZ9Pa2o1QyaNu648L8sz4WNBbNa+aOT60XCLCL1VIKLv11B3MlNgiOHoYNmDhXQ==}
     engines: {node: '>= 10'}
     cpu: [arm]
     os: [linux]
 
-  '@napi-rs/canvas-linux-arm64-gnu@0.1.70':
-    resolution: {integrity: sha512-LNakMOwwqwiHIwMpnMAbFRczQMQ7TkkMyATqFCOtUJNlE6LPP/QiUj/mlFrNbUn/hctqShJ60gWEb52ZTALbVw==}
+  '@napi-rs/canvas-linux-arm64-gnu@0.1.71':
+    resolution: {integrity: sha512-bdGZCGu8YQNAiu3nkIVVUp6nIn6fPd36IuZsLXTG027E52KyIuZ3obCxehSwjDIUNkFWvmff5D6JYfWwAoioEw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@napi-rs/canvas-linux-arm64-musl@0.1.70':
-    resolution: {integrity: sha512-wBTOllEYNfJCHOdZj9v8gLzZ4oY3oyPX8MSRvaxPm/s7RfEXxCyZ8OhJ5xAyicsDdbE5YBZqdmaaeP5+xKxvtg==}
+  '@napi-rs/canvas-linux-arm64-musl@0.1.71':
+    resolution: {integrity: sha512-1R5sMWe9ur8uM+hAeylBwG0b6UHDR+iWQNgzXmF9vbBYRooQvmDWqpcgytKLJAC0vnWhIkKwqd7yExn7cwczmg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@napi-rs/canvas-linux-riscv64-gnu@0.1.70':
-    resolution: {integrity: sha512-GVUUPC8TuuFqHip0rxHkUqArQnlzmlXmTEBuXAWdgCv85zTCFH8nOHk/YCF5yo0Z2eOm8nOi90aWs0leJ4OE5Q==}
+  '@napi-rs/canvas-linux-riscv64-gnu@0.1.71':
+    resolution: {integrity: sha512-xjjKsipueuG+LdKIk6/uAlqdo+rzGcmNpTZPXdakIT1sHX4NNSnQTzjRaj9Gh96Czjd9G89UWR0KIlE7fwOgFA==}
     engines: {node: '>= 10'}
     cpu: [riscv64]
     os: [linux]
 
-  '@napi-rs/canvas-linux-x64-gnu@0.1.70':
-    resolution: {integrity: sha512-/kvUa2lZRwGNyfznSn5t1ShWJnr/m5acSlhTV3eXECafObjl0VBuA1HJw0QrilLpb4Fe0VLywkpD1NsMoVDROQ==}
+  '@napi-rs/canvas-linux-x64-gnu@0.1.71':
+    resolution: {integrity: sha512-3s6YpklXDB4OeeULG1XTRyKrKAOo7c3HHEqM9A6N4STSjMaJtzmpp7tB/JTvAFeOeFte6gWN8IwC+7AjGJ6MpQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@napi-rs/canvas-linux-x64-musl@0.1.70':
-    resolution: {integrity: sha512-aqlv8MLpycoMKRmds7JWCfVwNf1fiZxaU7JwJs9/ExjTD8lX2KjsO7CTeAj5Cl4aEuzxUWbJPUUE2Qu9cZ1vfg==}
+  '@napi-rs/canvas-linux-x64-musl@0.1.71':
+    resolution: {integrity: sha512-5v9aCLzCXw7u10ray5juQMdl7TykZSn1X5AIGYwBvTAcKSgrqaR9QkRxp1Lqk3njQmFekOW1SFN9bZ/i/6y6kA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@napi-rs/canvas-win32-x64-msvc@0.1.70':
-    resolution: {integrity: sha512-Q9QU3WIpwBTVHk4cPfBjGHGU4U0llQYRXgJtFtYqqGNEOKVN4OT6PQ+ve63xwIPODMpZ0HHyj/KLGc9CWc3EtQ==}
+  '@napi-rs/canvas-win32-x64-msvc@0.1.71':
+    resolution: {integrity: sha512-oJughk6xjsRIr0Rd9EqjmZmhIMkvcPuXgr3MNn2QexTqn+YFOizrwHS5ha0BDfFl7TEGRvwaDUXBQtu8JKXb8A==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
 
-  '@napi-rs/canvas@0.1.70':
-    resolution: {integrity: sha512-nD6NGa4JbNYSZYsTnLGrqe9Kn/lCkA4ybXt8sx5ojDqZjr2i0TWAHxx/vhgfjX+i3hCdKWufxYwi7CfXqtITSA==}
+  '@napi-rs/canvas@0.1.71':
+    resolution: {integrity: sha512-92ybDocKl6JM48ZpYbj+A7Qt45IaTABDk0y3sDecEQfgdhfNzJtEityqNHoCZ4Vty2dldPkJhxgvOnbrQMXTTA==}
     engines: {node: '>= 10'}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -535,8 +535,8 @@ packages:
     resolution: {integrity: sha512-tJxahnjm9dEI1X+hQSC5f2BSd/coZaqbIl1m3TCl0q9SVuC52XcXfV0XmoCU1+PmjyucuVITwoTnN8OlTbEXXA==}
     deprecated: This is a stub types definition for localforage (https://github.com/localForage/localForage). localforage provides its own type definitions, so you don't need @types/localforage installed!
 
-  '@types/node@22.15.3':
-    resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
+  '@types/node@24.0.3':
+    resolution: {integrity: sha512-R4I/kzCYAdRLzfiCabn9hxWfbuHS573x+r0dJMkkzThEa7pbrcDWK+9zu3e7aBOouf+rQAciqPFMnxwr0aWgKg==}
 
   '@types/react@19.0.10':
     resolution: {integrity: sha512-JuRQ9KXLEjaUNjTWpzuR231Z2WpIwczOkBEIvbHNCzQefFIT0L8IqE6NV6ULLyC1SI/i234JnDoMkfg+RjQj2g==}
@@ -738,8 +738,8 @@ packages:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
 
-  core-js@3.42.0:
-    resolution: {integrity: sha512-Sz4PP4ZA+Rq4II21qkNqOEDTDrCvcANId3xpIgB34NDkWc3UduWj2dqEtN9yZIq8Dk3HyPI33x9sqqU5C8sr0g==}
+  core-js@3.43.0:
+    resolution: {integrity: sha512-N6wEbTTZSYOY2rYAn85CuvWWkCK6QweMn7/4Nr3w+gDBeBhk/x4EJeY6FPo4QzDoJZxVTv8U7CMvgWk6pOHHqA==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -1478,8 +1478,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  undici-types@6.21.0:
-    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+  undici-types@7.8.0:
+    resolution: {integrity: sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw==}
 
   universal-github-app-jwt@2.2.2:
     resolution: {integrity: sha512-dcmbeSrOdTnsjGjUfAlqNDJrhxXizjAz94ija9Qw8YkZ1uu0d+GoZzyH+Jb9tIIqvGsadUfwg+22k5aDqqwzbw==}
@@ -1717,48 +1717,48 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@napi-rs/canvas-android-arm64@0.1.70':
+  '@napi-rs/canvas-android-arm64@0.1.71':
     optional: true
 
-  '@napi-rs/canvas-darwin-arm64@0.1.70':
+  '@napi-rs/canvas-darwin-arm64@0.1.71':
     optional: true
 
-  '@napi-rs/canvas-darwin-x64@0.1.70':
+  '@napi-rs/canvas-darwin-x64@0.1.71':
     optional: true
 
-  '@napi-rs/canvas-linux-arm-gnueabihf@0.1.70':
+  '@napi-rs/canvas-linux-arm-gnueabihf@0.1.71':
     optional: true
 
-  '@napi-rs/canvas-linux-arm64-gnu@0.1.70':
+  '@napi-rs/canvas-linux-arm64-gnu@0.1.71':
     optional: true
 
-  '@napi-rs/canvas-linux-arm64-musl@0.1.70':
+  '@napi-rs/canvas-linux-arm64-musl@0.1.71':
     optional: true
 
-  '@napi-rs/canvas-linux-riscv64-gnu@0.1.70':
+  '@napi-rs/canvas-linux-riscv64-gnu@0.1.71':
     optional: true
 
-  '@napi-rs/canvas-linux-x64-gnu@0.1.70':
+  '@napi-rs/canvas-linux-x64-gnu@0.1.71':
     optional: true
 
-  '@napi-rs/canvas-linux-x64-musl@0.1.70':
+  '@napi-rs/canvas-linux-x64-musl@0.1.71':
     optional: true
 
-  '@napi-rs/canvas-win32-x64-msvc@0.1.70':
+  '@napi-rs/canvas-win32-x64-msvc@0.1.71':
     optional: true
 
-  '@napi-rs/canvas@0.1.70':
+  '@napi-rs/canvas@0.1.71':
     optionalDependencies:
-      '@napi-rs/canvas-android-arm64': 0.1.70
-      '@napi-rs/canvas-darwin-arm64': 0.1.70
-      '@napi-rs/canvas-darwin-x64': 0.1.70
-      '@napi-rs/canvas-linux-arm-gnueabihf': 0.1.70
-      '@napi-rs/canvas-linux-arm64-gnu': 0.1.70
-      '@napi-rs/canvas-linux-arm64-musl': 0.1.70
-      '@napi-rs/canvas-linux-riscv64-gnu': 0.1.70
-      '@napi-rs/canvas-linux-x64-gnu': 0.1.70
-      '@napi-rs/canvas-linux-x64-musl': 0.1.70
-      '@napi-rs/canvas-win32-x64-msvc': 0.1.70
+      '@napi-rs/canvas-android-arm64': 0.1.71
+      '@napi-rs/canvas-darwin-arm64': 0.1.71
+      '@napi-rs/canvas-darwin-x64': 0.1.71
+      '@napi-rs/canvas-linux-arm-gnueabihf': 0.1.71
+      '@napi-rs/canvas-linux-arm64-gnu': 0.1.71
+      '@napi-rs/canvas-linux-arm64-musl': 0.1.71
+      '@napi-rs/canvas-linux-riscv64-gnu': 0.1.71
+      '@napi-rs/canvas-linux-x64-gnu': 0.1.71
+      '@napi-rs/canvas-linux-x64-musl': 0.1.71
+      '@napi-rs/canvas-win32-x64-msvc': 0.1.71
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -1984,9 +1984,9 @@ snapshots:
     dependencies:
       localforage: 1.10.0
 
-  '@types/node@22.15.3':
+  '@types/node@24.0.3':
     dependencies:
-      undici-types: 6.21.0
+      undici-types: 7.8.0
 
   '@types/react@19.0.10':
     dependencies:
@@ -2229,7 +2229,7 @@ snapshots:
 
   cookie@0.7.2: {}
 
-  core-js@3.42.0: {}
+  core-js@3.43.0: {}
 
   core-util-is@1.0.3: {}
 
@@ -2279,7 +2279,7 @@ snapshots:
     dependencies:
       '@types/localforage': 0.0.34
       '@xmldom/xmldom': 0.7.13
-      core-js: 3.42.0
+      core-js: 3.43.0
       event-emitter: 0.3.5
       jszip: 3.10.1
       localforage: 1.10.0
@@ -2826,7 +2826,7 @@ snapshots:
 
   pdfjs-dist@4.10.38:
     optionalDependencies:
-      '@napi-rs/canvas': 0.1.70
+      '@napi-rs/canvas': 0.1.71
 
   perfect-debounce@1.0.0: {}
 
@@ -3039,7 +3039,7 @@ snapshots:
 
   typescript@5.8.3: {}
 
-  undici-types@6.21.0: {}
+  undici-types@7.8.0: {}
 
   universal-github-app-jwt@2.2.2: {}
 
