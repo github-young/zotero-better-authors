@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       zotero-plugin-toolkit:
-        specifier: ^4.1.2
-        version: 4.1.2(zotero-types@3.1.9(@types/bluebird@3.5.42)(@types/react@19.0.10)(epubjs@0.3.93)(pdfjs-dist@4.10.38))
+        specifier: ^5.0.1
+        version: 5.0.1(zotero-types@4.0.4)
     devDependencies:
       '@types/node':
         specifier: ^22.15.3
@@ -31,8 +31,8 @@ importers:
         specifier: ^0.6.1
         version: 0.6.1
       zotero-types:
-        specifier: ^3.1.9
-        version: 3.1.9(@types/bluebird@3.5.42)(@types/react@19.0.10)(epubjs@0.3.93)(pdfjs-dist@4.10.38)
+        specifier: ^4.0.4
+        version: 4.0.4
 
 packages:
 
@@ -538,8 +538,11 @@ packages:
   '@types/node@22.15.3':
     resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
 
-  '@types/react@19.0.10':
-    resolution: {integrity: sha512-JuRQ9KXLEjaUNjTWpzuR231Z2WpIwczOkBEIvbHNCzQefFIT0L8IqE6NV6ULLyC1SI/i234JnDoMkfg+RjQj2g==}
+  '@types/prop-types@15.7.15':
+    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
+
+  '@types/react@18.3.23':
+    resolution: {integrity: sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==}
 
   '@typescript-eslint/eslint-plugin@8.34.0':
     resolution: {integrity: sha512-QXwAlHlbcAwNlEEMKQS2RCgJsgXrTJdjXT08xEgbPFa2yYQgVjBymxP5DrfrE7X7iodSzd9qBUHUycdyVJTW1w==}
@@ -1298,19 +1301,14 @@ packages:
       conventional-changelog:
         optional: true
 
-  zotero-plugin-toolkit@4.1.2:
-    resolution: {integrity: sha512-zM2NR6BLQKIAPa6Q0u6xdyIqjfwe9fz5lbJvg+fXN7B3m20ymC7wFyn1CJVzMCNCJitzr3K+obkyCvMYhiVDFQ==}
+  zotero-plugin-toolkit@5.0.1:
+    resolution: {integrity: sha512-HsZN8vxvL4/NhxE5wRVdkx7GyGghyzMsWUrDj9q8XGa0gtTxMO9Tjc3bsrmy1u3qL8X5TQu1apkHXhWHN+uNfg==}
     engines: {node: '>=18'}
     peerDependencies:
-      zotero-types: ^3.1.0
+      zotero-types: '>=4.0.0'
 
-  zotero-types@3.1.9:
-    resolution: {integrity: sha512-Sdzv72yOYqOndf1TfFxw8h63Q4xFOycHm3PGBawvOzisZt23REg+kOgMVpHLST0d8nqhcObstC2dpxfGW81k4g==}
-    peerDependencies:
-      '@types/bluebird': '*'
-      '@types/react': '*'
-      epubjs: '*'
-      pdfjs-dist: '*'
+  zotero-types@4.0.4:
+    resolution: {integrity: sha512-FPTNS0FR3IAYjuTCyrhWlZDE5eBFH/I3hOAGod9AcQO6KrVoq65xaj5E7vtq9J0acE5Z9+61qVARAOPgTLm0Kw==}
 
 snapshots:
 
@@ -1727,8 +1725,11 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/react@19.0.10':
+  '@types/prop-types@15.7.15': {}
+
+  '@types/react@18.3.23':
     dependencies:
+      '@types/prop-types': 15.7.15
       csstype: 3.1.3
 
   '@typescript-eslint/eslint-plugin@8.34.0(@typescript-eslint/parser@8.34.0(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3)':
@@ -2548,13 +2549,13 @@ snapshots:
       - '@swc/helpers'
       - magicast
 
-  zotero-plugin-toolkit@4.1.2(zotero-types@3.1.9(@types/bluebird@3.5.42)(@types/react@19.0.10)(epubjs@0.3.93)(pdfjs-dist@4.10.38)):
+  zotero-plugin-toolkit@5.0.1(zotero-types@4.0.4):
     dependencies:
-      zotero-types: 3.1.9(@types/bluebird@3.5.42)(@types/react@19.0.10)(epubjs@0.3.93)(pdfjs-dist@4.10.38)
+      zotero-types: 4.0.4
 
-  zotero-types@3.1.9(@types/bluebird@3.5.42)(@types/react@19.0.10)(epubjs@0.3.93)(pdfjs-dist@4.10.38):
+  zotero-types@4.0.4:
     dependencies:
       '@types/bluebird': 3.5.42
-      '@types/react': 19.0.10
+      '@types/react': 18.3.23
       epubjs: 0.3.93
       pdfjs-dist: 4.10.38
