@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       zotero-plugin-toolkit:
-        specifier: ^5.0.1
-        version: 5.0.1(zotero-types@4.0.5)
+        specifier: ^5.0.1-beta.4
+        version: 5.0.1(zotero-types@4.1.0-beta.2)
     devDependencies:
       '@types/node':
         specifier: ^24.3.0
@@ -31,8 +31,8 @@ importers:
         specifier: ^0.8.0
         version: 0.8.0
       zotero-types:
-        specifier: ^4.0.5
-        version: 4.0.5
+        specifier: ^4.1.0-beta.1
+        version: 4.1.0-beta.2
 
 packages:
 
@@ -1305,8 +1305,8 @@ packages:
     peerDependencies:
       zotero-types: '>=4.0.0'
 
-  zotero-types@4.0.5:
-    resolution: {integrity: sha512-U8CCf5JNXTBt8eqqDjWTUY+kbYN1UlFSbyPM5QFI1PHrla8q6oqJzlzvrUJWu1dspvfITSrj1mDpK8TafObutw==}
+  zotero-types@4.1.0-beta.2:
+    resolution: {integrity: sha512-LePY0Rfq4g3nJLjcWIfpTs9Pdx6poMTeo48Od9+BWtMGZP3KcUNW5mFhR0bIboyd6X4K2jIlUeJ4ZFldVFfB7A==}
 
 snapshots:
 
@@ -2547,11 +2547,11 @@ snapshots:
       - '@swc/helpers'
       - magicast
 
-  zotero-plugin-toolkit@5.0.1(zotero-types@4.0.5):
+  zotero-plugin-toolkit@5.0.1(zotero-types@4.1.0-beta.2):
     dependencies:
-      zotero-types: 4.0.5
+      zotero-types: 4.1.0-beta.2
 
-  zotero-types@4.0.5:
+  zotero-types@4.1.0-beta.2:
     dependencies:
       '@types/bluebird': 3.5.42
       '@types/react': 18.3.23
