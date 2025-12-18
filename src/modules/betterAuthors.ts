@@ -251,19 +251,20 @@ export class UIBetterAuthorsFactory {
       ): string => {
         if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
-        // Only get all authors in the creators
-        const authors = creators.filter(
-          (creator) => creator.creatorTypeID === 8,
-        );
-        if (authors.length == 0) return "";
-        const sepIntra = getPref("sep-intra-author");
-        const sepIntraCJK = getPref("sep-intra-author-cjk");
-        const firstAuthorDisplayed: string = this.displayAuthorName(
-          authors,
-          0,
-          sepIntra,
-          sepIntraCJK,
-        );
+        let firstAuthorDisplayed: string = "";
+
+        // get all creators
+        const authors = creators;
+        if (authors.length > 0) {
+          const sepIntra = getPref("sep-intra-author");
+          const sepIntraCJK = getPref("sep-intra-author-cjk");
+          firstAuthorDisplayed = this.displayAuthorName(
+            authors,
+            0,
+            sepIntra,
+            sepIntraCJK,
+          );
+        }
         return firstAuthorDisplayed;
       },
       renderCell(index: number, data: string, column) {
@@ -288,41 +289,20 @@ export class UIBetterAuthorsFactory {
       ): string => {
         if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
-        const itemType = item.itemType;
         let lastAuthorDisplayed: string = "";
 
-        if (itemType === "thesis") {
-          // Get the first contributor for thesis
-          const contributors = creators.filter(
-            (creator) => creator.creatorTypeID !== 8,
+        // get all creators
+        const authors = creators;
+        if (authors.length > 0) {
+          const sepIntra = getPref("sep-intra-author");
+          const sepIntraCJK = getPref("sep-intra-author-cjk");
+          lastAuthorDisplayed = this.displayAuthorName(
+            authors,
+            authors.length - 1,
+            sepIntra,
+            sepIntraCJK,
           );
-          if (contributors.length > 0) {
-            const sepIntra = getPref("sep-intra-author");
-            const sepIntraCJK = getPref("sep-intra-author-cjk");
-            lastAuthorDisplayed = this.displayAuthorName(
-              contributors,
-              0,
-              sepIntra,
-              sepIntraCJK,
-            );
-          }
-        } else {
-          // Only get all authors in the creators
-          const authors = creators.filter(
-            (creator) => creator.creatorTypeID === 8,
-          );
-          if (authors.length > 0) {
-            const sepIntra = getPref("sep-intra-author");
-            const sepIntraCJK = getPref("sep-intra-author-cjk");
-            lastAuthorDisplayed = this.displayAuthorName(
-              authors,
-              authors.length - 1,
-              sepIntra,
-              sepIntraCJK,
-            );
-          }
         }
-
         return lastAuthorDisplayed;
       },
       renderCell(index: number, data: string, column) {
