@@ -33,7 +33,7 @@
     "zotero-plugin-toolkit": "^5.0.1-beta.4"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.0.3",
     "@zotero-plugin/eslint-config": "^0.6.7",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
