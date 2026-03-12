@@ -13,13 +13,29 @@ export async function registerPrefsScripts(_window: Window) {
     addon.data.prefs.window = _window;
   }
   bindPrefEvents();
+
+  // Initialize preferences UI
+  // Call init after a short delay to ensure all elements are loaded
+  setTimeout(() => {
+    initPreferencesUI();
+  }, 100);
 }
 
-function bindPrefEvents() {
-  const settingsElementsList =
-    addon.data.prefs!.window.document.querySelectorAll(
-      `#zotero-prefpane-${config.addonRef} checkbox,input,menulist`,
-    );
+function initPreferencesUI() {
+  const enabled = Zotero.Prefs.get(
+    `extensions.zotero.betterauthors.include-firstauthors-in-list`,
+    true,
+  );
+  const inputElement = addon.data.prefs?.window.document.getElementById("first_n_authors") as HTMLInputElement | null;
+  if (inputElement) {
+    inputElement.disabled = !enabled;
+  }
+
+  // Trigger initial preview
+  updatePreview();
+}
+
+function updatePreview() {
   const exampleAuthorList: _ZoteroTypes.Item.Creator[] = [
     {
       creatorTypeID: 8,
@@ -46,28 +62,36 @@ function bindPrefEvents() {
       lastName: "李",
     },
   ];
+
+  const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
+  const previewElement = addon.data.prefs?.window.document.getElementById(
+    `zotero-prefpane-${config.addonRef}-authors-format-preview`,
+  );
+  if (previewElement) {
+    previewElement.innerHTML = example;
+  }
+}
+
+function bindPrefEvents() {
+  const settingsElementsList =
+    addon.data.prefs!.window.document.querySelectorAll(
+      `#zotero-prefpane-${config.addonRef} checkbox,input,menulist`,
+    );
+
   for (const element of settingsElementsList) {
-    element?.addEventListener("command", (e) => {
-      const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
-      addon.data.prefs!.window.document.getElementById(
-        `zotero-prefpane-${config.addonRef}-authors-format-preview`,
-      )!.innerHTML = example;
+    element?.addEventListener("command", () => {
+      updatePreview();
     });
-    element?.addEventListener("change", (e) => {
-      const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
-      addon.data.prefs!.window.document.getElementById(
-        `zotero-prefpane-${config.addonRef}-authors-format-preview`,
-      )!.innerHTML = example;
+    element?.addEventListener("change", () => {
+      updatePreview();
     });
   }
+
   addon.data
     .prefs!.window.document.querySelector(
       `#zotero-prefpane-${config.addonRef}-authors-format-preview`,
     )
-    ?.addEventListener("click", (e) => {
-      const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
-      addon.data.prefs!.window.document.getElementById(
-        `zotero-prefpane-${config.addonRef}-authors-format-preview`,
-      )!.innerHTML = example;
+    ?.addEventListener("click", () => {
+      updatePreview();
     });
 }
