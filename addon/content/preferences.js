@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
- 
+
 const addonRef = "betterauthors";
 const prefsPrefix = "extensions.zotero.betterauthors";
 const Betterauthors = {};
