@@ -1,4 +1,10 @@
-import { makeHelperTool, ProgressWindowHelper } from "zotero-plugin-toolkit";
+import {
+  BasicTool,
+  UITool,
+  makeHelperTool,
+  ProgressWindowHelper,
+  unregister,
+} from "zotero-plugin-toolkit";
 import { config } from "../../package.json";
 
 export { createZToolkit };
@@ -26,9 +32,6 @@ function initZToolkit(_ztoolkit: ReturnType<typeof createZToolkit>) {
     `chrome://${config.addonRef}/content/icons/favicon.png`,
   );
 }
-
-import { BasicTool, unregister } from "zotero-plugin-toolkit";
-import { UITool } from "zotero-plugin-toolkit";
 
 class MyToolkit extends BasicTool {
   UI: UITool;

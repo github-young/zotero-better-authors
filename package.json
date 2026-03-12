@@ -55,5 +55,12 @@
         }
       }
     ]
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "es5-ext",
+      "esbuild"
+    ]
   }
 }

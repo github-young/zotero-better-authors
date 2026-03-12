@@ -92,7 +92,9 @@ export class UIBetterAuthorsFactory {
       } else {
         const nameCountry = determineCountry(firstName, lastName);
         const nameOrderStyle = getPref("namestyle");
+        // eslint-disable-next-line no-useless-assignment
         let nameorder: NameOrderType = "firstlast";
+        // eslint-disable-next-line no-useless-assignment
         let separator = sep;
         if (["zh", "ja", "ko"].includes(nameCountry)) {
           separator = sepCJK;
@@ -203,6 +205,7 @@ export class UIBetterAuthorsFactory {
       displayedString += authorsList.join(sepInter);
     }
     // [last], if any
+    // eslint-disable-next-line no-useless-assignment
     let lastAuthorWithIndicator: string = "";
     if (indicatorPosition === "before") {
       lastAuthorWithIndicator = indicatorLastAuthor + lastAuthorDisplayed;
