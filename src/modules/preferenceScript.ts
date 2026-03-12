@@ -26,7 +26,9 @@ function initPreferencesUI() {
     `extensions.zotero.betterauthors.include-firstauthors-in-list`,
     true,
   );
-  const inputElement = addon.data.prefs?.window.document.getElementById("first_n_authors") as HTMLInputElement | null;
+  const inputElement = addon.data.prefs?.window.document.getElementById(
+    "first_n_authors",
+  ) as HTMLInputElement | null;
   if (inputElement) {
     inputElement.disabled = !enabled;
   }

@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-/* eslint-disable require-yield */
+ 
 const addonRef = "betterauthors";
 const prefsPrefix = "extensions.zotero.betterauthors";
 const Betterauthors = {};
@@ -15,9 +15,8 @@ Betterauthors.Preferences = {
         `${prefsPrefix}.include-firstauthors-in-list`,
         true,
       );
-      const inputElement = Zotero.getMainWindow().document.getElementById(
-        "first_n_authors",
-      );
+      const inputElement =
+        Zotero.getMainWindow().document.getElementById("first_n_authors");
       if (inputElement) {
         inputElement.disabled = !enabled;
       }
