@@ -132,12 +132,11 @@ export class UIBetterAuthorsFactory {
 
   static displayCreators(
     creators: _ZoteroTypes.Item.Creator[],
-    filterType: string = "author",
+    filterTypeID: number,
   ) {
-    // Only get all authors in the creators
+    // Keep only creators matching the requested type
     const authors = creators.filter(
-      (creator) =>
-        creator.creatorTypeID === Zotero.CreatorTypes.getID(filterType),
+      (creator) => creator.creatorTypeID === filterTypeID,
     );
     if (authors.length == 0) return "";
     // const sep = this.getSeparator("sep");
@@ -254,10 +253,15 @@ export class UIBetterAuthorsFactory {
       ): string => {
         if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
-        const authorTypeID = Zotero.CreatorTypes.getID("author");
-        // Only get all authors in the creators
+        const primaryTypeID =
+          Zotero.CreatorTypes.getPrimaryIDForType(item.itemTypeID) ||
+          Zotero.CreatorTypes.getID("author");
+        if (!primaryTypeID) return "";
+        // Keep only creators of the item type's primary creator type
+        // (author for journal articles, presenter for presentations,
+        // inventor for patents, director for films, ...)
         const authors = creators.filter(
-          (creator) => creator.creatorTypeID === authorTypeID,
+          (creator) => creator.creatorTypeID === primaryTypeID,
         );
         if (authors.length == 0) return "";
         const sepIntra = getPref("sep-intra-author");
@@ -293,11 +297,12 @@ export class UIBetterAuthorsFactory {
         if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
         const itemType = item.itemType;
-        const authorTypeID = Zotero.CreatorTypes.getID("author");
         let lastAuthorDisplayed: string = "";
 
         if (itemType === "thesis") {
-          // Get the first contributor for thesis
+          // Thesis convention: the "last author" position shows the
+          // advisor — i.e. the first non-author creator on the item.
+          const authorTypeID = Zotero.CreatorTypes.getID("author");
           const contributors = creators.filter(
             (creator) => creator.creatorTypeID !== authorTypeID,
           );
@@ -312,9 +317,13 @@ export class UIBetterAuthorsFactory {
             );
           }
         } else {
-          // Only get all authors in the creators
+          // Keep only creators of the item type's primary creator type
+          const primaryTypeID =
+            Zotero.CreatorTypes.getPrimaryIDForType(item.itemTypeID) ||
+            Zotero.CreatorTypes.getID("author");
+          if (!primaryTypeID) return "";
           const authors = creators.filter(
-            (creator) => creator.creatorTypeID === authorTypeID,
+            (creator) => creator.creatorTypeID === primaryTypeID,
           );
           if (authors.length > 0) {
             const sepIntra = getPref("sep-intra-author");
@@ -352,7 +361,11 @@ export class UIBetterAuthorsFactory {
       ): string => {
         if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
-        return this.displayCreators(creators);
+        const primaryTypeID =
+          Zotero.CreatorTypes.getPrimaryIDForType(item.itemTypeID) ||
+          Zotero.CreatorTypes.getID("author");
+        if (!primaryTypeID) return "";
+        return this.displayCreators(creators, primaryTypeID);
       },
       renderCell(index: number, data: string, column) {
         const span = Zotero.getMainWindow().document.createElementNS(

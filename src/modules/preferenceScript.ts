@@ -68,7 +68,10 @@ function updatePreview() {
     },
   ];
 
-  const example = UIBetterAuthorsFactory.displayCreators(exampleAuthorList);
+  const example = UIBetterAuthorsFactory.displayCreators(
+    exampleAuthorList,
+    authorTypeID,
+  );
   const previewElement = addon.data.prefs?.window.document.getElementById(
     `zotero-prefpane-${config.addonRef}-authors-format-preview`,
   );

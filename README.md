@@ -22,6 +22,9 @@ This is a simple plugin for [Zotero](https://www.zotero.org/) 7. See this [annou
   - Customize the symbol(s) to separate authors (either in one author or between authors, _e. g._ `,` `;` ` `), and to indicate the last author (_e. g._ `*` `†` `‡` `⸸`)
   - Choose the name orders for displaying authors: `Firstname Lastname`, `Lastname Firstname`, or `auto (according to the language of the authors names)`
 
+> [!NOTE]
+> The First Author / Last Author / Authors List columns follow each item's primary creator type. For most items this is `author`; for presentations it is `presenter`, for patents `inventor`, for films/videos `director`, and so on. Theses are a special case: the Last Author column shows the first non-author creator (typically the advisor).
+
 ## Usage & Screenshots
 
 This plugin comes with a self-explanatory settings panel in Zotero 7 settings. An example of the displayed authors and corresponding settings (with English and Chinese support) is given in the screenshot.
