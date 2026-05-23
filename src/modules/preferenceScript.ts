@@ -38,27 +38,30 @@ function initPreferencesUI() {
 }
 
 function updatePreview() {
+  const authorTypeID = Zotero.CreatorTypes.getID(
+    "author",
+  ) as _ZoteroTypes.Item.Creator["creatorTypeID"];
   const exampleAuthorList: _ZoteroTypes.Item.Creator[] = [
     {
-      creatorTypeID: 8,
+      creatorTypeID: authorTypeID,
       fieldMode: 0,
       firstName: "Alice",
       lastName: "Adams",
     },
     {
-      creatorTypeID: 8,
+      creatorTypeID: authorTypeID,
       fieldMode: 0,
       firstName: "Bob",
       lastName: "Brown",
     },
     {
-      creatorTypeID: 8,
+      creatorTypeID: authorTypeID,
       fieldMode: 0,
       firstName: "三",
       lastName: "张",
     },
     {
-      creatorTypeID: 8,
+      creatorTypeID: authorTypeID,
       fieldMode: 0,
       firstName: "四",
       lastName: "李",
