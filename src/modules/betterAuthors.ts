@@ -254,9 +254,10 @@ export class UIBetterAuthorsFactory {
       ): string => {
         if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
+        const authorTypeID = Zotero.CreatorTypes.getID("author");
         // Only get all authors in the creators
         const authors = creators.filter(
-          (creator) => creator.creatorTypeID === 8,
+          (creator) => creator.creatorTypeID === authorTypeID,
         );
         if (authors.length == 0) return "";
         const sepIntra = getPref("sep-intra-author");
@@ -292,12 +293,13 @@ export class UIBetterAuthorsFactory {
         if (!(item instanceof Zotero.Item)) return "";
         const creators = item.getCreators();
         const itemType = item.itemType;
+        const authorTypeID = Zotero.CreatorTypes.getID("author");
         let lastAuthorDisplayed: string = "";
 
         if (itemType === "thesis") {
           // Get the first contributor for thesis
           const contributors = creators.filter(
-            (creator) => creator.creatorTypeID !== 8,
+            (creator) => creator.creatorTypeID !== authorTypeID,
           );
           if (contributors.length > 0) {
             const sepIntra = getPref("sep-intra-author");
@@ -312,7 +314,7 @@ export class UIBetterAuthorsFactory {
         } else {
           // Only get all authors in the creators
           const authors = creators.filter(
-            (creator) => creator.creatorTypeID === 8,
+            (creator) => creator.creatorTypeID === authorTypeID,
           );
           if (authors.length > 0) {
             const sepIntra = getPref("sep-intra-author");
