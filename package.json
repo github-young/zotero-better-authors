@@ -35,7 +35,7 @@
   "devDependencies": {
     "@types/node": "^25.9.1",
     "@zotero-plugin/eslint-config": "^0.6.9",
-    "eslint": "^10.4.0",
+    "eslint": "^10.4.1",
     "prettier": "^3.8.3",
     "typescript": "^5.9.3",
     "zotero-plugin-scaffold": "^0.8.6",
