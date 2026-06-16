@@ -30,13 +30,13 @@
     "update-deps": "pnpm up"
   },
   "dependencies": {
-    "zotero-plugin-toolkit": "^5.1.2"
+    "zotero-plugin-toolkit": "^5.1.4"
   },
   "devDependencies": {
-    "@types/node": "^25.9.2",
+    "@types/node": "^25.9.3",
     "@zotero-plugin/eslint-config": "^0.6.9",
-    "eslint": "^10.4.1",
-    "prettier": "^3.8.3",
+    "eslint": "^10.5.0",
+    "prettier": "^3.8.4",
     "typescript": "^5.9.3",
     "zotero-plugin-scaffold": "^0.8.6",
     "zotero-types": "^4.1.2"
