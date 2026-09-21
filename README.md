@@ -5,7 +5,7 @@
 
 [中文说明](./docs/README_CN.md)
 
-This is a simple plugin for [Zotero](https://www.zotero.org/) 7. See this [announcement](https://forums.zotero.org/discussion/105094/announcing-the-zotero-7-beta) for Zotero 7 Beta.
+This is a simple plugin for [Zotero](https://www.zotero.org/) (>=7).
 
 ## Installation
 
